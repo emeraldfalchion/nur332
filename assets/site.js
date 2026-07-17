@@ -52,7 +52,7 @@ const SITE = {
       items: [
         { id: "exam-1",          num: "1", title: "Practice Exam 1",          file: "exam-1.html" },
         { id: "exam-2",          num: "2", title: "Practice Exam 2",          file: "exam-2.html" },
-        { id: "quiz-builder",    num: "3", title: "Build Your Own Quiz",      file: "quiz-builder.html" },
+        { id: "quiz-builder",    num: "3", title: "Build Your Own Exam",      file: "quiz-builder.html" },
         { id: "exam-hints",      num: "4", title: "Must Know Quick Reference",   file: "exam-hints.html" },
         { id: "sprint-review-1", num: "5", title: "Week 2 Lecture Review",    file: "sprint-review-1.html" },
         { id: "week3-lecture-review", num: "6", title: "Week 3 Lecture Review", file: "week3-lecture-review.html" },
@@ -283,7 +283,7 @@ const SITE = {
       details = document.createElement("details");
       details.className = "page-toc";
       if (!isMobile()) details.open = true;
-      const links = headings.map(h => {
+      const links = headings.filter(h => !h.hasAttribute("data-toc-skip")).map(h => {
         const label = (h.firstChild ? h.firstChild.textContent : h.textContent).trim();
         return `<li><a href="#${h.id}">${label}</a></li>`;
       }).join("");

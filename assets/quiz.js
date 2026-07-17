@@ -1,5 +1,5 @@
 /* ============================================================
-   quiz.js — "Build Your Own Quiz" page controller.
+   quiz.js — "Build Your Own Exam" page controller.
    Renders a topic picker from window.QUIZ_BANK, then on Start it
    assembles the chosen topics' questions, shuffles them, sets
    window.EXAM_DATA, and hands off to the shared exam engine
@@ -18,7 +18,7 @@
   topics.forEach(t => { (weeks[t.week] = weeks[t.week] || []).push(t); });
 
   let html = '<div class="quiz-picker">';
-  html += '<p class="note">Pick any topics — one for a quick mini-quiz, or several to build a longer exam. Questions are drawn from the bank and shuffled each time.</p>';
+  html += '<p class="note">Pick any topics — a few for a quick exam, or several to build a longer one. Questions are drawn from the bank and shuffled each time.</p>';
   html += '<div class="quiz-actions-top"><button type="button" class="btn btn-ghost" data-pick="all">Select all</button><button type="button" class="btn btn-ghost" data-pick="none">Clear</button></div>';
   Object.keys(weeks).sort().forEach(w => {
     html += `<fieldset class="quiz-week"><legend>Week ${w}</legend>`;
@@ -30,7 +30,7 @@
     html += '</div></fieldset>';
   });
   html += '</div>';
-  html += '<div class="quiz-start-bar"><span class="quiz-summary">No topics selected</span><button type="button" class="btn btn-primary" data-act="start" disabled>Start quiz</button></div>';
+  html += '<div class="quiz-start-bar"><span class="quiz-summary">No topics selected</span><button type="button" class="btn btn-primary" data-act="start" disabled>Start exam</button></div>';
   sel.innerHTML = html;
 
   const boxes = Array.from(sel.querySelectorAll(".quiz-topic input"));
@@ -44,7 +44,7 @@
     summary.textContent = chosen.length
       ? `${chosen.length} topic${chosen.length > 1 ? "s" : ""} selected · ${n} question${n > 1 ? "s" : ""}`
       : "No topics selected";
-    startBtn.textContent = chosen.length ? `Start quiz (${n})` : "Start quiz";
+    startBtn.textContent = chosen.length ? `Start exam (${n})` : "Start exam";
   }
 
   sel.addEventListener("change", e => { if (e.target.matches(".quiz-topic input")) update(); });
@@ -64,7 +64,7 @@
       const j = Math.floor(Math.random() * (i + 1));
       [qs[i], qs[j]] = [qs[j], qs[i]];
     }
-    window.EXAM_DATA = { id: "quiz", title: "Custom Quiz", questions: qs, history: false };
+    window.EXAM_DATA = { id: "quiz", title: "Custom Exam", questions: qs, history: false };
     const note = document.getElementById("quiz-chosen");
     if (note) note.textContent = "Topics: " + chosen.map(t => t.label).join(", ");
     sel.classList.add("hidden");

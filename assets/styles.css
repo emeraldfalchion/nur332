@@ -182,7 +182,7 @@ tbody td{ padding:10px 13px; border-bottom:1px solid var(--border); vertical-ali
 tbody tr:last-child td{ border-bottom:none; }
 tbody tr:nth-child(even){ background:#f7f8fc; }
 tbody tr:hover{ background:var(--brand-tint); }
-td.term{ font-weight:700; color:var(--brand-strong); white-space:nowrap; }
+td.term{ font-weight:700; color:var(--brand-strong); white-space:nowrap; width:1%; }
 td.danger-cell{ font-weight:700; color:var(--bad); }
 
 /* ============================================================
