@@ -32,6 +32,38 @@
   const LETTERS = ["A", "B", "C", "D", "E", "F", "G", "H"];
   const questions = data.questions || [];
 
+  // Canonical topic order (matches data/quiz-bank.js's topic order / week sequence).
+  const TOPIC_ORDER = [
+    "Anatomy & Physiology", "Disorders & Genetics", "Antepartum Care",
+    "Antepartum Care II", "Maternal Nutrition", "Antepartum Complications",
+    "Hypertensive Disorders", "Intrapartum Care I", "Intrapartum Care II"
+  ];
+
+  /* ---- Topic breakdown (only renders if questions carry a `topic` field) ----
+     A concise per-topic question count near the top of the page. Reads
+     the topic straight off each question, so editing the exam's question
+     mix later just works — no manual recount needed. */
+  (function renderTopicBreakdown() {
+    const counts = {};
+    let any = false;
+    questions.forEach(q => {
+      if (!q.topic) return;
+      any = true;
+      counts[q.topic] = (counts[q.topic] || 0) + 1;
+    });
+    if (!any) return;
+
+    const order = TOPIC_ORDER.filter(t => counts[t]);
+    Object.keys(counts).forEach(t => { if (!order.includes(t)) order.push(t); });
+
+    const wrap = document.createElement("div");
+    wrap.className = "topic-breakdown";
+    wrap.innerHTML = '<span class="tb-label">Topic breakdown:</span>' +
+      order.map(t => `<span class="badge">${t} · ${counts[t]}</span>`).join("") +
+      `<span class="tb-total">${questions.length} total</span>`;
+    root.appendChild(wrap);
+  })();
+
   // ---- Score history (per page, saved locally) ----
   const SCORE_KEY = "nur332-scores";
   const scoreId = data.id || (location.pathname.split("/").pop() || "exam");

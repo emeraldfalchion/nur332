@@ -1,25 +1,12 @@
 /* ============================================================
    study.js — interactive study tools shared by every topic page:
      • flashcards (flip, self-grade "Got it/Review", drill-missed, count)
-     • definition hide/show self-quiz (per-row eye + Hide/Show all)
+     • definition hide/show self-quiz (one eye button per table)
      • mobile stacked-table labels
    Runs against the whole page, so each topic page just includes
    this file — no per-page wiring needed.
    ============================================================ */
 document.addEventListener("DOMContentLoaded", () => {
-
-  /* ---- Freeze table column widths so masking never reflows ----
-     Skipped when the header row measures 0 (e.g. the page first
-     loads at mobile width, where the stacked-card layout hides the
-     header) so we never lock columns to a collapsed width. */
-  document.querySelectorAll(".table-wrap table").forEach(table => {
-    const ths = table.querySelectorAll("thead th");
-    if (!ths.length) return;
-    const widths = Array.from(ths).map(th => th.getBoundingClientRect().width);
-    if (widths.some(w => w === 0)) return;
-    table.style.tableLayout = "fixed";
-    ths.forEach((th, i) => { th.style.width = widths[i] + "px"; });
-  });
 
   /* ---- Lightbox: opens a table/section's stored diagram(s) ----
      A .fig-trigger button reveals the matching hidden .fig-store
@@ -219,45 +206,53 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ---- Definition hide/show self-quiz ----
-     Each row gets one eye button at the end of its last answer
-     cell; clicking it hides/reveals every answer cell in that row
-     together. A table can opt out with data-nohide, or hide its
-     whole first column too with data-hideall. */
-  const defRows = [];
-
+     Each table gets ONE eye button, in the top-right of its header
+     row, that hides/reveals the whole table's answers at once.
+       - Default ("glossary" tables — a named term in column 1 with
+         its definition/description in the rest of the row): column 1
+         stays visible, columns 2+ are hidden together.
+       - data-hide-mode="all" ("checklist" tables — the row is a single
+         fact that only makes sense recalled as a whole, e.g. a step +
+         its rationale): the entire row, including column 1, is hidden.
+     A table can opt out entirely with data-nohide. Tables using the
+     separate per-column toggle (data-hide-cols) are handled below and
+     skipped here. */
   function applyDefRow(row, hidden) {
     row.targets.forEach(td => td.classList.toggle("def-hidden", hidden));
-    row.btn.querySelector(".icon-show").style.display = hidden ? "none" : "inline-block";
-    row.btn.querySelector(".icon-hide").style.display = hidden ? "inline-block" : "none";
+    row.btn.querySelector(".icon-show-w").style.display = hidden ? "none" : "inline-block";
+    row.btn.querySelector(".icon-hide-w").style.display = hidden ? "inline-block" : "none";
     row.hidden = hidden;
   }
 
   document.querySelectorAll(".table-wrap table").forEach(table => {
-    if (table.hasAttribute("data-nohide")) return;
-    const hideAll = table.hasAttribute("data-hideall");
+    if (table.hasAttribute("data-nohide") || table.hasAttribute("data-hide-cols")) return;
+    const hideAll = table.getAttribute("data-hide-mode") === "all";
+    const headRow = table.querySelector("thead tr");
+    const lastTh = headRow && headRow.lastElementChild;
+    if (!lastTh) return;
+
+    const targets = [];
     table.querySelectorAll("tbody tr").forEach(tr => {
       const cells = Array.from(tr.children).filter(c => c.tagName === "TD");
-      const targets = hideAll ? cells : cells.slice(1);
-      if (!targets.length) return;
-
-      targets.forEach(td => {
+      const rowTargets = hideAll ? cells : cells.slice(1);
+      rowTargets.forEach(td => {
         td.classList.add("def-cell");
         td.innerHTML = '<span class="def-text">' + td.innerHTML + "</span>";
+        targets.push(td);
       });
-
-      const lastCell = targets[targets.length - 1];
-      lastCell.classList.add("def-last");
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "eye-btn";
-      btn.setAttribute("aria-label", "Show or hide this answer");
-      btn.innerHTML = '<span class="icon-eye icon-show"></span><span class="icon-eye icon-hide"></span>';
-      lastCell.appendChild(btn);
-
-      const row = { targets, btn, hidden: false };
-      btn.addEventListener("click", () => applyDefRow(row, !row.hidden));
-      defRows.push(row);
     });
+    if (!targets.length) return;
+
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "th-eye";
+    btn.setAttribute("aria-label", "Show or hide this table's answers");
+    btn.innerHTML = '<span class="icon-eye icon-show-w"></span><span class="icon-eye icon-hide-w"></span>';
+    lastTh.classList.add("th-eye-cell");
+    lastTh.appendChild(btn);
+
+    const row = { targets, btn, hidden: false };
+    btn.addEventListener("click", () => applyDefRow(row, !row.hidden));
   });
 
   /* ---- Column-based hide/show (e.g. Signs of Pregnancy) ----
@@ -281,6 +276,7 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.className = "th-eye";
       btn.setAttribute("aria-label", "Show or hide this column");
       btn.innerHTML = '<span class="icon-eye icon-show-w"></span><span class="icon-eye icon-hide-w"></span>';
+      th.classList.add("th-eye-cell");
       th.appendChild(btn);
 
       let hidden = false;
@@ -293,15 +289,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* ---- Hide/Show definitions toggle ---- */
-  document.querySelectorAll(".def-toolbar").forEach(bar => {
-    const btn = bar.querySelector('[data-defaction="toggle"]');
-    if (!btn) return;
-    let hidden = false;
-    btn.addEventListener("click", () => {
-      hidden = !hidden;
-      defRows.forEach(r => applyDefRow(r, hidden));
-      btn.textContent = hidden ? "Show all definitions" : "Hide all definitions";
-    });
+  /* ---- Freeze table column widths so masking never reflows ----
+     Runs after the eye buttons above are wired in, so the frozen
+     widths already account for the button + its padding in the
+     header row. Skipped when the header row measures 0 (e.g. the
+     page first loads at mobile width, where the stacked-card layout
+     hides the header) so we never lock columns to a collapsed width. */
+  document.querySelectorAll(".table-wrap table").forEach(table => {
+    const ths = table.querySelectorAll("thead th");
+    if (!ths.length) return;
+    const widths = Array.from(ths).map(th => th.getBoundingClientRect().width);
+    if (widths.some(w => w === 0)) return;
+    table.style.tableLayout = "fixed";
+    ths.forEach((th, i) => { th.style.width = widths[i] + "px"; });
   });
 });

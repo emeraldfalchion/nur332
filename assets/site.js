@@ -48,6 +48,26 @@ const SITE = {
       ]
     },
     {
+      label: "Week 4",
+      items: [
+        { id: "week4-labor-management",        num: "1", title: "Artificial Management of Labor", file: "week4-labor-management.html" },
+        { id: "week4-intrapartum-complications", num: "2", title: "Intrapartum Complications",     file: "week4-intrapartum-complications.html" },
+      ]
+    },
+    {
+      label: "Week 5",
+      items: [
+        { id: "week5-postpartum", num: "1", title: "Postpartum Care &amp; Complications", file: "week5-postpartum.html" },
+      ]
+    },
+    {
+      label: "Week 6",
+      items: [
+        { id: "week6-newborn1", num: "1", title: "Newborn Assessment &amp; Care I",  file: "week6-newborn1.html" },
+        { id: "week6-newborn2", num: "2", title: "Newborn Assessment &amp; Care II", file: "week6-newborn2.html" },
+      ]
+    },
+    {
       label: "Exam Prep",
       items: [
         { id: "exam-1",          num: "1", title: "Practice Exam 1",          file: "exam-1.html" },
@@ -293,37 +313,27 @@ const SITE = {
       });
     }
 
-    // Controls: collapse/expand all + the (moved) hide/show-definitions toolbar.
-    const defToolbar = contentRoot.querySelector(".def-toolbar");
-    let controls = null;
-    if (sections.length || defToolbar) {
-      controls = document.createElement("div");
-      controls.className = "page-controls";
-      if (sections.length) {
-        const grp = document.createElement("div");
-        grp.className = "control-group";
-        const cbtn = document.createElement("button");
-        cbtn.type = "button";
-        cbtn.className = "def-btn";
-        cbtn.textContent = "Collapse all headings";
-        let collapsedMode = false;
-        cbtn.addEventListener("click", () => {
-          collapsedMode = !collapsedMode;
-          sections.forEach(sec => setCollapsed(sec, collapsedMode));
-          cbtn.textContent = collapsedMode ? "Expand all headings" : "Collapse all headings";
-        });
-        grp.appendChild(cbtn);
-        controls.appendChild(grp);
-      }
-      if (defToolbar) controls.appendChild(defToolbar);
+    // Collapse/expand-all button, placed directly under the TOC.
+    let cbtn = null;
+    if (sections.length) {
+      cbtn = document.createElement("button");
+      cbtn.type = "button";
+      cbtn.className = "def-btn page-toc-collapse-btn";
+      cbtn.textContent = "Collapse all headings";
+      let collapsedMode = false;
+      cbtn.addEventListener("click", () => {
+        collapsedMode = !collapsedMode;
+        sections.forEach(sec => setCollapsed(sec, collapsedMode));
+        cbtn.textContent = collapsedMode ? "Expand all headings" : "Collapse all headings";
+      });
     }
 
-    // Top row: narrow TOC on the left, controls to the right.
-    if (details || controls) {
+    // Top block: TOC, with the collapse/expand button directly beneath it.
+    if (details || cbtn) {
       const top = document.createElement("div");
       top.className = "page-top";
       if (details) top.appendChild(details);
-      if (controls) top.appendChild(controls);
+      if (cbtn) top.appendChild(cbtn);
       const anchorEl = contentRoot.querySelector(".lead") || contentRoot.querySelector(".page-head");
       if (anchorEl) anchorEl.insertAdjacentElement("afterend", top);
       else {

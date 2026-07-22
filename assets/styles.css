@@ -117,6 +117,8 @@ img{max-width:100%;}
   .toplink:hover::after,
   .toplink.is-active::after,
   .has-dropdown:focus-within > .toplink::after{ transform:scaleX(1); }
+  /* keep each dropdown title on one line; the panel auto-widens to fit */
+  .dropdown .droplink{ white-space:nowrap; }
 }
 .droplink{
   display:flex; align-items:center; gap:10px; padding:9px 11px; border-radius:8px;
@@ -183,12 +185,42 @@ tbody tr:last-child td{ border-bottom:none; }
 tbody tr:nth-child(even){ background:#f7f8fc; }
 tbody tr:hover{ background:var(--brand-tint); }
 td.term{ font-weight:700; color:var(--brand-strong); white-space:nowrap; width:1%; }
+
+/* ---- Cross-reference strip -------------------------------------------------
+   Marks a topic this lecture repeats but that is taught in full on another page,
+   so content lives in exactly one place. Uses the ROSE accent so it reads as
+   navigation — distinct from .mnemonic (blue = rule of thumb) and
+   .callout-danger (red = clinical emergency).
+   Use .xref on its own line inside <p class="xref-line">, or add .xref-mini
+   for the compact version that sits inside a table cell. */
+p.xref-line{ margin:14px 0 10px; }
+.xref{
+  display:flex; align-items:center; gap:10px;
+  padding:11px 14px; border-radius:10px; text-decoration:none;
+  background:var(--accent-tint); color:var(--accent-strong);
+  border:1px solid var(--accent); border-left-width:4px;
+  font-size:.86rem; font-weight:600; line-height:1.45;
+  transition:border-color .14s, box-shadow .14s;
+}
+.xref::after{
+  content:"↗"; margin-left:auto; flex:none;
+  font-size:1rem; font-weight:700; transition:transform .14s;
+}
+.xref:hover{ border-color:var(--accent-strong); box-shadow:var(--shadow-sm); }
+.xref:hover::after{ transform:translate(2px,-2px); }
+
+/* compact variant for use inside a table cell */
+.xref.xref-mini{
+  display:inline-flex; margin-top:7px;
+  padding:6px 10px; border-radius:8px; border-left-width:3px;
+  font-size:.78rem; gap:7px; line-height:1.35;
+}
+.xref.xref-mini::after{ margin-left:3px; font-size:.88rem; }
 td.danger-cell{ font-weight:700; color:var(--bad); }
 
 /* ============================================================
    DEFINITION HIDE / SHOW (self-quiz)
    ============================================================ */
-.def-toolbar{ display:flex; gap:10px; margin:14px 0 22px; flex-wrap:wrap; align-items:center; }
 .def-btn{
   background:var(--surface); color:var(--brand-strong); border:1px solid var(--border-strong); padding:7px 13px; border-radius:8px;
   font-size:.78rem; font-weight:700; cursor:pointer; transition:.14s; font-family:inherit;
@@ -199,28 +231,21 @@ td.danger-cell{ font-weight:700; color:var(--bad); }
 .def-hint{ font-size:.78rem; color:var(--text-faint); }
 
 td.def-cell{ transition:background .15s; }
-td.def-last{ position:relative; padding-right:36px !important; }
-.eye-btn{
-  position:absolute; right:7px; top:50%; transform:translateY(-50%);
-  background:none; border:none; cursor:pointer; padding:4px; opacity:.5;
-  transition:opacity .15s; border-radius:6px; display:inline-flex; line-height:0;
-}
-.eye-btn:hover{ opacity:1; background:var(--surface-2); }
 .icon-eye{
   width:17px; height:17px; display:inline-block;
   background-size:contain; background-repeat:no-repeat; background-position:center;
 }
-.icon-show{ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23586074' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E"); }
-.icon-hide{ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23586074' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24'/%3E%3Cline x1='1' y1='1' x2='23' y2='23'/%3E%3C/svg%3E"); display:none; }
 td.def-hidden{ background:repeating-linear-gradient(135deg, rgba(91,75,138,.06) 0 8px, rgba(91,75,138,.11) 8px 16px) !important; }
 td.def-hidden .def-text{ display:none; }
 
 /* white-stroke eye icon variants for use on dark table headers */
 .icon-show-w{ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E"); }
 .icon-hide-w{ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24'/%3E%3Cline x1='1' y1='1' x2='23' y2='23'/%3E%3C/svg%3E"); display:none; }
+thead th.th-eye-cell{ position:relative; padding-right:32px; }
 .th-eye{
-  margin-left:8px; background:none; border:none; cursor:pointer; padding:2px; opacity:.7;
-  transition:opacity .15s; border-radius:6px; display:inline-flex; vertical-align:middle; line-height:0;
+  position:absolute; right:8px; top:50%; transform:translateY(-50%);
+  background:none; border:none; cursor:pointer; padding:2px; opacity:.7;
+  transition:opacity .15s; border-radius:6px; display:inline-flex; line-height:0;
 }
 .th-eye:hover{ opacity:1; }
 
@@ -257,6 +282,15 @@ td.def-hidden .def-text{ display:none; }
   font-size:.7rem; font-weight:700; padding:2px 9px; border-radius:999px; margin-left:6px;
 }
 .badge.badge-danger{ background:var(--bad-tint); color:var(--bad-strong); }
+
+/* concise per-topic question-count summary at the top of a practice exam */
+.topic-breakdown{
+  display:flex; flex-wrap:wrap; align-items:center; gap:6px;
+  margin:0 0 22px; font-size:.85rem;
+}
+.topic-breakdown .tb-label{ color:var(--text-soft); font-weight:600; margin-right:2px; }
+.topic-breakdown .badge{ margin-left:0; }
+.topic-breakdown .tb-total{ color:var(--text-faint); font-size:.78rem; margin-left:4px; }
 
 /* ============================================================
    DIAGRAMS: scale rows, timeline, twins, punnett, cycle
@@ -432,6 +466,30 @@ footer.site-foot{
 .tile:not(:has(.tbody p)){ align-items:center; }
 .tile:not(:has(.tbody p)) .tbody h3{ margin:0; }
 
+/* Home: compact per-week rows — a square week badge (solid brand, to contrast
+   with the light tinted topic numbers) sits centered beside that week's tiles. */
+.home-weeks{ margin:22px 0; }
+.home-weeks .wk-row{
+  display:flex; gap:18px; align-items:center;
+  padding:16px 0; border-top:1px solid var(--border);
+}
+.home-weeks .wk-row:first-child{ border-top:none; padding-top:4px; }
+.home-weeks .wk-badge{
+  flex:none; width:34px; height:34px; border-radius:9px;
+  display:inline-flex; align-items:center; justify-content:center;
+  background:var(--brand); color:#fff; font-weight:800; font-size:1rem;
+}
+.home-weeks .wk-strip{
+  flex:1; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px;
+}
+@media (max-width:900px){
+  .home-weeks .wk-strip{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media (max-width:560px){
+  .home-weeks .wk-row{ gap:12px; }
+  .home-weeks .wk-strip{ grid-template-columns:1fr; }
+}
+
 /* ============================================================
    PRACTICE EXAMS
    ============================================================ */
@@ -606,8 +664,6 @@ footer.site-foot{
     text-transform:uppercase; color:var(--brand-strong); opacity:.75; margin-bottom:3px;
   }
   .table-wrap td.term{ font-size:1rem; padding-bottom:10px !important; border-bottom:2px solid var(--brand-tint-2) !important; white-space:normal; }
-  td.def-last{ padding-right:34px !important; }
-  .eye-btn{ top:9px; transform:none; }
   .twin-grid{ grid-template-columns:1fr; }
 
   /* tables that opt out of the stacked-card layout (e.g. column-based hide/show) */
@@ -796,8 +852,8 @@ h2.block, h3.sub{ scroll-margin-top:80px; }
 
 @media print{
   .topnav, .nav-utils, .nav-toggle, .read-progress, .to-top, .search-overlay,
-  .def-toolbar, .flash-toolbar, .fig-trigger, .page-flip, .lightbox-overlay,
-  .exam-actions, .fc-grade, .page-toc, .sec-caret{ display:none !important; }
+  .flash-toolbar, .fig-trigger, .page-flip, .lightbox-overlay,
+  .exam-actions, .fc-grade, .page-toc, .page-toc-collapse-btn, .sec-caret{ display:none !important; }
   .section-body, .section-body.section-collapsed{ display:block !important; }
   body{ background:#fff; color:#000; }
   #content{ padding:0; max-width:100%; }
@@ -834,36 +890,44 @@ h2.block.section-h:hover .sec-caret{ color:var(--accent); }
 .score-history .sh-pct{ font-weight:800; color:var(--brand-strong); min-width:44px; text-align:right; }
 
 /* ============================================================
-   BUILD-YOUR-OWN-QUIZ PICKER
+   BUILD-YOUR-OWN-EXAM PICKER
+   Table: rows = topics, columns = Must Know / Extra Practice / EAQ
+   question sets, one checkbox per cell.
    ============================================================ */
+.quiz-picker .note{ margin:2px 0 6px; }
 .quiz-picker .quiz-actions-top{ display:flex; gap:10px; margin:6px 0 18px; }
-.quiz-week{ border:1px solid var(--border); border-radius:var(--radius); padding:12px 16px 16px; margin:0 0 16px; background:var(--surface); box-shadow:var(--shadow-sm); }
-.quiz-week legend{ font-family:var(--serif); font-weight:700; color:var(--brand-strong); padding:0 8px; font-size:1.05rem; }
-.quiz-weekpick{ font-family:inherit; font-size:.72rem; font-weight:700; color:var(--brand-strong); background:var(--brand-tint); border:1px solid var(--brand-tint-2); border-radius:999px; padding:5px 12px; cursor:pointer; margin:0 0 12px; }
-.quiz-weekpick:hover{ background:var(--brand-tint-2); }
-.quiz-topics{ display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:8px; }
-.quiz-topic{ display:flex; align-items:center; gap:10px; padding:10px 12px; border:1px solid var(--border-strong); border-radius:var(--radius-sm); cursor:pointer; background:var(--surface); transition:border-color .12s,background .12s; }
-.quiz-topic:hover{ border-color:var(--brand); background:var(--brand-tint); }
-.quiz-topic input{ accent-color:var(--brand); width:17px; height:17px; flex:none; }
-.quiz-topic .qt-name{ flex:1; font-size:.9rem; font-weight:600; color:var(--brand-deep); }
-.quiz-topic .qt-count{ font-size:.72rem; color:var(--text-faint); font-weight:800; }
+.qb-table-wrap{ margin:0 0 18px; }
+.qb-table{ width:100%; }
+.qb-table th{ white-space:nowrap; }
+.qb-table td{ text-align:left; }
+.qb-table td.term{ white-space:nowrap; }
+.qb-legend{ list-style:none; margin:0 0 18px; padding:0 0 0 20px; display:flex; flex-direction:column; gap:6px; }
+.qb-legend li{
+  position:relative; padding-left:16px; font-size:.92rem; color:var(--text-soft); line-height:1.5;
+}
+.qb-legend li::before{ content:"•"; position:absolute; left:2px; color:var(--brand); font-weight:700; }
+.qb-legend b{ color:var(--brand-strong); }
+.qb-cell{
+  display:inline-flex; align-items:center; gap:7px; cursor:pointer;
+  padding:5px 10px; border-radius:8px; transition:background .12s;
+}
+.qb-cell:hover{ background:var(--brand-tint); }
+.qb-cell input{ accent-color:var(--brand); width:16px; height:16px; flex:none; }
+.qb-cell span{ font-size:.83rem; font-weight:700; color:var(--brand-deep); }
+.qb-cell.qb-empty{ opacity:.4; cursor:not-allowed; }
+.qb-cell.qb-empty:hover{ background:none; }
 .quiz-start-bar{ position:sticky; bottom:0; z-index:20; display:flex; align-items:center; gap:14px; flex-wrap:wrap; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:14px 18px; box-shadow:var(--shadow-md); margin-top:8px; }
 .quiz-start-bar .quiz-summary{ flex:1; font-size:.9rem; color:var(--text-soft); font-weight:600; }
 
 /* ============================================================
-   PAGE TOP ROW: narrow TOC (left) + controls (right)
+   PAGE TOP: "On this page" TOC, with the collapse/expand-all
+   headings button directly underneath it.
    ============================================================ */
-.page-top{ display:flex; gap:16px 28px; align-items:flex-start; flex-wrap:wrap; margin:0 0 24px; }
-.page-top .page-toc{ margin:0; flex:0 1 auto; width:fit-content; max-width:100%; }
+.page-top{ display:flex; flex-direction:column; align-items:flex-start; gap:10px; margin:0 0 24px; }
+.page-top .page-toc{ margin:0; width:fit-content; max-width:100%; }
 .page-toc nav a{ white-space:nowrap; }
-.page-controls{ display:flex; flex-direction:column; align-items:flex-start; gap:10px; max-width:min(340px,100%); }
-.page-controls .def-toolbar,
-.page-controls .control-group{ margin:0; display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:flex-end; }
-.page-controls .def-hint{ flex-basis:100%; text-align:right; }
+.page-toc-collapse-btn{ margin:0; }
 @media (max-width:640px){
-  .page-controls{ align-items:flex-start; margin-left:0; max-width:100%; }
-  .page-controls .def-toolbar, .page-controls .control-group{ justify-content:flex-start; }
-  .page-controls .def-hint{ text-align:left; }
   .page-toc nav a{ white-space:normal; }
 }
 
