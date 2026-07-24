@@ -134,7 +134,7 @@
     window.EXAM_DATA = { id: "quiz", title: "Custom Exam", questions: qs, history: false };
     sel.classList.add("hidden");
     const s = document.createElement("script");
-    s.src = "assets/exam.js";
+    s.src = "assets/exam.js?v=20260723";
     document.body.appendChild(s);
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
