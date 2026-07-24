@@ -2066,8 +2066,234 @@ window.QUIZ_BANK = {
       label: "Artificial Management of Labor",
       week: 4,
       sets: {
-        mustKnow: [],
-        extraPractice: [],
+        mustKnow: [
+          {
+            stem: "A client at 9-10 cm with a strong urge to push asks for IV pain medication. What is the nurse's best response?",
+            options: ["Withhold it because birth is imminent and it could depress the newborn's breathing","Give the full ordered dose right away","Give half the dose to be safe","Give it only if she remains in the bed"],
+            answer: 0,
+            rationale: "Systemic analgesia crosses the placenta; given close to delivery the medication can cause neonatal respiratory depression. With imminent birth, the nurse withholds it and uses non-pharmacologic comfort measures.",
+            topic: "Artificial Management of Labor",
+            source: "exam-1"
+          },
+          {
+            stem: "The nurse reviews the Bishop scores of four clients being considered for induction. Which score indicates the highest likelihood of a successful vaginal birth?",
+            options: ["A score of 2","A score of 5","A score of 7","A score of 10"],
+            answer: 3,
+            rationale: "The higher the Bishop score, the more favorable the cervix — a score of 8 or higher predicts odds similar to spontaneous labor, so 10 is best.",
+            topic: "Artificial Management of Labor",
+            source: "exam-1"
+          },
+          {
+            stem: "During a cesarean birth, before delivery, the client's blood pressure drops and the fetal heart rate falls. What is the nurse's first action?",
+            options: ["Ensure a wedge tilts her to the left, off the vena cava","Ask anesthesia to deepen the block","Remove the wedge and lay her flat","Increase the oxytocin infusion"],
+            answer: 0,
+            rationale: "Supine positioning lets the uterus compress the vena cava, dropping the blood pressure and fetal perfusion. Tilting her to the left with a wedge under the right hip restores venous return. (The wedge is removed after the baby is born.)",
+            topic: "Artificial Management of Labor",
+            source: "exam-1"
+          },
+          {
+            stem: "A client is scheduled for an oxytocin induction. Which items must the nurse confirm are complete before the induction begins? Select all that apply.",
+            options: ["A reactive non-stress test","A sterile vaginal exam with a Bishop score","Signed informed consent","Baseline maternal vital signs","An epidural already placed"],
+            answers: [0,1,2,3],
+            rationale: "Before an induction you need a reactive NST, a sterile vaginal exam with a Bishop score, signed consent, and baseline vital signs. An epidural is not required, and a NON-reactive NST would be a reason to hold.",
+            topic: "Artificial Management of Labor",
+            source: "exam-1"
+          },
+          {
+            stem: "During an amniotomy the client's membranes rupture and clear fluid escapes. What is the nurse's priority action?",
+            options: ["Assess the fetal heart rate","Document the time of rupture","Check the maternal temperature","Palpate the uterus for contractions"],
+            answer: 0,
+            rationale: "Amniotic fluid cushions the cord; once it is lost the cord can be compressed, so assessing the FHR is the priority. Documenting time, checking temperature, and palpating contractions all follow.",
+            topic: "Artificial Management of Labor",
+            source: "exam-1"
+          },
+          {
+            stem: "After an epidural, a client's systolic blood pressure falls to 92 mm Hg and a late deceleration appears. Which actions should the nurse take? Select all that apply.",
+            options: ["Turn her to a side-lying position","Give an IV fluid bolus of lactated Ringer's","Administer prescribed ephedrine","Apply oxygen by non-rebreather mask","Raise the head of the bed to 90 degrees"],
+            answers: [0,1,2,3],
+            rationale: "Post-anesthesia hypotension with a late decel is treated by turning her to the side, giving an IV fluid bolus, ephedrine (5-10 mg IV), and oxygen. Raising the head of the bed to 90 degrees would worsen the hypotension.",
+            topic: "Artificial Management of Labor",
+            source: "exam-1"
+          },
+          {
+            stem: "A client is being prepared for an unscheduled cesarean birth. Which measures does the nurse anticipate to reduce her risk of aspiration? Select all that apply.",
+            options: ["Famotidine (Pepcid) IV","Metoclopramide (Reglan) IV","Bicitra by mouth within 30 minutes of incision","Placing a wedge to tilt her to the left","Raising the head of the bed to 90 degrees"],
+            answers: [0,1,2],
+            rationale: "A pregnant client is treated as a 'full stomach.' Famotidine and metoclopramide plus a Bicitra drink neutralize and reduce stomach acid to lower aspiration risk. The left tilt prevents supine hypotension (not aspiration), and lying her flat or upright does neither.",
+            topic: "Artificial Management of Labor",
+            source: "exam-1"
+          },
+          {
+            stem: "During an oxytocin induction the nurse counts 7 contractions in a 10-minute window with a rising resting tone, and the fetus develops late decelerations. What is the priority action?",
+            options: ["Turn off the oxytocin","Increase the oxytocin to shorten labor","Document it as an expected finding","Encourage her to bear down"],
+            answer: 0,
+            rationale: "Six or more contractions in 10 minutes is tachysystole; with late decels the baby is not tolerating it. Turning off the oxytocin is the priority - it is the cause of the excessive contractions.",
+            topic: "Artificial Management of Labor",
+            source: "exam-1"
+          },
+          {
+            stem: "A multipara in active labor stops making cervical change after her epidural, and her contractions space out. The provider orders oxytocin. The nurse documents this intervention as:",
+            options: ["Labor augmentation","Labor induction","Cervical ripening","Amnioinfusion"],
+            answer: 0,
+            rationale: "She was already in active labor, so stimulating her stalled contractions is augmentation. Induction is starting labor in someone who is not laboring.",
+            topic: "Artificial Management of Labor",
+            source: "exam-1"
+          },
+          {
+            stem: "Immediately after a forceps-assisted birth, the client's fundus is firm and midline but she has a steady trickle of bright-red blood. What does the nurse suspect first?",
+            options: ["A vaginal or cervical laceration","Uterine atony","A full bladder","Normal lochia rubra"],
+            answer: 0,
+            rationale: "Bright-red bleeding with a firm, well-contracted fundus points to a laceration - a known risk of instrument deliveries - rather than atony (which causes a boggy fundus).",
+            topic: "Artificial Management of Labor",
+            source: "exam-1"
+          },
+          {
+            stem: "A client received misoprostol (Cytotec) for cervical ripening two hours ago. The provider now orders oxytocin. What is the nurse's best action?",
+            options: ["Wait until at least 4 hours have passed since the misoprostol dose","Begin the oxytocin now at 2 milliunits/min","Give one more dose of misoprostol first","Start the oxytocin only after the next misoprostol dose"],
+            answer: 0,
+            rationale: "Oxytocin should not be started within 4 hours of a misoprostol dose — together they can overstimulate the uterus and cause tachysystole.",
+            topic: "Artificial Management of Labor",
+            source: "exam-1"
+          },
+          {
+            stem: "A client is receiving an amnioinfusion for repetitive variable decelerations. The nurse notes the peri-pad has stayed dry and the uterine resting tone is climbing. What should the nurse do?",
+            options: ["Stop the amnioinfusion","Continue and document a normal finding","Increase the infusion rate","Place the client in high Fowler's"],
+            answer: 0,
+            rationale: "Fluid going in must come back out. A dry pad with a rising resting tone means fluid is being trapped - stop the infusion immediately to avoid over-distending or rupturing the uterus.",
+            topic: "Artificial Management of Labor",
+            source: "exam-1"
+          },
+          {
+            stem: "A client desires a vaginal birth after cesarean (VBAC). Which finding in her records is the priority concern the nurse reports to the provider?",
+            options: ["A previous classical (vertical) uterine incision","A previous low-transverse uterine incision","One prior cesarean birth","A Pfannenstiel skin incision"],
+            answer: 0,
+            rationale: "A classical (vertical) uterine incision carries a high risk of uterine rupture in labor and contraindicates a VBAC - future births should be cesarean. A low-transverse incision is the one that supports a VBAC.",
+            topic: "Artificial Management of Labor",
+            source: "exam-1"
+          },
+          {
+            stem: "A client who has been induced with oxytocin for two days becomes confused and lethargic and begins vomiting. What is the nurse's priority action?",
+            options: ["Stop the oxytocin infusion","Increase the IV maintenance fluids","Reposition her to the left side","Recheck her cervical dilation"],
+            answer: 0,
+            rationale: "Prolonged high-dose oxytocin has an antidiuretic-like effect and can cause water intoxication (acute hyponatremia) - confusion, lethargy, and vomiting. Stop the oxytocin first, then give normal saline and furosemide as ordered.",
+            topic: "Artificial Management of Labor",
+            source: "exam-1"
+          },
+          {
+            stem: "A client who received a spinal for a cesarean reports a headache that is worse when she sits up and improves when she lies flat. The nurse recognizes this as:",
+            options: ["A post-dural-puncture headache (wet tap)","Preeclampsia","Caffeine withdrawal","A normal post-operative finding"],
+            answer: 0,
+            rationale: "A positional headache after a spinal or epidural suggests a CSF leak from the puncture (a 'wet tap'). It is treated with rest, fluids, and analgesia; if it persists, a blood patch seals the leak.",
+            topic: "Artificial Management of Labor",
+            source: "exam-1"
+          },
+          {
+            stem: "The provider performs stripping (sweeping) of the membranes at a prenatal visit. How does the nurse explain how this promotes labor?",
+            options: ["It releases prostaglandins that stimulate contractions","It releases oxytocin from the posterior pituitary","It ruptures the amniotic sac to start labor","It softens the cervix by direct pressure from a bulb"],
+            answer: 0,
+            rationale: "Separating the amniotic membrane from the lower uterine segment releases prostaglandins (not oxytocin), which stimulate contractions. Only an OB, nurse midwife, or NP performs it; it is often uncomfortable and may cause a little vaginal bleeding afterward.",
+            topic: "Artificial Management of Labor",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A newborn was delivered with vacuum assistance. Which finding does the nurse expect and monitor as a result?",
+            options: ["Reddened scalp swelling at the cup site with a risk of jaundice","Transient facial nerve paralysis","A fractured clavicle","Bulging fontanelles from increased pressure"],
+            answer: 0,
+            rationale: "A vacuum cup is placed on the fetal occiput; the reddened, swollen area of the scalp marks where it was applied, and bruising raises the bilirubin, so jaundice is a risk. The baby must be low before a vacuum is used.",
+            topic: "Artificial Management of Labor",
+            source: "quiz-bank"
+          },
+          {
+            stem: "For which situation is general anesthesia most appropriate for a cesarean birth?",
+            options: ["An emergent delivery, a very low platelet count, or when a spinal cannot be placed","A scheduled, uncomplicated repeat cesarean","A client who wishes to stay awake and hold her baby right away","Any client with a reactive nonstress test"],
+            answer: 0,
+            rationale: "General anesthesia is reserved for emergent deliveries, a low platelet count (spinal/epidural puncture would raise the bleeding/hematoma risk), and cases where a spinal can't be placed (e.g., scoliosis rods). Its biggest risks are aspiration and postpartum hemorrhage, so an epidural or spinal is preferred whenever possible.",
+            topic: "Artificial Management of Labor",
+            source: "quiz-bank"
+          }
+        ],
+        extraPractice: [
+          {
+            stem: "A Foley (balloon) catheter is placed against the cervix for mechanical ripening. How does this method work?",
+            options: ["The bulb presses on the cervix like the fetal head, releasing prostaglandins to soften it","It infuses oxytocin directly into the cervical canal","It ruptures the membranes to trigger labor","It delivers a measured dose of misoprostol over 12 hours"],
+            answer: 0,
+            rationale: "A Foley bulb puts pressure on the cervix just as the fetal head would, releasing prostaglandins to soften the cervix and cause cramping. It can shorten labor, lower the oxytocin requirement, and be used along with oxytocin.",
+            topic: "Artificial Management of Labor",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A client has a dinoprostone (Cervidil) insert placed for cervical ripening. Which instruction is appropriate?",
+            options: ["Stay in bed so the insert stays in the posterior fornix, and pat dry after using the bathroom","Remove the insert yourself before each meal","Expect it to remain in place for 3 full days","Ambulate frequently to help it dissolve faster"],
+            answer: 0,
+            rationale: "Cervidil is a 10 mg vaginal insert left in place about 12 hours; the client should stay in bed so it stays seated in the posterior fornix and pat dry after toileting. It can be removed by pulling its string, which stops further absorption.",
+            topic: "Artificial Management of Labor",
+            source: "quiz-bank"
+          },
+          {
+            stem: "Why must oxytocin never be allowed to bolus into a laboring client?",
+            options: ["The uterus clamps down in a constant, hard contraction, so the baby is not perfused — you would likely see a prolonged deceleration and fetal bradycardia","It causes an immediate rise in maternal blood pressure","It dilutes the maternal blood and causes hyponatremia within minutes","It reverses cervical dilation"],
+            answer: 0,
+            rationale: "A bolus causes a constant, hard contraction; the uterus clamps down and the fetus is not perfused or oxygenated, most likely producing a prolonged deceleration and fetal bradycardia. This is why oxytocin is titrated on a pump with a volume control.",
+            topic: "Artificial Management of Labor",
+            source: "quiz-bank"
+          },
+          {
+            stem: "The provider plans a midline episiotomy. How does the nurse describe its direction compared with a mediolateral episiotomy?",
+            options: ["Midline is a straight downward cut; mediolateral angles off to the side","Midline angles to the side; mediolateral is straight down","Both are cut straight down, differing only in depth","Midline is horizontal; mediolateral is vertical"],
+            answer: 0,
+            rationale: "A midline episiotomy is cut straight down toward the anus; a mediolateral episiotomy is angled off to the side. Either type can extend and is graded first through fourth degree, like a spontaneous laceration.",
+            topic: "Artificial Management of Labor",
+            source: "quiz-bank"
+          },
+          {
+            stem: "Which situation is an appropriate indication for a forceps-assisted birth?",
+            options: ["Maternal heart disease, to decrease her pushing effort","A client who is simply tired of pushing","A fetal head that is still floating at a high station","A routine, uncomplicated second stage"],
+            answer: 0,
+            rationale: "Forceps are used only for a real indication — maternal cardiac disease (to reduce pushing effort), pulmonary compromise, intrapartum infection, a prolonged second stage, or a non-reassuring FHR — never just because she is tired. The client must still actively push; forceps only guide the head.",
+            topic: "Artificial Management of Labor",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A first-stage laboring client describes a slow, deep, dull, aching discomfort. The nurse recognizes this as which type of labor pain?",
+            options: ["Visceral","Somatic","Referred","Phantom"],
+            answer: 0,
+            rationale: "Visceral pain is the slow, deep, dull, aching discomfort common in the first stage. Somatic pain is sharp and localized (burning/tearing) in transition and pushing; referred pain radiates to the back.",
+            topic: "Artificial Management of Labor",
+            source: "quiz-bank"
+          },
+          {
+            stem: "When teaching about systemic (IV/IM) analgesia in labor, which point should the nurse include?",
+            options: ["All systemic medications cross the placenta, and the fetal liver and kidneys metabolize them poorly","Systemic opioids do not reach the fetus because the placenta filters them out","The goal is complete elimination of all sensation","These drugs are safest given right at the moment of birth"],
+            answer: 0,
+            rationale: "All systemic analgesics cross the placenta, and the fetal liver and kidneys are generally inadequate at metabolizing them — so the goal is maximum relief with minimum risk, and the drug is not given right before birth to avoid newborn respiratory depression.",
+            topic: "Artificial Management of Labor",
+            source: "quiz-bank"
+          },
+          {
+            stem: "How does an epidural differ from a spinal block for a cesarean?",
+            options: ["The epidural is placed at L3–L4 with a catheter left in and may take up to 30 minutes for full effect; the spinal has immediate onset and no tube remains","The epidural has immediate onset; the spinal takes up to 30 minutes","Both leave a catheter in place for continuous dosing","Neither can cause maternal hypotension"],
+            answer: 0,
+            rationale: "An epidural is placed at L3–L4, leaves a catheter for titratable dosing, and can take up to 30 minutes for full effect. A spinal has immediate onset, uses a smaller drug volume, and the needle is removed with no tube remaining — often chosen for scheduled surgical cases.",
+            topic: "Artificial Management of Labor",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A pudendal block is used for the second stage and episiotomy repair. Which effect should the nurse anticipate?",
+            options: ["A decreased urge to bear down, so she may have to push longer","Profound maternal hypotension","Complete loss of consciousness","Immediate cervical dilation"],
+            answer: 0,
+            rationale: "A pudendal block is useful in the second stage and for repairing an episiotomy, with less risk of maternal hypotension, but it decreases the urge to bear down, so the client may need to push longer.",
+            topic: "Artificial Management of Labor",
+            source: "quiz-bank"
+          },
+          {
+            stem: "Which are potential fetal or newborn risks of a forceps-assisted birth? Select all that apply.",
+            options: ["Caput or cephalohematoma","Facial bruising and ecchymosis","Transient facial paralysis or brachial plexus injury","Elevated bilirubin afterward","Immediate cervical ripening"],
+            answers: [0,1,2,3],
+            rationale: "Forceps can cause bruising/ecchymosis, edema along the sides of the face, caput or cephalohematoma, transient facial paralysis or brachial plexus injury, cerebral hemorrhage or a fractured clavicle, and elevated bilirubin from the bruising. Cervical ripening is not a forceps effect.",
+            topic: "Artificial Management of Labor",
+            source: "quiz-bank"
+          }
+        ],
         eaq: [
           {
             stem: "Which instruction would the nurse include when teaching episiotomy care?",
@@ -2093,8 +2319,210 @@ window.QUIZ_BANK = {
       label: "Intrapartum Complications",
       week: 4,
       sets: {
-        mustKnow: [],
-        extraPractice: [],
+        mustKnow: [
+          {
+            stem: "A client with preterm premature rupture of membranes at 30 weeks is ordered betamethasone. When teaching her, the nurse explains its purpose is to:",
+            options: ["Speed the baby's lung maturity","Stop her contractions","Treat an infection","Raise her blood pressure"],
+            answer: 0,
+            rationale: "Betamethasone triggers surfactant release to accelerate fetal lung maturity. It is given under about 34 weeks; the goal is to avoid delivery within 48 hours of the first dose so it has time to work.",
+            topic: "Intrapartum Complications",
+            source: "exam-1"
+          },
+          {
+            stem: "During a vaginal exam the nurse feels a pulsating umbilical cord ahead of the presenting part. What is the nurse's FIRST action?",
+            options: ["Keep the gloved hand in the vagina and lift the presenting part off the cord","Increase the IV fluids","Call the provider and wait for orders","Reposition the client onto her left side"],
+            answer: 0,
+            rationale: "With a prolapsed cord, the priority is to immediately relieve the compression by lifting the presenting part off the cord with the gloved hand. The nurse also places her in Trendelenburg, gives oxygen, notifies the provider, and prepares for a cesarean.",
+            topic: "Intrapartum Complications",
+            source: "exam-1"
+          },
+          {
+            stem: "A client arrives with bright-red, painless vaginal bleeding, and a previa is suspected. Which action is contraindicated?",
+            options: ["Performing a sterile vaginal exam","Applying an external fetal monitor","Assessing maternal vital signs","Establishing IV access"],
+            answer: 0,
+            rationale: "With a suspected previa a vaginal exam could puncture the placenta and cause severe hemorrhage. Confirm the placenta's location by ultrasound instead; external monitoring, vital signs, and IV access are appropriate.",
+            topic: "Intrapartum Complications",
+            source: "exam-1"
+          },
+          {
+            stem: "A client's labor has slowed to fewer than 2 contractions in 10 minutes with little cervical change, and the fetus is noted to be in a transverse lie. The nurse understands that this dysfunctional labor pattern is most associated with:",
+            options: ["An abnormal fetal presentation","Advanced maternal age","The gestational age","The amniotic fluid volume"],
+            answer: 0,
+            rationale: "A dysfunctional (hypotonic) labor pattern is linked to an abnormal fetal presentation - a transverse lie keeps the presenting part from pressing on the cervix. Maternal age itself is not associated.",
+            topic: "Intrapartum Complications",
+            source: "exam-1"
+          },
+          {
+            stem: "A client is now at 42 3/7 weeks' gestation. Which fetal risk does the nurse most anticipate as the pregnancy continues past term?",
+            options: ["Decreased placental perfusion","Polyhydramnios","Preterm respiratory distress","Hypoglycemia from prematurity"],
+            answer: 0,
+            rationale: "Past 42 weeks the aging placenta perfuses the fetus less well, raising the risk of fetal compromise, macrosomia or SGA, and meconium-stained fluid (with oligohydramnios, not polyhydramnios).",
+            topic: "Intrapartum Complications",
+            source: "exam-1"
+          },
+          {
+            stem: "After the fetal head delivers, the provider reports a shoulder dystocia. Which action does the nurse anticipate first?",
+            options: ["Assist the client to flex her hips and bring both knees toward her chest","Apply fundal pressure to push the baby out","Increase the oxytocin to strengthen contractions","Prepare for an immediate forceps delivery"],
+            answer: 0,
+            rationale: "Flexing the hips and bringing the knees toward the chest is the McRoberts maneuver, which (with suprapubic pressure) frees the trapped shoulder. Fundal pressure is contraindicated - it only jams the shoulder harder against the pubic bone.",
+            topic: "Intrapartum Complications",
+            source: "exam-1"
+          },
+          {
+            stem: "Thirty-five minutes after birth the placenta has not delivered and bleeding is increasing. The nurse recognizes this as a retained placenta and anticipates that:",
+            options: ["The provider may need to manually remove the placenta","The client should ambulate to speed delivery of the placenta","Fundal massage alone will resolve the bleeding","No intervention is needed until 60 minutes have passed"],
+            answer: 0,
+            rationale: "The placenta should deliver within 30 minutes; beyond that, retained placenta raises the risk of hemorrhage and infection and may require manual removal (and possibly a transfusion). Abnormal adherence - accreta, increta, percreta - should also be considered.",
+            topic: "Intrapartum Complications",
+            source: "exam-1"
+          },
+          {
+            stem: "A client is admitted for delivery of a fetus that died in utero. Which nursing action best supports her and her family?",
+            options: ["Ask her what she would like - such as holding the baby, mementos, or where to recover","Move her immediately to a unit far from the maternity floor","Reassure her that she can have another baby","Limit her time with the infant to protect her from grief"],
+            answer: 0,
+            rationale: "Individualized, patient-led care is best: ask what she wants (holding the baby, pictures, a memory box, where to recover). Do not assume or minimize the loss. In Kentucky, KODA is notified of any death.",
+            topic: "Intrapartum Complications",
+            source: "exam-1"
+          },
+          {
+            stem: "A client is discharged home after a cerclage for cervical insufficiency. Which statement shows she understood the discharge teaching?",
+            options: ["\"I'll call my provider if I have uterine cramping or low back pain.\"","\"I'll be on strict bed rest until delivery.\"","\"I'll need a cesarean because of the stitch.\"","\"I'll take antibiotics for the rest of my pregnancy.\""],
+            answer: 0,
+            rationale: "After a cerclage she should report cramping, low back pain, pelvic pressure, discharge changes, or bleeding. Strict bed rest, a mandatory cesarean, and lifelong antibiotics are all incorrect.",
+            topic: "Intrapartum Complications",
+            source: "exam-1"
+          },
+          {
+            stem: "A client's membranes have been ruptured for 20 hours. What is the nurse's priority concern?",
+            options: ["Infection","Postterm birth","Hypertension","Shoulder dystocia"],
+            answer: 0,
+            rationale: "Once membranes are ruptured longer than 18 hours the protective barrier is gone, so infection is the priority - hence temperature checks and often prophylactic antibiotics.",
+            topic: "Intrapartum Complications",
+            source: "exam-1"
+          },
+          {
+            stem: "A client whose labor is being augmented with oxytocin develops uterine tachysystole. Which intervention is contraindicated?",
+            options: ["Increasing the oxytocin rate","Repositioning the client","Providing comfort measures","Assessing the fetal heart rate"],
+            answer: 0,
+            rationale: "With tachysystole the uterus is already contracting too much, so increasing the oxytocin would worsen it. The nurse assesses, repositions, provides comfort, and turns the oxytocin down or off.",
+            topic: "Intrapartum Complications",
+            source: "exam-1"
+          },
+          {
+            stem: "A laboring client suddenly develops chest pain, dyspnea, hypotension, and frothy sputum shortly after her membranes rupture. Which findings support a diagnosis of amniotic fluid embolism? Select all that apply.",
+            options: ["Chest pain","Dyspnea","Frothy sputum","Hypotension","Hypertension"],
+            answers: [0,1,2,3],
+            rationale: "Amniotic fluid embolism strikes the respiratory and cardiovascular systems: chest pain, dyspnea, frothy sputum, and hypotension (not hypertension). Care is to support the cardiovascular and respiratory systems, and to displace the uterus if CPR is needed.",
+            topic: "Intrapartum Complications",
+            source: "exam-1"
+          },
+          {
+            stem: "An ultrasound reports an amniotic fluid index (AFI) of 3 cm. The nurse recognizes this as oligohydramnios and monitors the fetus most closely for:",
+            options: ["Cord compression and pulmonary hypoplasia","Macrosomia","Polycythemia","Rapid fetal growth"],
+            answer: 0,
+            rationale: "A normal AFI is 5-25 cm; an AFI of 3 is oligohydramnios. Too little fluid risks cord compression and pulmonary hypoplasia (the fetus needs to breathe in fluid for the lungs to develop), along with renal and skeletal problems.",
+            topic: "Intrapartum Complications",
+            source: "exam-1"
+          },
+          {
+            stem: "A client is admitted with vaginal bleeding, and the team is trying to distinguish placenta previa from placental abruption. Which assessment finding best differentiates the two?",
+            options: ["The presence and character of abdominal pain","The volume of bleeding on the pad","The fetal heart rate baseline","The hemoglobin and hematocrit"],
+            answer: 0,
+            rationale: "Abdominal pain is the key differentiator: abruption is painful with a firm, tender, board-like uterus, whereas previa is classically painless bleeding with a soft uterus.",
+            topic: "Intrapartum Complications",
+            source: "exam-1"
+          },
+          {
+            stem: "A client in preterm labor is started on nifedipine as a tocolytic. Before giving a dose, the nurse should hold the medication and notify the provider if:",
+            options: ["The systolic blood pressure is less than 90 mm Hg","The client reports mild flushing","The fetal heart rate is 140 bpm","The client has 2+ deep tendon reflexes"],
+            answer: 0,
+            rationale: "Nifedipine relaxes the uterine smooth muscle but also lowers blood pressure. Because this client is not hypertensive, hold the dose if the systolic pressure drops below 90 to avoid maternal hypotension.",
+            topic: "Intrapartum Complications",
+            source: "exam-1"
+          }
+        ],
+        extraPractice: [
+          {
+            stem: "Labor that begins at which point is classified as preterm labor?",
+            options: ["Between 20 and 36 6/7 weeks of gestation","Before 12 weeks of gestation","Between 37 and 40 weeks of gestation","Any time after 42 weeks of gestation"],
+            answer: 0,
+            rationale: "Preterm labor occurs between 20 and 36 6/7 weeks. Signs include about 8 contractions in an hour (or 4 in 20 minutes), cervical change, low menstrual-like cramps, pelvic pressure, and a low dull backache.",
+            topic: "Intrapartum Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A client at risk for preterm birth has a positive fetal fibronectin (fFN) test. What does this result indicate?",
+            options: ["The 'glue' holding the amniotic sac to the uterine lining has been disrupted — an increased risk of preterm labor or birth","The fetal lungs are fully mature","The cervix is firmly closed and long","Labor is not likely for several more weeks"],
+            answer: 0,
+            rationale: "Fetal fibronectin is the protein that keeps the amniotic sac glued to the uterine lining. A positive result means that glue has been disrupted — a stronger predictor of preterm labor/birth. You do not want fFN in the cervical secretions.",
+            topic: "Intrapartum Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "On transvaginal ultrasound, which cervical finding is a strong predictor of preterm birth?",
+            options: ["Cervical shortening, particularly less than 25 mm before term","A cervix longer than 40 mm","A posterior, firm cervix","A closed external os"],
+            answer: 0,
+            rationale: "Cervical length is measured by ultrasound; shortening or thinning — especially less than 25 mm before term — is abnormal and a strong predictor of preterm birth, along with a prior preterm birth or current infection.",
+            topic: "Intrapartum Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "Besides stopping contractions, magnesium sulfate is sometimes given to a client in preterm labor for which additional benefit?",
+            options: ["Neuroprotection — it may lower the fetal risk of intracranial hemorrhage and necrotizing enterocolitis","It raises the maternal blood pressure","It speeds cervical dilation","It directly matures the fetal lungs like a steroid"],
+            answer: 0,
+            rationale: "Magnesium sulfate is also neuroprotective — it may decrease the risk of intracranial hemorrhage and necrotizing enterocolitis, so a client may receive it for that reason as well as to relax the uterus. Corticosteroids, not magnesium, mature the lungs.",
+            topic: "Intrapartum Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "An ultrasound shows the placenta completely covering the cervical os. The nurse identifies this as which type of placenta previa?",
+            options: ["Complete","Marginal","Low-lying","Partial"],
+            answer: 0,
+            rationale: "A complete previa totally covers the cervix. Partial covers part of it, marginal is near the cervix, and low-lying is close but not on or touching it. With any placenta over the cervix, do not perform a vaginal exam.",
+            topic: "Intrapartum Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A client with a suspected central placental abruption has little visible bleeding but a hard abdomen that keeps enlarging. Which complication should the nurse monitor for most closely?",
+            options: ["Disseminated intravascular coagulation (DIC) from the concealed blood loss","Painless, bright-red external bleeding","A soft, relaxed, nontender uterus","Gradual resolution without intervention"],
+            answer: 0,
+            rationale: "A central abruption often conceals its bleeding; the abdomen becomes hard and enlarges as blood accumulates. The nurse monitors uterine activity, pain, abdominal size, fetal tolerance, and for the development of DIC, and supports maternal cardiovascular status.",
+            topic: "Intrapartum Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A client's nonstress test is nonreactive. Which follow-up does the nurse most anticipate?",
+            options: ["A biophysical profile (BPP) as the next look at fetal well-being","Acoustic (vibroacoustic) stimulation, even though the tracing is already non-reassuring","Immediate discharge home","Repeating the NST in one week"],
+            answer: 0,
+            rationale: "A nonreactive NST is typically followed by a BPP. Vibroacoustic stimulation may be used to wake a baby that may simply be asleep, but it should NOT be used on a baby already showing non-reassuring signs — it only stresses a baby already in trouble.",
+            topic: "Intrapartum Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "An Rh-negative client is scheduled for an external cephalic version (ECV). Which intervention does the nurse anticipate specifically because of her Rh status?",
+            options: ["A prophylactic dose of RhoGAM, because the manipulation can mix fetal and maternal blood","A dose of misoprostol before the procedure","Withholding all IV access","Placing an internal fetal scalp electrode first"],
+            answer: 0,
+            rationale: "For ECV the nurse anticipates consent (a cesarean is a possible risk), IV access, ultrasound, subcutaneous terbutaline if she is contracting, fasting for 8 hours, and NST monitoring. Because manipulation can mix fetal and maternal blood, an Rh-negative client gets prophylactic RhoGAM.",
+            topic: "Intrapartum Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "How does the nurse distinguish placenta percreta from the other abnormal-adherence types?",
+            options: ["The placenta penetrates through the myometrium and can attach to nearby organs such as the bowel or bladder","The placenta attaches only to the endometrium, as it normally should","The chorionic villi reach the top of the myometrium but do not invade it","The placenta invades into, but not through, the myometrium"],
+            answer: 0,
+            rationale: "Percreta perforates — the myometrium is penetrated and the placenta can attach to organs like the bowel or bladder. Accreta attaches through the endometrium to the top of the myometrium; increta invades into the myometrium.",
+            topic: "Intrapartum Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "Which are increased risks the nurse anticipates in a multiple-gestation pregnancy? Select all that apply.",
+            options: ["Preterm labor","Postpartum hemorrhage","Abnormal fetal presentations","Twin-to-twin transfusion","Decreased total maternal weight-gain needs"],
+            answers: [0,1,2,3],
+            rationale: "Multiple gestation raises the risk of preterm labor, uterine dysfunction, abnormal presentations, instrumental/cesarean birth, postpartum hemorrhage, twin-to-twin transfusion, cord accidents, and cerebral palsy. Weight-gain needs are greater (about 40–45 lb), not decreased.",
+            topic: "Intrapartum Complications",
+            source: "quiz-bank"
+          }
+        ],
         eaq: [
           {
             stem: "A client who recently was told by her primary health care provider that she has extensive terminal metastatic carcinoma of the breast tells the nurse that she believes an error has been made. She states that she does not have breast cancer, and she is not going to die. Which stage of death and dying is the client experiencing?",

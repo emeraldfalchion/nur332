@@ -448,7 +448,9 @@ footer.site-foot{
 .home-section{ margin:30px 0; }
 .home-section > h2{ font-size:1.3rem; color:var(--brand-strong); margin-bottom:14px; }
 .home-section > p.note{ margin:0 0 14px; }
-.tile-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:14px; }
+.tile-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+@media (max-width:900px){ .tile-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:560px){ .tile-grid{ grid-template-columns:1fr; } }
 .tile{
   display:flex; gap:13px; align-items:flex-start;
   background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
@@ -473,7 +475,8 @@ footer.site-foot{
   display:flex; gap:18px; align-items:center;
   padding:16px 0; border-top:1px solid var(--border);
 }
-.home-weeks .wk-row:first-child{ border-top:none; padding-top:4px; }
+.home-weeks .wk-row:first-child,
+.home-weeks h2 + .wk-row{ border-top:none; padding-top:4px; }
 .home-weeks .wk-badge{
   flex:none; width:34px; height:34px; border-radius:9px;
   display:inline-flex; align-items:center; justify-content:center;
@@ -901,6 +904,7 @@ h2.block.section-h:hover .sec-caret{ color:var(--accent); }
 .qb-table th{ white-space:nowrap; }
 .qb-table td{ text-align:left; }
 .qb-table td.term{ white-space:nowrap; }
+.qb-week{ display:block; font-size:.7rem; font-weight:700; color:var(--text-soft); text-transform:uppercase; letter-spacing:.05em; margin-bottom:1px; }
 .qb-legend{ list-style:none; margin:0 0 18px; padding:0 0 0 20px; display:flex; flex-direction:column; gap:6px; }
 .qb-legend li{
   position:relative; padding-left:16px; font-size:.92rem; color:var(--text-soft); line-height:1.5;
@@ -936,3 +940,94 @@ h2.block.section-h:hover .sec-caret{ color:var(--accent); }
 
 /* images embedded in a practice-question stem (Week 3 Lecture Review) */
 .q-img{ display:block; max-width:100%; max-height:52vh; width:auto; margin:12px auto 2px; border:1px solid var(--border); border-radius:var(--radius-sm); background:#fff; }
+
+/* ============================================================
+   THE TORTURE CHAMBER — themed exam page (torture-chamber.html)
+
+   Everything here is scoped to `body.torture` (and mostly to
+   `.torture .page-inner`), so it can never leak onto another page.
+   The approach is deliberately light-touch: the page mostly just
+   RE-POINTS the existing palette variables to an ember/oxblood set,
+   which re-themes every shared component (q-card, options, result
+   ring, buttons, rationales) automatically and keeps all of the
+   contrast relationships the base stylesheet already got right.
+   Both light and dark mode stay fully readable — no vibrant-red
+   body text, no fire.
+   ============================================================ */
+.torture .page-inner{
+  --brand:#912d2b;
+  --brand-strong:#742220;
+  --brand-deep:#421413;
+  --brand-tint:#fbeeed;
+  --brand-tint-2:#f3dad9;
+  --accent:#912d2b;
+  --accent-strong:#742220;
+  --accent-tint:#fbeeed;
+  --surface-2:#f7efef;
+  --surface-3:#f0e2e2;
+  --border:#e8d8d7;
+  --border-strong:#d6c0bf;
+}
+:root[data-theme="dark"] .torture .page-inner{
+  --brand:#c47b7f;
+  --brand-strong:#e0a0a2;
+  --brand-deep:#f0c9c8;
+  --brand-tint:#33202299;
+  --brand-tint-2:#3d2628;
+  --accent:#d98a63;
+  --accent-strong:#eda882;
+  --accent-tint:#3a2620;
+  --surface:#1e181b;
+  --surface-2:#282024;
+  --surface-3:#33292d;
+  --border:#3d3237;
+  --border-strong:#54444a;
+  --bad-tint:#3a1f1d;
+}
+
+/* --- the whole page background is oxblood; the exam-question boxes keep
+       their own light/dark surface fill (set on .q-card etc.), so only the
+       loose text sitting directly on the background needs a light color. --- */
+body.torture{ background:#912d2b; }
+.torture .topic-breakdown .tb-label,
+.torture .topic-breakdown .tb-total,
+.torture .site-foot{ color:#f3d9d6; }
+.torture .site-foot{ border-top-color:rgba(255,255,255,.22); }
+
+/* --- question cards: every one is SATA, so lean into it --- */
+.torture .q-card{ border-left-color:var(--accent); }
+.torture .q-card.correct{ border-left-color:var(--ok); }
+.torture .q-card.incorrect{ border-left-color:var(--bad); }
+.torture .q-num{
+  font-size:.9rem; font-weight:800; color:#fff; font-family:var(--sans);
+  min-width:26px; height:26px; border-radius:6px;
+  display:inline-flex; align-items:center; justify-content:center;
+  background:#912d2b;
+  align-self:flex-start;
+}
+.torture .sata-tag{ border-color:var(--border-strong); letter-spacing:.07em; }
+:root[data-theme="dark"] .torture .sata-tag{ border-color:var(--border-strong); }
+
+/* --- the topic breakdown strip reads as a roster of victims --- */
+.torture .topic-breakdown .badge{ background:var(--brand-tint); color:var(--brand-strong); }
+
+/* --- the Exam Prep dropdown link for this page, so it stands out (matches
+       the page's oxblood). Lightened where the menu sits on a dark surface. --- */
+.droplink[data-page="torture-chamber"] span:last-child{ color:#912d2b; font-weight:700; }
+/* the desktop dropdown panel is light (dark red reads well); where the menu sits
+   on a dark surface (dark mode, and the mobile accordion) use a lighter but still
+   clearly-RED shade of the same hue — not the rose accent. */
+:root[data-theme="dark"] .droplink[data-page="torture-chamber"] span:last-child{ color:#d75149; }
+@media (max-width:899px){
+  .droplink[data-page="torture-chamber"] span:last-child{ color:#d75149; }
+}
+
+/* --- the home-page tile: standard box + badge, but the TITLE is oxblood --- */
+.tile.tile-torture .tbody h3{ color:#912d2b; }
+:root[data-theme="dark"] .tile.tile-torture .tbody h3{ color:#d75149; }
+
+/* --- Submit exam button: light mode already inherits the oxblood --brand;
+       force the clearly-red shade in dark mode too (default dark --brand is a
+       muted rose that reads as pink). --- */
+:root[data-theme="dark"] .torture .btn-primary{ background:#d75149; }
+:root[data-theme="dark"] .torture .btn-primary:hover{ background:#c0463f; }

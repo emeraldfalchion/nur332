@@ -48,7 +48,8 @@
 
   topics.forEach(t => {
     html += `<tr>`;
-    html += `<td class="term">${t.label}</td>`;
+    const wk = t.week ? `<span class="qb-week">Week ${t.week}</span>` : '';
+    html += `<td class="term">${wk}${t.label}</td>`;
     SET_COLUMNS.forEach(c => {
       const n = countOf(t, c.key);
       const empty = n === 0;
