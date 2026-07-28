@@ -7,6 +7,14 @@
    (assets/exam.js) for rendering, grading, rationales, and the score
    history (saved under the id "quiz").
    ============================================================ */
+// Cache-bust token read off our own <script src="assets/quiz.js?v=…">, so the
+// exam engine injected on Start shares the page's version automatically.
+const QUIZ_VER = (function () {
+  const s = document.currentScript || document.querySelector('script[src*="assets/quiz.js"]');
+  const m = s && /[?&]v=([^&]+)/.exec(s.src || "");
+  return m ? m[1] : "";
+})();
+
 (function () {
   const bank = window.QUIZ_BANK;
   const sel = document.getElementById("quiz-select");
@@ -28,7 +36,7 @@
   html += '<ul class="qb-legend">' +
     '<li><b>Must Know:</b> Everything the live lectures explicitly stated or heavily hinted will be on an exam.</li>' +
     '<li><b>Extra Practice:</b> Other topics from the lecture content.</li>' +
-    '<li><b>EAQs:</b> All 150 questions from EAQs 1, 2, and 3 sorted by topic with duplicates removed.</li>' +
+    '<li><b>EAQs:</b> Your EAQ sets 1&ndash;4 (200 questions) sorted by topic, with duplicates removed &mdash; 157 unique.</li>' +
     '</ul>';
   html += '<div class="quiz-actions-top"><button type="button" class="btn btn-ghost" data-pick="all">Select all</button><button type="button" class="btn btn-ghost" data-pick="none">Clear</button></div>';
 
@@ -134,7 +142,7 @@
     window.EXAM_DATA = { id: "quiz", title: "Custom Exam", questions: qs, history: false };
     sel.classList.add("hidden");
     const s = document.createElement("script");
-    s.src = "assets/exam.js?v=20260723";
+    s.src = "assets/exam.js" + (QUIZ_VER ? "?v=" + QUIZ_VER : "");
     document.body.appendChild(s);
     window.scrollTo({ top: 0, behavior: "smooth" });
   });

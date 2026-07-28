@@ -37,7 +37,8 @@
     "Anatomy & Physiology", "Disorders & Genetics", "Antepartum Care",
     "Antepartum Care II", "Maternal Nutrition", "Antepartum Complications",
     "Hypertensive Disorders", "Intrapartum Care I", "Intrapartum Care II",
-    "Artificial Management of Labor", "Intrapartum Complications"
+    "Artificial Management of Labor", "Intrapartum Complications",
+    "Postpartum Care & Complications"
   ];
 
   /* ---- Topic breakdown (only renders if questions carry a `topic` field) ----
@@ -93,6 +94,46 @@
   const answers = model.map(m => (m.isSata ? [] : null));
   let graded = false;
 
+  /* ---- In-progress answers, so a stray reload doesn't wipe 65 questions ----
+     Stored against a fingerprint of the question set, so answers are only
+     restored into the exact same exam — edit a data file and the stale
+     progress is ignored rather than mapped onto the wrong questions.
+     Skipped for the custom Build-Your-Own exam (history:false), which
+     reshuffles its questions on every run. */
+  const PROG_KEY = "nur332-progress";
+  const persist = trackHistory;
+  const fingerprint = (() => {
+    const s = questions.map(q => q.stem).join("|");
+    let h = 0;
+    for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0;
+    return questions.length + ":" + h;
+  })();
+  function readProgress() {
+    if (!persist) return null;
+    try {
+      const rec = (JSON.parse(localStorage.getItem(PROG_KEY)) || {})[scoreId];
+      return rec && rec.fp === fingerprint && Array.isArray(rec.a) && rec.a.length === questions.length ? rec.a : null;
+    } catch (e) { return null; }
+  }
+  function saveProgress() {
+    if (!persist || graded) return;
+    try {
+      const all = JSON.parse(localStorage.getItem(PROG_KEY)) || {};
+      all[scoreId] = { fp: fingerprint, a: answers };
+      localStorage.setItem(PROG_KEY, JSON.stringify(all));
+    } catch (e) {}
+  }
+  function clearProgress() {
+    if (!persist) return;
+    try {
+      const all = JSON.parse(localStorage.getItem(PROG_KEY)) || {};
+      delete all[scoreId];
+      localStorage.setItem(PROG_KEY, JSON.stringify(all));
+    } catch (e) {}
+  }
+  const restored = readProgress();
+  if (restored) restored.forEach((v, i) => { answers[i] = v; });
+
   /* ---------- Build the quiz form ---------- */
   const form = document.createElement("form");
   form.className = "exam-form";
@@ -120,7 +161,10 @@
         `<input type="${isSata ? "checkbox" : "radio"}" name="q${qi}" value="${oi}">
          <span class="opt-letter">${LETTERS[oi]}</span>
          <span class="opt-text">${opt}</span>`;
-      label.querySelector("input").addEventListener("change", e => {
+      const input = label.querySelector("input");
+      const prior = answers[qi];
+      if (isSata ? (prior || []).indexOf(oi) >= 0 : prior === oi) input.checked = true;
+      input.addEventListener("change", e => {
         if (graded) return;
         if (isSata) {
           const set = new Set(answers[qi]);
@@ -129,6 +173,7 @@
         } else {
           answers[qi] = oi;
         }
+        saveProgress();
         updateProgress();
       });
       li.appendChild(label);
@@ -142,6 +187,19 @@
   const actions = document.createElement("div");
   actions.className = "exam-actions";
   form.appendChild(actions);
+
+  if (restored) {
+    const note = document.createElement("p");
+    note.className = "note resume-note";
+    note.innerHTML = 'Picked up where you left off — your earlier answers are still selected. ' +
+      '<button type="button" class="btn btn-ghost" data-act="fresh">Start over</button>';
+    note.querySelector('[data-act="fresh"]').addEventListener("click", () => {
+      clearProgress();
+      location.reload();
+    });
+    root.appendChild(note);
+  }
+
   root.appendChild(form);
 
   actions.addEventListener("click", e => {
@@ -190,7 +248,10 @@
   /* ---------- Grading ---------- */
   function gradeExam() {
     graded = true;
+    clearProgress();                       // the attempt is finished
     form.classList.add("exam-graded");
+    const rn = root.querySelector(".resume-note");
+    if (rn) rn.remove();
     let correctCount = 0;
 
     model.forEach((m, qi) => {

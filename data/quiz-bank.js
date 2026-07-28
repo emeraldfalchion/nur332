@@ -10,26 +10,23 @@
        (there was no overlap as of 2026-07-21 — the quiz bank was
        already de-duplicated against every exam question in an
        earlier session).
-     - eaq: questions imported 2026-07-21 from the user's external EAQ
-       (Elsevier Adaptive Quizzing) bank (3 source files, 150 questions
-       total, 94 landed in the 9 topics above). 5 were dropped outright
-       as exact duplicates of an existing mustKnow/extraPractice/exam-1/
-       exam-2 question (Naegele's-rule calculation, contraction-
-       frequency definition, high-AFP→neural-tube-defect). The
-       remaining 45 didn't match any of the 9 topics; of those, 6
-       (after dropping cross-file literal repeats) test content that
-       only lives on a Week 4 page and were routed into two dedicated
-       eaq-only topic entries below (`week4labor`, `week4complications`
-       — mustKnow/extraPractice intentionally empty, since per the
-       user's standing instruction no Exam-Prep content reflects Week 4
-       until its live lecture arrives); the other 34 (after dropping
-       cross-file literal repeats) aren't taught anywhere on the site
-       and were routed into a final `other` topic entry ("Other EAQ
-       Questions" — also eaq-only). See CLAUDE.md for the full
+     - eaq: questions imported from the user's external EAQ (Elsevier
+       Adaptive Quizzing) sets — EAQ 1-3 on 2026-07-21, EAQ 4 on
+       2026-07-27. 200 source questions in, 157 unique deployed; the
+       rest were exact duplicates (Elsevier recycles items heavily —
+       25 of EAQ 4's 50 were already in the bank) or, in one case, a
+       drag-and-drop sequencing item the exam engine can't render.
+       Questions whose content only lives on a Week 4/5 page sit in
+       dedicated eaq-only topic entries below (`week4labor`,
+       `week4complications`, `week5postpartum` — mustKnow/extraPractice
+       empty for Week 5, since no Exam-Prep content reflects Weeks 5-6
+       until those live lectures arrive). Whatever isn't taught
+       anywhere on the site lands in the final `other` entry ("Other
+       EAQ Questions" — also eaq-only). See CLAUDE.md for the full
        orphan/duplicate list and topic-by-topic counts.
    Every question carries `topic` (matches data/exam-1.js /
-   data/exam-2.js for the 9 lecture topics, or the Week 4 page title /
-   "Other EAQ Questions" for the 3 eaq-only entries) and `source`
+   data/exam-2.js for the 9 lecture topics, or the page title /
+   "Other EAQ Questions" for the 4 eaq-only entries) and `source`
    ("exam-1", "exam-2", "quiz-bank", or "eaq") so future breakdown/
    report changes don't require re-reading and re-categorizing every
    question.
@@ -51,6 +48,14 @@
    different fact on the same page where they had come to duplicate a
    question on Exam 1 or 2 (oligohydramnios cause, RhoGAM trigger,
    temperature interval after ROM, external cephalic version).
+
+   EAQ 4 imported 2026-07-27 (`EAQ/EAQ 4.md`, 50 questions). Only 24 were
+   added — Elsevier recycles items heavily, and 25 of the 50 were already
+   in this bank from EAQ 1-3 (verified stem by stem), while 1 was a
+   drag-and-drop SEQUENCING item (order the cardinal movements) that the
+   exam engine cannot render. The 24 landed as: reproductive 3,
+   complications 4, intrapartum1 2, intrapartum2 3, week4complications 4,
+   other 8. eaq now totals 157; the bank totals 354.
    ============================================================ */
 window.QUIZ_BANK = {
   topics: [
@@ -152,6 +157,30 @@ window.QUIZ_BANK = {
           }
         ],
         eaq: [
+          {
+            stem: "Which statement indicates that a pregnant client requires further teaching about fetal growth and development?",
+            options: ["\"The fetus keeps growing throughout pregnancy.\"","\"The fetus gets nutrients from the amniotic fluid.\"","\"The fetus may be underweight if it is exposed to smoke.\"","\"The fetus gets oxygen from blood coming through the placenta.\""],
+            answer: 1,
+            rationale: "The amniotic fluid provides protection, not nutrition; the fetus depends on the placenta, along with the umbilical blood vessels, for nutrients and oxygen. The other three statements are accurate and indicate that the client understood the teaching.",
+            topic: "Anatomy & Physiology",
+            source: "eaq"
+          },
+          {
+            stem: "Which comment from an adolescent after a sex education class alerts the nurse to have a private discussion with the student?",
+            options: ["\"I can't get pregnant if I have sex during my period.\"","\"The pill may prevent me from getting pregnant, but I can still get a sexually transmitted infection.\"","\"I won't get pregnant if I swim in a pool where a boy has just masturbated.\"","\"A condom won't always protect me from getting pregnant, but it can help protect me from getting an STI.\""],
+            answer: 0,
+            rationale: "Although unusual, conception can occur during a menstrual period. The other three statements are accurate: the pill prevents ovulation but gives no protection from a sexually transmitted organism, sperm cannot survive in a large body of water, and condoms lower STI risk but are not 100% effective at preventing pregnancy.",
+            topic: "Anatomy & Physiology",
+            source: "eaq"
+          },
+          {
+            stem: "During which time in pregnancy would the nurse inform the client that the fetus shows a marked increase in size?",
+            options: ["At the end of the first trimester","During the second trimester","During the third trimester","No difference is observed"],
+            answer: 2,
+            rationale: "During the third trimester the fetus lays down fat deposits and gains the most weight. Fetal weight gain occurs throughout pregnancy, including the second trimester, but it is most marked in the third. There is little fetal weight gain during the first trimester, when organ development is occurring.",
+            topic: "Anatomy & Physiology",
+            source: "eaq"
+          },
           {
             stem: "At which point during a human pregnancy does the embryo become a fetus?",
             options: ["During the 8th week of the pregnancy","At the end of the 2nd week of pregnancy","When the fertilized egg becomes implanted","When the products of conception are seen on the ultrasound"],
@@ -1194,6 +1223,38 @@ window.QUIZ_BANK = {
         ],
         eaq: [
           {
+            stem: "When caring for a client in the third trimester of pregnancy with a history of myocardial infarction, which statement made by the client would concern the nurse the most?",
+            options: ["\"I have been tired throughout this pregnancy.\"","\"When I stand for a while, my legs get swollen.\"","\"I experienced quite a bit of nausea in the first trimester.\"","\"I have been using cough drops to try and get rid of my cough.\""],
+            answer: 3,
+            rationale: "Obstetrical clients with a history of myocardial infarction are at risk for cardiac decompensation, and a frequent moist cough is one of its findings. Fatigue throughout the pregnancy is ongoing rather than new, and dependent swelling after prolonged standing and first-trimester nausea are both common in pregnancy.",
+            topic: "Antepartum Complications",
+            source: "eaq"
+          },
+          {
+            stem: "A client comes to the emergency department reporting severe abdominal cramping and heavy bleeding at 10 weeks' gestation. Examination reveals heavy bleeding, an open cervical os, and tissue present. Which type of abortion is the client experiencing?",
+            options: ["Missed","Complete","Inevitable","Threatened"],
+            answer: 2,
+            rationale: "An open cervical os with heavy bleeding and tissue present means a spontaneous abortion is inevitable. In a missed abortion the fetus has died but the products of conception are retained, with a closed os and possibly no bleeding or cramping. In a complete abortion all fetal tissue has passed and the cervix is closed. A threatened abortion shows spotting with a closed cervical os.",
+            topic: "Antepartum Complications",
+            source: "eaq"
+          },
+          {
+            stem: "The nurse is assessing a client with a tentative diagnosis of hydatidiform mole. Which clinical finding would the nurse anticipate?",
+            options: ["Hypotension","Decreased fetal heart rate","Unusual uterine enlargement","Painless, heavy vaginal bleeding"],
+            answer: 2,
+            rationale: "The proliferation of fluid-filled trophoblastic tissue causes the uterus to enlarge more quickly than it would with a fetus. HYPERtension, not hypotension, often occurs with a molar pregnancy; there is no fetus within the mole, so there is no fetal heart rate; and any vaginal bleeding is usually slight rather than heavy.",
+            topic: "Antepartum Complications",
+            source: "eaq"
+          },
+          {
+            stem: "A client has had surgery for a ruptured fallopian tube from an ectopic pregnancy. Which information would be included in the postoperative teaching plan?",
+            options: ["Effect on future pregnancies","How to prevent another tubal pregnancy","Need for Rho(D) immune globulin to prevent isoimmunization","Importance of not douching after intercourse, because this may dislodge a fertilized egg"],
+            answer: 0,
+            rationale: "Removing a fallopian tube does not impair the ovaries' ability to release an egg, which may still be fertilized in the remaining tube if it is undamaged. There is no known way to prevent a future tubal pregnancy, nothing indicates this client is Rh negative, and douche liquid does not reach the fallopian tube.",
+            topic: "Antepartum Complications",
+            source: "eaq"
+          },
+          {
             stem: "Which position increases cardiac output in the obstetrical client with cardiac disease?",
             options: ["Trendelenburg","Low semi-Fowler","Lateral positioning","Supine with legs elevated"],
             answer: 2,
@@ -1628,6 +1689,22 @@ window.QUIZ_BANK = {
         ],
         eaq: [
           {
+            stem: "A primigravida at 40 weeks' gestation arrives at the birthing center with abdominal cramping and bloody show. Her membranes ruptured 30 minutes before arrival. A vaginal examination reveals 1 cm of dilation and the presenting part at -1 station. Which action would the nurse take after obtaining the fetal heart rate and maternal vital signs?",
+            options: ["Teach the client how to push with each contraction","Provide the client with comfort measures for relaxation","Prepare to have the client's blood typed and cross-matched","Encourage the client to perform patterned, paced breathing"],
+            answer: 1,
+            rationale: "The client is in early first-stage labor and is experiencing the expected discomforts of labor, so the nurse initiates measures that promote relaxation. Pushing begins in the second stage, there is no evidence of excessive bleeding requiring a transfusion, and patterned paced breathing belongs to the transition phase rather than early labor.",
+            topic: "Intrapartum Care I",
+            source: "eaq"
+          },
+          {
+            stem: "Which is the nurse's first action when a client in active labor starts screaming, \"The baby is coming! Do something!\"?",
+            options: ["Notify the practitioner of the imminent birth","Tell the client that it is too soon and encourage her to pant","Check the perineal area for visibility of the presenting part","Help the client hold her knees together and explain what to expect"],
+            answer: 2,
+            rationale: "The first action is to confirm whether birth is imminent by checking the perineal area for the presenting part; the nurse stays with the client and asks a colleague to call the practitioner. Telling her it is too soon demeans the client and she may well be right, and holding the knees together is contraindicated — it can injure the fetus if birth is imminent.",
+            topic: "Intrapartum Care I",
+            source: "eaq"
+          },
+          {
             stem: "Which test is used to confirm breech presentation?",
             options: ["Ultrasound","Fetal scalp pH","Amniocentesis","Digital pelvimetry"],
             answer: 0,
@@ -1937,6 +2014,30 @@ window.QUIZ_BANK = {
         ],
         eaq: [
           {
+            stem: "Which immediate action would the nurse take if a client in the active phase of labor says, \"I feel all wet. I think I wet myself.\"?",
+            options: ["Give her the bedpan","Change the bed linens","Inspect her perineum","Take an oral temperature"],
+            answer: 2,
+            rationale: "Inspecting the perineum determines whether the membranes have ruptured and whether the umbilical cord has prolapsed. Giving the bedpan is not a priority, changing the linens is done eventually but is not the priority, and the temperature is taken once rupture has been established.",
+            topic: "Intrapartum Care II",
+            source: "eaq"
+          },
+          {
+            stem: "Which complication is prevented by coaching a client in the second stage of labor to take a breath at least every 6 seconds while pushing with each contraction?",
+            options: ["Fetal hypoxia","Perineal lacerations","Carpopedal spasms","Maternal hypertension"],
+            answer: 0,
+            rationale: "Prolonged breath holding at this stage of labor decreases placental and fetal oxygenation, which can lead to fetal hypoxia. Perineal lacerations occur with rapid, uncontrolled expulsion of the fetus; carpopedal spasms and maternal hypertension are not caused by prolonged breath holding.",
+            topic: "Intrapartum Care II",
+            source: "eaq"
+          },
+          {
+            stem: "The nurse uses Leopold maneuvers to assess a client at 40 weeks' gestation. Which factor is assessed with this maneuver?",
+            options: ["Station of the fetus","Position of the fetus","Duration of the contractions","Frequency of the contractions"],
+            answer: 1,
+            rationale: "Leopold maneuvers identify the position of the fetus: the nurse palpates the abdomen to locate the head, back, and small parts. Station is determined during a vaginal examination, and contraction duration and frequency are timed with a hand on the fundus or read from the electronic monitor.",
+            topic: "Intrapartum Care II",
+            source: "eaq"
+          },
+          {
             stem: "Which technique would the nurse suggest to a laboring woman’s partner that involves gently stroking the woman’s abdomen in rhythm with her breathing during a contraction?",
             options: ["Massage","Effleurage","Acupressure","Counterpressure"],
             answer: 1,
@@ -2069,6 +2170,22 @@ window.QUIZ_BANK = {
             options: ["Having the client empty her bladder","Watching for signs of retained secundines","Massaging the uterus vigorously to prevent hemorrhage","Explaining to the client that this is a sign of uterine stabilization"],
             answer: 0,
             rationale: "A full bladder elevates the uterus and displaces it to the right. Even though the uterus feels firm, it may relax enough to foster bleeding. The bladder should be emptied to improve uterine tone. Watching for signs of retained secundines may be done if emptying the bladder does not rectify the situation. If parts of the placenta, umbilical cord, or fetal membranes are not fully expelled during the third stage of labor, their retention limits uterine contraction and involution; a boggy uterus and bleeding may be evident. Vigorous massage tires the uterus, and even with massage the uterus is unable to contract over a full bladder. Explaining to the client that this is a sign of uterine stabilization is not accurate; the uterus will not remain contracted over a full bladder.",
+            topic: "Intrapartum Care II",
+            source: "eaq"
+          },
+          {
+            stem: "Which information would be reinforced with a new father who is acting as a coach during labor?",
+            options: ["Leave the room periodically so that his wife can rest between contractions","Let his wife know the progress she is making and tell her that she is doing a good job","Keep conversation in the birthing room to a minimum so his wife can concentrate","Maintain his wife in the supine position so the monitoring equipment is not disturbed"],
+            answer: 1,
+            rationale: "Identifying progress and providing encouragement motivate the client and promote a positive self-concept. A client in active labor should have continuous partner support if possible, the amount of conversation depends on the phase of labor, and lying flat on her back may induce supine hypotension — a side-lying position is encouraged and does not disturb the monitors.",
+            topic: "Intrapartum Care II",
+            source: "eaq"
+          },
+          {
+            stem: "Which is the expected color and consistency of amniotic fluid at 36 weeks’ gestation?",
+            options: ["Clear, dark amber colored, and containing shreds of mucus","Straw colored, clear, and containing little white specks","Milky, greenish yellow, and containing shreds of mucus","Greenish yellow, cloudy, and containing little white specks"],
+            answer: 1,
+            rationale: "By 36 weeks' gestation, amniotic fluid should be pale yellow or straw-colored with small particles of – vernix caseosa present. Dark amber colored fluid suggests the presence of bilirubin, an ominous sign. Greenish-yellow fluid may indicate the presence of meconium and suggests fetal compromise. Cloudy fluid suggests the presence of purulent material.",
             topic: "Intrapartum Care II",
             source: "eaq"
           }
@@ -2540,6 +2657,38 @@ window.QUIZ_BANK = {
         ],
         eaq: [
           {
+            stem: "A client elects to have her pregnancy terminated at 16 weeks' gestation after learning that she is carrying a fetus with Down syndrome. Which factor would the nurse consider in the plan of care at this time?",
+            options: ["The client will need counseling because of emotional instability","The high risk for a postabortion infection should be discussed with the client","A hysterotomy will be performed to accomplish the abortion","The client should be given time to discuss her feelings about the decision"],
+            answer: 3,
+            rationale: "The client must feel comfortable enough to discuss her feelings; this helps her in the grieving process. Concluding that she is emotionally unstable is a false assumption, an induced abortion is a sterile procedure that should not predispose her to infection, and a second-trimester abortion is usually accomplished by dilation and evacuation rather than a hysterotomy.",
+            topic: "Intrapartum Complications",
+            source: "eaq"
+          },
+          {
+            stem: "Which postpartum complication would the nurse monitor for in a client with hydramnios?",
+            options: ["Infection","Hemorrhage","Hypertension","Thromboembolism"],
+            answer: 1,
+            rationale: "A client with hydramnios is at risk for hemorrhage in the postpartum period, because the overdistended uterus does not contract down well. Infection, hypertension, and thromboembolism are not specific risk factors related to hydramnios.",
+            topic: "Intrapartum Complications",
+            source: "eaq"
+          },
+          {
+            stem: "Which is the most appropriate nursing intervention for a client admitted to the high-risk prenatal unit at 35 weeks' gestation with a diagnosis of complete placenta previa?",
+            options: ["Applying a pad to the perineal area","Having oxygen available at the bedside","Allowing bathroom privileges with assistance","Educating the client regarding the intensive care nursery"],
+            answer: 1,
+            rationale: "If hemorrhage occurs, oxygen is necessary to prevent maternal and fetal compromise. A perineal pad is not necessary — close monitoring is; a client with a complete previa is usually on complete bed rest; and discussing the neonatal intensive care nursery is premature, since it may ultimately be unnecessary.",
+            topic: "Intrapartum Complications",
+            source: "eaq"
+          },
+          {
+            stem: "Which is the priority nursing care focus for a client at 34 weeks' gestation with contractions every 5 minutes and cervical dilation of 4 cm?",
+            options: ["Promoting maternal and fetal well-being during labor","Reducing the anxiety associated with preterm labor","Supporting communication between the client and her partner","Assisting the client and her partner with breathing techniques as labor progresses"],
+            answer: 0,
+            rationale: "Promoting client and fetal well-being is the priority nursing care focus as labor progresses. Reducing anxiety, supporting communication, and assisting with breathing techniques are each a single aspect of this client's need, whereas promoting maternal and fetal well-being describes the overall priority.",
+            topic: "Intrapartum Complications",
+            source: "eaq"
+          },
+          {
             stem: "A client who recently was told by her primary health care provider that she has extensive terminal metastatic carcinoma of the breast tells the nurse that she believes an error has been made. She states that she does not have breast cancer, and she is not going to die. Which stage of death and dying is the client experiencing?",
             options: ["Anger","Denial","Bargaining","Acceptance"],
             answer: 1,
@@ -2562,6 +2711,145 @@ window.QUIZ_BANK = {
             rationale: "Bed rest keeps the pressure of the fetal head off the cervix. The side-lying position keeps the gravid uterus from impeding blood flow through major vessels, thus maintaining uterine perfusion. The Trendelenburg position is used when the cord is prolapsed or the client is in shock. Sitting up in bed increases pressure on the cervix and could lead to further dilation. Assuming the knee-chest position at regular intervals throughout the day may help relieve pressure of the fetus on the cervix; however, it will not enhance uterine perfusion.",
             topic: "Intrapartum Complications",
             source: "eaq"
+          },
+          {
+            stem: "A pregnant client is admitted with abdominal pain and heavy vaginal bleeding. Which is the immediate nursing action?",
+            options: ["Establish intravenous access","Elevate the head of the bed","Position the client laterally to the left","Administer an intramuscular analgesic"],
+            answer: 0,
+            rationale: "Abdominal pain and heavy vaginal bleeding indicate significant blood loss. Establishing intravenous access is essential to provide care for this patient who may need a blood transfusion, surgery, and IV fluids. Elevating the head of the bed will decrease blood flow to vital centers in the brain. The client should be placed in the left lateral position following the establishment of adequate IV access. Giving an intramuscular analgesic may mask abdominal pain and sedate an already compromised fetus. Delivery via cesarean section is likely.",
+            topic: "Intrapartum Complications",
+            source: "eaq"
+          },
+          {
+            stem: "A client at 36 weeks’ gestation presents with severe abdominal pain, heavy vaginal bleeding, a drop in blood pressure, and an increased pulse rate. Which complication of pregnancy is suggested by these signs and symptoms?",
+            options: ["Hydatidiform mole","Vena cava syndrome","Marginal placenta previa","Abruptio placentae"],
+            answer: 3,
+            rationale: "Severe pain accompanied by bleeding at term or close to it is symptomatic of complete premature detachment of the placenta (abruptio placentae). A hydatidiform mole is diagnosed before 36 weeks’ gestation; it is not accompanied by severe pain. There is no bleeding with vena cava syndrome. Bleeding caused by placenta previa should not be painful.",
+            topic: "Intrapartum Complications",
+            source: "eaq"
+          },
+          {
+            stem: "Which is suspected when a client at 37 weeks’ gestation experiences a sudden sharp pain in her abdomen with a period of fetal hyperactivity followed by fundal tenderness and a small amount of dark-red bleeding?",
+            options: ["True labor","Placenta previa","Partial abruptio placentae","Abdominal muscular injury"],
+            answer: 2,
+            rationale: "Typical manifestations of abruptio placentae are sudden sharp localized pain and small amounts of dark-red bleeding caused by some degree of placental separation. True labor begins with regular contractions, not sharp localized pain. There is no pain with placenta previa, just the presence of bright-red bleeding. There are no data to indicate that the client sustained an injury.",
+            topic: "Intrapartum Complications",
+            source: "eaq"
+          },
+          {
+            stem: "For which complication would the nurse closely monitor a client with a diagnosis of abruptio placentae?",
+            options: ["Cerebral hemorrhage","Pulmonary edema","Impending seizures","Hypovolemic shock"],
+            answer: 3,
+            rationale: "With abruptio placentae, uterine bleeding can result in massive internal hemorrhage, causing hypovolemic shock. A cerebral hemorrhage may occur with a dangerously high blood pressure; there is no information indicating the presence of a dangerously high blood pressure. Pulmonary edema may occur with severe preeclampsia or heart disease, and seizures are associated with severe preeclampsia; there is no information indicating the presence of these conditions.",
+            topic: "Intrapartum Complications",
+            source: "eaq"
+          }
+        ]
+      }
+    },
+    {
+      id: "week5postpartum",
+      label: "Postpartum Care & Complications",
+      week: 5,
+      sets: {
+        mustKnow: [],
+        extraPractice: [],
+        eaq: [
+          {
+            stem: "A client who has just given birth is holding her newborn and asks, \"Is my baby normal?\" Which response would the nurse provide?",
+            options: ["\"The pediatrician will make rounds in the morning and check your baby.\"","\"Your baby must be all right; listen to that strong cry.\"","\"Let's unwrap your baby so you can see for yourself.\"","\"Yes, because your entire pregnancy has been so normal.\""],
+            answer: 2,
+            rationale: "Mothers need to explore their infants visually and tactilely to assure themselves that the infant is healthy. Waiting for the pediatrician would prolong her worry, a strong cry alone does not indicate a healthy newborn, and the normalcy of the pregnancy does not necessarily correlate with the newborn's health.",
+            topic: "Postpartum Care & Complications",
+            source: "eaq"
+          },
+          {
+            stem: "A client who had a cesarean birth is unable to void 3 hours after removal of an indwelling catheter. How would the nurse evaluate the client for bladder distention?",
+            options: ["By catheterizing the client for residual urine","By palpating the client's suprapubic area gently","By asking the client whether she still feels the urge to urinate","By determining whether the client is experiencing suprapubic pain"],
+            answer: 1,
+            rationale: "Palpation indicates whether bladder distention is present, and assessment is done before intervention. The increased intra-abdominal space available after birth allows distention without discomfort, and trauma to the area leaves surrounding organs atonic, so the client may have a full bladder and not feel the urge to void.",
+            topic: "Postpartum Care & Complications",
+            source: "eaq"
+          },
+          {
+            stem: "Which intervention would the nurse recommend for post-cesarean gas pain?",
+            options: ["Lying on the right side","Walking around the room","Using a straw when drinking water","Supporting the incision when moving"],
+            answer: 1,
+            rationale: "Walking around as much as possible can help expel excess gas after a cesarean birth. The client also may be advised to lie on the left (not right) side and rock in a rocking chair. The client should avoid using a straw when drinking water or other fluids. Supporting the incision when moving relieves incisional pain, but does not promote expulsion of gas.",
+            topic: "Postpartum Care & Complications",
+            source: "eaq"
+          },
+          {
+            stem: "Which statement by a new mother observing her preterm infant in the neonatal intensive care nursery indicates that she has not yet begun the bonding process?",
+            options: ["\"It’s such a tiny baby.\"","\"Do you think he’ll make it?\"","\"Why does he need to be in an incubator?\"","\"My baby looks so much like my husband.\""],
+            answer: 0,
+            rationale: "By failing to acknowledge the infant as a person, the client is demonstrating that she is still trying to process the current situation as reality. Acknowledging the infant by using the word \"he\" denotes a relationship. Saying that the baby looks like her husband indicates that the mother has incorporated the infant into the family.",
+            topic: "Postpartum Care & Complications",
+            source: "eaq"
+          },
+          {
+            stem: "Which statement by a breast-feeding mother indicates that the nurse’s teaching regarding stimulating the let-down reflex has been successful?",
+            options: ["\"I will take a cool shower before each feeding.\"","\"I will drink a couple of quarts of fat-free milk a day.\"","\"I will wear a snug-fitting breast binder day and night.\"","\"I will apply warm packs and massage my breasts before each feeding.\""],
+            answer: 3,
+            rationale: "Applying warm packs and massaging the breasts before each feeding help dilate milk ducts, promote emptying of the breasts, and stimulate further lactation. Taking a cool shower before each feeding will contract the milk ducts and interfere with the let-down reflex. Heavy consumption of milk products is not required to stimulate the production of milk. Breast binders may inhibit lactation by fooling the body into thinking that milk secretion is no longer needed.",
+            topic: "Postpartum Care & Complications",
+            source: "eaq"
+          },
+          {
+            stem: "Which response would the nurse give to a postpartum client who asks if she can drink a small glass of wine before breast-feeding the first time to help her relax?",
+            options: ["\"I think drinking 1 glass of wine won’t be a problem. Go ahead.\"","\"You seem a little tense. Tell me how you feel about breast-feeding.\"","\"You seem to find it relaxing, but you should try to find another way to relax.\"","\"I think drinking 1 glass of wine is alright, but you had better check with your health care provider first.\""],
+            answer: 1,
+            rationale: "Stating that the client seems tense and initiating a discussion honors the client’s feelings and encourages expression of them; there is no reference to alcohol consumption and its relaxing effects. Alcohol ingestion should not be encouraged, because it enters the breast milk. Stating that the client needs to find another way to relax reflects the client’s statement but not her underlying feelings. Suggesting that she find another way to relax may make the client defensive and shut off communication. Although alcohol ingestion should not be encouraged because it enters breast milk, the primary health care provider need not be involved because health education is within the role of the nurse.",
+            topic: "Postpartum Care & Complications",
+            source: "eaq"
+          },
+          {
+            stem: "Which assessment would the nurse include in the plan of care for a postpartum client with large, painful varicose veins?",
+            options: ["Monitoring daily clotting times","Assessing for peripheral pulses","Monitoring daily hemoglobin values","Assessing for signs of thrombophlebitis"],
+            answer: 3,
+            rationale: "Varicose veins predispose the client to thrombophlebitis; warmth, redness, and pain in the calf are signs of thrombophlebitis. The clotting mechanism is not affected; clot formation results because of venous pooling and decreased venous return caused by the impaired vasculature. The problem is venous, not arterial, so pulses are not affected. Hemoglobin values are affected by the amount of bleeding that occurred during the birth, which usually is not severe enough to impair circulatory competency.",
+            topic: "Postpartum Care & Complications",
+            source: "eaq"
+          },
+          {
+            stem: "Which type of lochia would the nurse expect to observe on a client's menstrual pad on the second day after a vaginal delivery?",
+            options: ["Scant alba","Scant rubra","Moderate rubra","Moderate serosa"],
+            answer: 2,
+            rationale: "The uterus sloughs off the blood, tissue, and mucus of the endometrium postdelivery. This happens in 3 stages that will vary in length and represent the normal healing of the endometrium. Lochia rubra is the first and heaviest stage of lochia. The blood that is expelled during lochia rubra will be bright red and may contain blood clots. The lochia rubra phase typically lasts for about 3 days but may last up to 7 days. On the second day postpartum, the amount of lochia rubra is typically moderate, as the heaviest flow occurs in the first few days following delivery. Lochia serosa is the second stage of postpartum bleeding and is thinner in consistency and brownish or pink in color. Lochia serosa typically lasts about 2 weeks, although for some women it can last up to 4 to 6 weeks postpartum.",
+            topic: "Postpartum Care & Complications",
+            source: "eaq"
+          },
+          {
+            stem: "A breast-feeding mother experiences redness and pain in the left breast, a temperature of 100.8°F 38.2 ( °C), chills, and malaise. Which condition would the nurse suspect?",
+            options: ["Mastitis","Engorgement","Blocked milk duct","Inadequate milk production"],
+            answer: 0,
+            rationale: "Because of the presence of generalized symptoms, the nurse would suspect mastitis. Engorgement would involve both breasts, not one. A blocked milk duct is usually marked by swelling and pain in one area of the breast but does not have systemic symptoms. There is no indication of the volume of milk being produced.",
+            topic: "Postpartum Care & Complications",
+            source: "eaq"
+          },
+          {
+            stem: "Several hours after delivery, a new mother expresses ambivalence regarding her infant. How will the nurse promote bonding between this mother and her newborn?",
+            options: ["Having the mother feed the infant","Removing the infant from the mother's arms if it cries","Positioning the infant so its head rests on the mother's shoulder","Encouraging the mother to sleep for 4 to 6 hours before interacting with the infant"],
+            answer: 0,
+            rationale: "Feeding the infant promotes bonding through physical interaction, and positioning the infant in a face-to-face position facilitates eye contact. Removing the infant decreases the pair's time together. Positioning the infant on the mother's shoulder prevents the face-to-face contact that promotes bonding. It is important to have the parent and infant interact as soon as possible after birth to promote bonding.",
+            topic: "Postpartum Care & Complications",
+            source: "eaq"
+          },
+          {
+            stem: "Which client is at increased risk for postpartum hemorrhage?",
+            options: ["One who breast-feeds in the birthing room","One who receives a pudendal block for the birth","One whose third stage lasts less than 10 minutes","One who gives birth to an infant weighing 9 lb 8 oz (4366 g)"],
+            answer: 3,
+            rationale: "The risk for a postpartum hemorrhage is greater with large infants, because the uterine musculature has been stretched excessively, thus impairing the ability of the uterus to contract after the birth. Early breast-feeding stimulates uterine contractions and lessens the chance of hemorrhage. Having a pudendal block for the birth does not contribute to the risk for postpartum hemorrhage, because the anesthetic for a pudendal block does not affect uterine contractions. A third stage of labor lasting less than 10 minutes is a short third stage; a prolonged third stage of labor, 30 minutes or longer, could increase the risk of postpartum hemorrhage.",
+            topic: "Postpartum Care & Complications",
+            source: "eaq"
+          },
+          {
+            stem: "Which information would the nurse include in the discharge teaching of a postpartum client?",
+            options: ["The prenatal Kegel tightening exercises should be continued.","A bowel movement may not occur for up to a week after the birth.","The episiotomy sutures will be removed at the first postpartum visit.","A postpartum checkup should be scheduled as soon as menses returns."],
+            answer: 0,
+            rationale: "Kegel exercises may be resumed immediately and should be done for the rest of the client's life because they help strengthen muscles needed for urinary continence and may enhance sexual intercourse. Episiotomy sutures do not have to be removed. Bowel movements should spontaneously return in 2 to 3 days after the client gives birth; a delay of bowel movements promotes constipation, perineal discomfort, and trauma. The usual postpartum examination is 6 weeks after birth; the menses may return earlier or later than this and should not be a factor when the client is scheduling a postpartum examination.",
+            topic: "Postpartum Care & Complications",
+            source: "eaq"
           }
         ]
       }
@@ -2574,18 +2862,42 @@ window.QUIZ_BANK = {
         extraPractice: [],
         eaq: [
           {
-            stem: "Which intervention would the nurse recommend for post-cesarean gas pain?",
-            options: ["Lying on the right side","Walking around the room","Using a straw when drinking water","Supporting the incision when moving"],
-            answer: 1,
-            rationale: "Walking around as much as possible can help expel excess gas after a cesarean birth. The client also may be advised to lie on the left (not right) side and rock in a rocking chair. The client should avoid using a straw when drinking water or other fluids. Supporting the incision when moving relieves incisional pain, but does not promote expulsion of gas.",
+            stem: "Which action provides support for the fetal head as it is being delivered?",
+            options: ["Applying suprapubic pressure","Placing a hand firmly against the perineum","Distributing the fingers evenly around the head","Maintaining pressure against the anterior fontanel"],
+            answer: 2,
+            rationale: "Distributing the fingers around the head prevents a rapid change in intracranial pressure and keeps the head from 'popping out,' which could cause maternal perineal trauma. Suprapubic pressure does not aid birth of the head, a hand held firmly against the perineum may interfere with the birth, and pressure against the anterior fontanel could injure the neonate.",
             topic: "Other EAQ Questions",
             source: "eaq"
           },
           {
-            stem: "Which statement by a new mother observing her preterm infant in the neonatal intensive care nursery indicates that she has not yet begun the bonding process?",
-            options: ["\"It’s such a tiny baby.\"","\"Do you think he’ll make it?\"","\"Why does he need to be in an incubator?\"","\"My baby looks so much like my husband.\""],
+            stem: "Which instruction would the nurse provide to a client who would like to learn breast self-examination?",
+            options: ["Squeeze the nipples to examine for discharge","Use the right hand to examine the right breast","Perform the examination while in a seated position","Compress breast tissue to the chest wall with the palm to palpate for lumps"],
             answer: 0,
-            rationale: "By failing to acknowledge the infant as a person, the client is demonstrating that she is still trying to process the current situation as reality. Acknowledging the infant by using the word \"he\" denotes a relationship. Saying that the baby looks like her husband indicates that the mother has incorporated the infant into the family.",
+            rationale: "Serous or bloody discharge from the nipple is pathological and must be reported. The right hand should examine the LEFT breast, so the flattened fingers can palpate the entire breast including the tail and axillary area; the examination is best performed lying down; and the flat part of the fingers, not the palm or fingertips, is used for palpation.",
+            topic: "Other EAQ Questions",
+            source: "eaq"
+          },
+          {
+            stem: "Which disadvantage of the diaphragm for birth control would be emphasized to a client receiving instruction about family planning methods?",
+            options: ["Its failure rate is 50% when it is used alone","It is physically uncomfortable when in place","Thrombus formation and pulmonary emboli may occur","Some women find its insertion and removal inconvenient"],
+            answer: 3,
+            rationale: "Insertion and removal of a diaphragm take some planning, and some women find that inconvenient. The typical failure rate is about 12% in the first year when it is used with spermicide, it should not be uncomfortable when in place, and thrombus formation and pulmonary emboli are adverse effects of oral contraceptives rather than of the diaphragm.",
+            topic: "Other EAQ Questions",
+            source: "eaq"
+          },
+          {
+            stem: "Which factor reassures the nurse that a married 35-year-old client scheduled to undergo a tubal ligation understands and is emotionally ready for the procedure?",
+            options: ["The client has a son and a daughter and feels that her family is complete","She believes that the surgery will relieve her monthly dysmenorrhea","The client knows that her husband does not want any more children","She has just had a complicated birth and never wants to give birth again"],
+            answer: 0,
+            rationale: "Many couples who are happy with their families and feel complete choose sterilization as their method of contraception. Tubal ligation has no effect on dysmenorrhea because the hormonal influence does not change, the decision should be made by the woman herself rather than by others, and decisions about sterilization should not be made in the immediate postpartum period after a traumatic birth.",
+            topic: "Other EAQ Questions",
+            source: "eaq"
+          },
+          {
+            stem: "Which content would the nurse emphasize in a prepared childbirth class?",
+            options: ["Birth as a family experience","Labor without the use of analgesics","The course of labor and coping techniques","Hydration, relaxation, and pain control during labor"],
+            answer: 2,
+            rationale: "The objective of childbirth classes is to educate parents about the process of labor and birth, the options open to them, and techniques for coping. Birth as a family experience, and hydration/relaxation/pain control, are each only part of the class content, and labor without analgesics is not every woman's preference — a fair and balanced presentation is given.",
             topic: "Other EAQ Questions",
             source: "eaq"
           },
@@ -2622,30 +2934,6 @@ window.QUIZ_BANK = {
             source: "eaq"
           },
           {
-            stem: "Which statement by a breast-feeding mother indicates that the nurse’s teaching regarding stimulating the let-down reflex has been successful?",
-            options: ["\"I will take a cool shower before each feeding.\"","\"I will drink a couple of quarts of fat-free milk a day.\"","\"I will wear a snug-fitting breast binder day and night.\"","\"I will apply warm packs and massage my breasts before each feeding.\""],
-            answer: 3,
-            rationale: "Applying warm packs and massaging the breasts before each feeding help dilate milk ducts, promote emptying of the breasts, and stimulate further lactation. Taking a cool shower before each feeding will contract the milk ducts and interfere with the let-down reflex. Heavy consumption of milk products is not required to stimulate the production of milk. Breast binders may inhibit lactation by fooling the body into thinking that milk secretion is no longer needed.",
-            topic: "Other EAQ Questions",
-            source: "eaq"
-          },
-          {
-            stem: "Which response would the nurse give to a postpartum client who asks if she can drink a small glass of wine before breast-feeding the first time to help her relax?",
-            options: ["\"I think drinking 1 glass of wine won’t be a problem. Go ahead.\"","\"You seem a little tense. Tell me how you feel about breast-feeding.\"","\"You seem to find it relaxing, but you should try to find another way to relax.\"","\"I think drinking 1 glass of wine is alright, but you had better check with your health care provider first.\""],
-            answer: 1,
-            rationale: "Stating that the client seems tense and initiating a discussion honors the client’s feelings and encourages expression of them; there is no reference to alcohol consumption and its relaxing effects. Alcohol ingestion should not be encouraged, because it enters the breast milk. Stating that the client needs to find another way to relax reflects the client’s statement but not her underlying feelings. Suggesting that she find another way to relax may make the client defensive and shut off communication. Although alcohol ingestion should not be encouraged because it enters breast milk, the primary health care provider need not be involved because health education is within the role of the nurse.",
-            topic: "Other EAQ Questions",
-            source: "eaq"
-          },
-          {
-            stem: "Which information would the nurse include in the discharge teaching of a postpartum client?",
-            options: ["The prenatal Kegel tightening exercises should be continued.","A bowel movement may not occur for up to a week after the birth.","The episiotomy sutures will be removed at the first postpartum visit.","A postpartum checkup should be scheduled as soon as menses returns."],
-            answer: 0,
-            rationale: "Kegel exercises may be resumed immediately and should be done for the rest of the client's life because they help strengthen muscles needed for urinary continence and may enhance sexual intercourse. Episiotomy sutures do not have to be removed. Bowel movements should spontaneously return in 2 to 3 days after the client gives birth; a delay of bowel movements promotes constipation, perineal discomfort, and trauma. The usual postpartum examination is 6 weeks after birth; the menses may return earlier or later than this and should not be a factor when the client is scheduling a postpartum examination.",
-            topic: "Other EAQ Questions",
-            source: "eaq"
-          },
-          {
             stem: "Which direction would the nurse give a client in preparation for ultrasonography at the end of her first trimester?",
             options: ["Empty her bladder.","Avoid eating for 8 hours.","Take a laxative the night before the test.","Increase fluid intake for 1 hour before the procedure."],
             answer: 3,
@@ -2658,22 +2946,6 @@ window.QUIZ_BANK = {
             options: ["Hypothyroidism","Failure to ovulate","Bleeding disorders","Unidentified pregnancy","Use of oral contraceptives","Benign lesions of the uterus"],
             answers: [0,1,2,3,4,5],
             rationale: "Common causes for any type of abnormal uterine bleeding include endocrine disorders like hypothyroidism; failure to ovulate or respond appropriately to ovulation hormones; bleeding disorders; pregnancy complications such as an unidentified pregnancy that is ending in spontaneous abortion; breakthrough bleeding, which may occur in the woman taking oral contraceptives; and lesions of the vagina, cervix, or uterus (benign or malignant).",
-            topic: "Other EAQ Questions",
-            source: "eaq"
-          },
-          {
-            stem: "A pregnant client is admitted with abdominal pain and heavy vaginal bleeding. Which is the immediate nursing action?",
-            options: ["Establish intravenous access","Elevate the head of the bed","Position the client laterally to the left","Administer an intramuscular analgesic"],
-            answer: 0,
-            rationale: "Abdominal pain and heavy vaginal bleeding indicate significant blood loss. Establishing intravenous access is essential to provide care for this patient who may need a blood transfusion, surgery, and IV fluids. Elevating the head of the bed will decrease blood flow to vital centers in the brain. The client should be placed in the left lateral position following the establishment of adequate IV access. Giving an intramuscular analgesic may mask abdominal pain and sedate an already compromised fetus. Delivery via cesarean section is likely.",
-            topic: "Other EAQ Questions",
-            source: "eaq"
-          },
-          {
-            stem: "A client at 36 weeks’ gestation presents with severe abdominal pain, heavy vaginal bleeding, a drop in blood pressure, and an increased pulse rate. Which complication of pregnancy is suggested by these signs and symptoms?",
-            options: ["Hydatidiform mole","Vena cava syndrome","Marginal placenta previa","Abruptio placentae"],
-            answer: 3,
-            rationale: "Severe pain accompanied by bleeding at term or close to it is symptomatic of complete premature detachment of the placenta (abruptio placentae). A hydatidiform mole is diagnosed before 36 weeks’ gestation; it is not accompanied by severe pain. There is no bleeding with vena cava syndrome. Bleeding caused by placenta previa should not be painful.",
             topic: "Other EAQ Questions",
             source: "eaq"
           },
@@ -2718,22 +2990,6 @@ window.QUIZ_BANK = {
             source: "eaq"
           },
           {
-            stem: "Which is suspected when a client at 37 weeks’ gestation experiences a sudden sharp pain in her abdomen with a period of fetal hyperactivity followed by fundal tenderness and a small amount of dark-red bleeding?",
-            options: ["True labor","Placenta previa","Partial abruptio placentae","Abdominal muscular injury"],
-            answer: 2,
-            rationale: "Typical manifestations of abruptio placentae are sudden sharp localized pain and small amounts of dark-red bleeding caused by some degree of placental separation. True labor begins with regular contractions, not sharp localized pain. There is no pain with placenta previa, just the presence of bright-red bleeding. There are no data to indicate that the client sustained an injury.",
-            topic: "Other EAQ Questions",
-            source: "eaq"
-          },
-          {
-            stem: "Which assessment would the nurse include in the plan of care for a postpartum client with large, painful varicose veins?",
-            options: ["Monitoring daily clotting times","Assessing for peripheral pulses","Monitoring daily hemoglobin values","Assessing for signs of thrombophlebitis"],
-            answer: 3,
-            rationale: "Varicose veins predispose the client to thrombophlebitis; warmth, redness, and pain in the calf are signs of thrombophlebitis. The clotting mechanism is not affected; clot formation results because of venous pooling and decreased venous return caused by the impaired vasculature. The problem is venous, not arterial, so pulses are not affected. Hemoglobin values are affected by the amount of bleeding that occurred during the birth, which usually is not severe enough to impair circulatory competency.",
-            topic: "Other EAQ Questions",
-            source: "eaq"
-          },
-          {
             stem: "The nurse is teaching participants in a prenatal class regarding breast-feeding versus formula feeding. A client asks, \"What is the primary advantage of breast-feeding?\" Which response is most appropriate?",
             options: ["\"Breast-fed infants have fewer infections.\"","\"Breast-feeding inhibits ovulation in the mother.\"","\"Breast-fed infants adhere more easily to a feeding schedule.\"","\"Breast-feeding provides more protein than cow's milk formula does.\""],
             answer: 0,
@@ -2742,34 +2998,10 @@ window.QUIZ_BANK = {
             source: "eaq"
           },
           {
-            stem: "Which type of lochia would the nurse expect to observe on a client's menstrual pad on the second day after a vaginal delivery?",
-            options: ["Scant alba","Scant rubra","Moderate rubra","Moderate serosa"],
-            answer: 2,
-            rationale: "The uterus sloughs off the blood, tissue, and mucus of the endometrium postdelivery. This happens in 3 stages that will vary in length and represent the normal healing of the endometrium. Lochia rubra is the first and heaviest stage of lochia. The blood that is expelled during lochia rubra will be bright red and may contain blood clots. The lochia rubra phase typically lasts for about 3 days but may last up to 7 days. On the second day postpartum, the amount of lochia rubra is typically moderate, as the heaviest flow occurs in the first few days following delivery. Lochia serosa is the second stage of postpartum bleeding and is thinner in consistency and brownish or pink in color. Lochia serosa typically lasts about 2 weeks, although for some women it can last up to 4 to 6 weeks postpartum.",
-            topic: "Other EAQ Questions",
-            source: "eaq"
-          },
-          {
             stem: "A client has just given birth to an infant with Down syndrome. The mother is crying and asks the nurse what she is supposed to do now. Which response would the nurse give?",
             options: ["\"Tell me what you know about Down syndrome.\"","\"I would just continue to rest and recover from your delivery.\"","\"You really need to pull yourself together for your baby.\"","- \"Should I call in a chaplain or social worker for you?\""],
             answer: 0,
             rationale: "Asking the client what she knows about Down syndrome is an open-ended question that will facilitate teaching and open dialogue. Telling the client to just recover is not addressing the client's emotional adjustment. Chastising the client for emotional expression will block further dialogue. A chaplain or social worker is not needed at this moment but could potentially be used later.",
-            topic: "Other EAQ Questions",
-            source: "eaq"
-          },
-          {
-            stem: "For which complication would the nurse closely monitor a client with a diagnosis of abruptio placentae?",
-            options: ["Cerebral hemorrhage","Pulmonary edema","Impending seizures","Hypovolemic shock"],
-            answer: 3,
-            rationale: "With abruptio placentae, uterine bleeding can result in massive internal hemorrhage, causing hypovolemic shock. A cerebral hemorrhage may occur with a dangerously high blood pressure; there is no information indicating the presence of a dangerously high blood pressure. Pulmonary edema may occur with severe preeclampsia or heart disease, and seizures are associated with severe preeclampsia; there is no information indicating the presence of these conditions.",
-            topic: "Other EAQ Questions",
-            source: "eaq"
-          },
-          {
-            stem: "A breast-feeding mother experiences redness and pain in the left breast, a temperature of 100.8°F 38.2 ( °C), chills, and malaise. Which condition would the nurse suspect?",
-            options: ["Mastitis","Engorgement","Blocked milk duct","Inadequate milk production"],
-            answer: 0,
-            rationale: "Because of the presence of generalized symptoms, the nurse would suspect mastitis. Engorgement would involve both breasts, not one. A blocked milk duct is usually marked by swelling and pain in one area of the breast but does not have systemic symptoms. There is no indication of the volume of milk being produced.",
             topic: "Other EAQ Questions",
             source: "eaq"
           },
@@ -2802,30 +3034,6 @@ window.QUIZ_BANK = {
             options: ["BSEs clearly decrease mortality.","BSEs prevent unnecessary testing.","BSEs should be done immediately before menstruation.","BSE should be taught to all women."],
             answer: 3,
             rationale: "It is true that the American Cancer Society and breastcancer.org continue to recommend selfexaminations. BSEs do not clearly decrease mortality. Rather than save women from unnecessary testing, they tend to result in unnecessary procedures, including biopsies. It's best to do selfexaminations when breasts are not tender or swollen as they often are right before or after menstruation.",
-            topic: "Other EAQ Questions",
-            source: "eaq"
-          },
-          {
-            stem: "Which is the expected color and consistency of amniotic fluid at 36 weeks’ gestation?",
-            options: ["Clear, dark amber colored, and containing shreds of mucus","Straw colored, clear, and containing little white specks","Milky, greenish yellow, and containing shreds of mucus","Greenish yellow, cloudy, and containing little white specks"],
-            answer: 1,
-            rationale: "By 36 weeks' gestation, amniotic fluid should be pale yellow or straw-colored with small particles of – vernix caseosa present. Dark amber colored fluid suggests the presence of bilirubin, an ominous sign. Greenish-yellow fluid may indicate the presence of meconium and suggests fetal compromise. Cloudy fluid suggests the presence of purulent material.",
-            topic: "Other EAQ Questions",
-            source: "eaq"
-          },
-          {
-            stem: "Several hours after delivery, a new mother expresses ambivalence regarding her infant. How will the nurse promote bonding between this mother and her newborn?",
-            options: ["Having the mother feed the infant","Removing the infant from the mother's arms if it cries","Positioning the infant so its head rests on the mother's shoulder","Encouraging the mother to sleep for 4 to 6 hours before interacting with the infant"],
-            answer: 0,
-            rationale: "Feeding the infant promotes bonding through physical interaction, and positioning the infant in a face-to-face position facilitates eye contact. Removing the infant decreases the pair's time together. Positioning the infant on the mother's shoulder prevents the face-to-face contact that promotes bonding. It is important to have the parent and infant interact as soon as possible after birth to promote bonding.",
-            topic: "Other EAQ Questions",
-            source: "eaq"
-          },
-          {
-            stem: "Which client is at increased risk for postpartum hemorrhage?",
-            options: ["One who breast-feeds in the birthing room","One who receives a pudendal block for the birth","One whose third stage lasts less than 10 minutes","One who gives birth to an infant weighing 9 lb 8 oz (4366 g)"],
-            answer: 3,
-            rationale: "The risk for a postpartum hemorrhage is greater with large infants, because the uterine musculature has been stretched excessively, thus impairing the ability of the uterus to contract after the birth. Early breast-feeding stimulates uterine contractions and lessens the chance of hemorrhage. Having a pudendal block for the birth does not contribute to the risk for postpartum hemorrhage, because the anesthetic for a pudendal block does not affect uterine contractions. A third stage of labor lasting less than 10 minutes is a short third stage; a prolonged third stage of labor, 30 minutes or longer, could increase the risk of postpartum hemorrhage.",
             topic: "Other EAQ Questions",
             source: "eaq"
           },

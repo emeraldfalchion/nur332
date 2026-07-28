@@ -8,39 +8,6 @@
    ============================================================ */
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* ---- Lightbox: opens a table/section's stored diagram(s) ----
-     A .fig-trigger button reveals the matching hidden .fig-store
-     element (by id) inside a centered overlay, so lecture diagrams
-     don't take up page space until the reader wants to see them. */
-  const figTriggers = document.querySelectorAll(".fig-trigger");
-  if (figTriggers.length) {
-    const lightbox = document.createElement("div");
-    lightbox.className = "lightbox-overlay";
-    lightbox.innerHTML =
-      '<div class="lightbox-box" role="dialog" aria-modal="true">' +
-      '<button type="button" class="lightbox-close" aria-label="Close">✕</button>' +
-      '<div class="lightbox-body"></div></div>';
-    document.body.appendChild(lightbox);
-    const lbBody = lightbox.querySelector(".lightbox-body");
-
-    function closeLightbox() {
-      lightbox.classList.remove("show");
-      lbBody.innerHTML = "";
-    }
-    lightbox.addEventListener("click", e => { if (e.target === lightbox) closeLightbox(); });
-    lightbox.querySelector(".lightbox-close").addEventListener("click", closeLightbox);
-    document.addEventListener("keydown", e => { if (e.key === "Escape") closeLightbox(); });
-
-    figTriggers.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const source = document.getElementById(btn.dataset.lightboxTarget);
-        if (!source) return;
-        lbBody.innerHTML = source.innerHTML;
-        lightbox.classList.add("show");
-      });
-    });
-  }
-
   /* ---- Flashcards: flip, self-grade, and "review missed" ----
      Each card can be graded "Got it" / "Review" from its back. The
      status is saved (per card, keyed by a hash of its question) so it
@@ -91,15 +58,29 @@ document.addEventListener("DOMContentLoaded", () => {
             fcSave(fcStatus);
             paint(card);
             card.classList.remove("flipped");
+            card.setAttribute("aria-pressed", "false");
             refreshToolbar();
             if (grid.classList.contains("fc-drilling")) applyDrill(true);
           });
         });
       }
       paint(card);
+      // Reachable by keyboard as well as tap/click: Enter or Space flips.
+      card.setAttribute("role", "button");
+      card.setAttribute("tabindex", "0");
+      card.setAttribute("aria-label", "Flashcard — activate to reveal the answer");
+      card.setAttribute("aria-pressed", "false");
+      const flip = () => {
+        const on = card.classList.toggle("flipped");
+        card.setAttribute("aria-pressed", on ? "true" : "false");
+      };
       card.addEventListener("click", e => {
         if (e.target.closest(".fc-grade")) return;
-        card.classList.toggle("flipped");
+        flip();
+      });
+      card.addEventListener("keydown", e => {
+        if (e.target.closest(".fc-grade")) return;
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); flip(); }
       });
     });
 
@@ -170,15 +151,16 @@ document.addEventListener("DOMContentLoaded", () => {
     toolbar && toolbar.querySelectorAll(".flash-btn[data-action]").forEach(btn => {
       btn.addEventListener("click", e => {
         e.stopPropagation();
+        const unflip = c => { c.classList.remove("flipped"); c.setAttribute("aria-pressed", "false"); };
         if (btn.dataset.action === "reset") {
-          cards.forEach(c => c.classList.remove("flipped"));
+          cards.forEach(unflip);
         } else if (btn.dataset.action === "shuffle") {
           const order = Array.from(grid.children);
           for (let i = order.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [order[i], order[j]] = [order[j], order[i]];
           }
-          order.forEach(c => { c.classList.remove("flipped"); grid.appendChild(c); });
+          order.forEach(c => { unflip(c); grid.appendChild(c); });
         }
       });
     });
@@ -288,6 +270,45 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   });
+
+  /* ---- Lightbox: opens a table/section's stored diagram(s) ----
+     A .fig-trigger button reveals the matching hidden .fig-store
+     element (by id) inside a centered overlay, so lecture diagrams
+     don't take up page space until the reader wants to see them.
+
+     MUST run after the two hide/show passes above. Those rewrite
+     td.innerHTML to wrap each cell in a .def-text span, which replaces
+     every child node in that cell — silently dropping any listener
+     already bound to it. Wiring the triggers afterwards means a
+     .fig-trigger placed inside a table cell still works. */
+  const figTriggers = document.querySelectorAll(".fig-trigger");
+  if (figTriggers.length) {
+    const lightbox = document.createElement("div");
+    lightbox.className = "lightbox-overlay";
+    lightbox.innerHTML =
+      '<div class="lightbox-box" role="dialog" aria-modal="true">' +
+      '<button type="button" class="lightbox-close" aria-label="Close">✕</button>' +
+      '<div class="lightbox-body"></div></div>';
+    document.body.appendChild(lightbox);
+    const lbBody = lightbox.querySelector(".lightbox-body");
+
+    function closeLightbox() {
+      lightbox.classList.remove("show");
+      lbBody.innerHTML = "";
+    }
+    lightbox.addEventListener("click", e => { if (e.target === lightbox) closeLightbox(); });
+    lightbox.querySelector(".lightbox-close").addEventListener("click", closeLightbox);
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeLightbox(); });
+
+    figTriggers.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const source = document.getElementById(btn.dataset.lightboxTarget);
+        if (!source) return;
+        lbBody.innerHTML = source.innerHTML;
+        lightbox.classList.add("show");
+      });
+    });
+  }
 
   /* ---- Freeze table column widths so masking never reflows ----
      Runs after the eye buttons above are wired in, so the frozen

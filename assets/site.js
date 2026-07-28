@@ -26,8 +26,8 @@ const SITE = {
     {
       label: "Week 1",
       items: [
-        { id: "week1-reproductive", num: "1", title: "Anatomy & Physiology",   file: "week1-reproductive.html" },
-        { id: "week1-disorders",    num: "2", title: "Disorders & Genetics",   file: "week1-disorders.html" },
+        { id: "week1-reproductive", num: "1", title: "Anatomy &amp; Physiology",   file: "week1-reproductive.html" },
+        { id: "week1-disorders",    num: "2", title: "Disorders &amp; Genetics",   file: "week1-disorders.html" },
         { id: "week1-antepartum",   num: "3", title: "Antepartum Care",        file: "week1-antepartum.html" },
       ]
     },
@@ -83,6 +83,15 @@ const SITE = {
     }
   ]
 };
+
+// Cache-bust token read off our own <script src="assets/site.js?v=…">, so
+// anything loaded lazily below shares the page's version without a second
+// hardcoded string to keep in sync.
+const SITE_VER = (function () {
+  const s = document.currentScript || document.querySelector('script[src*="assets/site.js"]');
+  const m = s && /[?&]v=([^&]+)/.exec(s.src || "");
+  return m ? m[1] : "";
+})();
 
 (function () {
   // ---- Small helpers -------------------------------------------
@@ -348,19 +357,42 @@ const SITE = {
 
   // ---- Site search ---------------------------------------------
   (function search() {
-    const raw = window.SEARCH_INDEX;
     const btn = header.querySelector('[data-act="search"]');
-    if (!raw || !btn) return;
+    if (!btn) return;
+
+    /* The index is ~150 KB — more than the rest of the site's CSS+JS put
+       together — and most page views never search. So it is NOT included by
+       the pages; it is fetched the first time the search is opened. */
+    const INDEX_SRC = "data/search-index.js" + (SITE_VER ? "?v=" + SITE_VER : "");
+    let entries = null, loading = null;
 
     // Flatten the grouped index into one entry per keyword.
-    const entries = [];
-    raw.forEach(pg => (pg.secs || []).forEach(sec => (sec.k || []).forEach(kw => {
-      entries.push({
-        f: pg.f, t: pg.t, s: sec.s, a: sec.a, kw,
-        hay: (kw + " " + sec.s + " " + pg.t).toLowerCase(),
-        kwl: kw.toLowerCase()
+    function buildEntries() {
+      const raw = window.SEARCH_INDEX || [];
+      const out = [];
+      raw.forEach(pg => (pg.secs || []).forEach(sec => (sec.k || []).forEach(kw => {
+        out.push({
+          f: pg.f, t: pg.t, s: sec.s, a: sec.a, kw,
+          hay: (kw + " " + sec.s + " " + pg.t).toLowerCase(),
+          kwl: kw.toLowerCase()
+        });
+      })));
+      return out;
+    }
+
+    function loadIndex() {
+      if (entries) return Promise.resolve();
+      if (loading) return loading;
+      loading = new Promise(resolve => {
+        if (window.SEARCH_INDEX) { entries = buildEntries(); resolve(); return; }
+        const s = document.createElement("script");
+        s.src = INDEX_SRC;
+        s.onload = () => { entries = buildEntries(); resolve(); };
+        s.onerror = () => { entries = []; resolve(); };
+        document.head.appendChild(s);
       });
-    })));
+      return loading;
+    }
 
     const overlay = document.createElement("div");
     overlay.className = "search-overlay";
@@ -397,6 +429,7 @@ const SITE = {
       input.value = "";
       render("");
       setTimeout(() => input.focus(), 30);
+      loadIndex();                       // warm it while she starts typing
     }
     function close() { overlay.classList.remove("show"); }
 
@@ -405,6 +438,12 @@ const SITE = {
       if (q.length < 2) {
         matches = [];
         results.innerHTML = '<p class="search-empty">Start typing to search every page.</p>';
+        return;
+      }
+      if (!entries) {                    // still fetching — re-render when it lands
+        matches = [];
+        results.innerHTML = '<p class="search-empty">Loading search index…</p>';
+        loadIndex().then(() => { if (overlay.classList.contains("show")) render(input.value); });
         return;
       }
       const scored = [];
