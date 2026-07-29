@@ -1,61 +1,131 @@
 /* ============================================================
    quiz-bank.js - "Build Your Own Exam" question bank.
    Organized by topic; each topic has three practice sets:
-     - mustKnow: questions copied (not moved) from data/exam-1.js /
-       data/exam-2.js that test a point on the "Must Know Quick
-       Reference" page (exam-hints.html). Kept in sync with the exams
-       manually if either changes.
+     - mustKnow: every question from the Weeks 1-4 Practice Exam
+       (formerly data/exam-weeks1-4.js, archived 2026-07-29 — see
+       "archive/" in the project root) that matched this topic, copied
+       verbatim (not moved). Covers all 91 testable Must-Know items
+       from exam-hints.html. Replaces the old exam-1/exam-2-sourced
+       mustKnow set entirely as of 2026-07-29 — see that session note
+       in CLAUDE.md for why (the user wanted this bank's mustKnow set
+       to exactly replicate the Weeks 1-4 exam once exam-1/exam-2/
+       exam-weeks1-4 were pulled off the live site).
      - extraPractice: the original quiz-bank question pool for that
-       topic, minus anything that duplicates a mustKnow question
-       (there was no overlap as of 2026-07-21 — the quiz bank was
-       already de-duplicated against every exam question in an
-       earlier session).
+       topic. It was de-duplicated against the OLD exam-1/exam-2-sourced
+       mustKnow set; when mustKnow's source changed 2026-07-29 an
+       exhaustive pairwise check found 4 collisions, all in `disorders`
+       and all caused by the new mustKnow adding the five Disorders
+       rows the old exams never covered (PCOS, endometriosis,
+       fibrocystic changes, HPV). **All four were repointed the same
+       day** to untested facts from week1-disorders.html: PID risk
+       factors, toxic-shock lab findings, bromocriptine, and NIPT.
+       Re-verified: no mustKnow/extraPractice pair now exceeds a 0.25
+       token overlap on a shared fact; the handful that remain are
+       shared vocabulary testing different points.
      - eaq: questions imported from the user's external EAQ (Elsevier
        Adaptive Quizzing) sets — EAQ 1-3 on 2026-07-21, EAQ 4 on
-       2026-07-27. 200 source questions in, 157 unique deployed; the
-       rest were exact duplicates (Elsevier recycles items heavily —
-       25 of EAQ 4's 50 were already in the bank) or, in one case, a
-       drag-and-drop sequencing item the exam engine can't render.
-       Questions whose content only lives on a Week 4/5 page sit in
-       dedicated eaq-only topic entries below (`week4labor`,
-       `week4complications`, `week5postpartum` — mustKnow/extraPractice
-       empty for Week 5, since no Exam-Prep content reflects Weeks 5-6
-       until those live lectures arrive). Whatever isn't taught
-       anywhere on the site lands in the final `other` entry ("Other
-       EAQ Questions" — also eaq-only). See CLAUDE.md for the full
-       orphan/duplicate list and topic-by-topic counts.
-   Every question carries `topic` (matches data/exam-1.js /
-   data/exam-2.js for the 9 lecture topics, or the page title /
-   "Other EAQ Questions" for the 4 eaq-only entries) and `source`
-   ("exam-1", "exam-2", "quiz-bank", or "eaq") so future breakdown/
-   report changes don't require re-reading and re-categorizing every
-   question.
+       2026-07-27, EAQ 5 on 2026-07-29. 250 source questions in, 205
+       unique deployed; the rest were exact duplicates (Elsevier
+       recycles items heavily) or, in one case (EAQ 4), a drag-and-drop
+       sequencing item the exam engine can't render. Questions whose
+       content only lives on a Week 4/5/6 page sit in dedicated
+       eaq-only topic entries below (`week4labor`, `week4complications`,
+       `week5postpartum`, `week6newborn1`, `week6newborn2` —
+       mustKnow/extraPractice empty for Weeks 5-6, since no Exam-Prep
+       content reflects those weeks until their live lectures arrive).
+       Whatever isn't taught anywhere on the site lands in the final
+       `other` entry ("Other EAQ Questions" — also eaq-only). See
+       CLAUDE.md for the full orphan/duplicate list and topic-by-topic
+       counts.
+   Every question carries `topic` (the topic's own `label`, or the page
+   title for the eaq-only entries) and `source` ("exam-weeks1-4",
+   "quiz-bank", or "eaq") so future breakdown/report changes don't
+   require re-reading and re-categorizing every question.
    Internal ids/filenames still say "quiz" (quiz-builder.html,
    window.QUIZ_BANK, assets/quiz.js) — only user-facing text was
    renamed to "Build Your Own Exam".
 
-   Revised 2026-07-26 (mustKnow + extraPractice only — the eaq sets were
-   deliberately NOT touched): stripped giveaway phrasing out of stems,
-   removed self-explaining answer options, replaced throwaway distractors
-   with plausible near-misses, reframed straight recall as clinical
-   vignettes, and redistributed the correct-answer positions (several
-   extraPractice sets previously had nearly every answer in position B,
-   and the Week 4 sets in position A). mustKnow items were re-synced to
-   the rebuilt 2026-07-26 exam wording, with option ORDER varied where
-   copying the exams verbatim would have clustered a topic's answers in
-   one position. Question count and content are unchanged and remain
-   lecture-faithful; a handful of extraPractice items were repointed to a
-   different fact on the same page where they had come to duplicate a
-   question on Exam 1 or 2 (oligohydramnios cause, RhoGAM trigger,
-   temperature interval after ROM, external cephalic version).
+   Revised 2026-07-26 (mustKnow + extraPractice only, back when mustKnow
+   was still exam-1/exam-2-sourced — the eaq sets were deliberately NOT
+   touched): stripped giveaway phrasing out of stems, removed
+   self-explaining answer options, replaced throwaway distractors with
+   plausible near-misses, reframed straight recall as clinical
+   vignettes, and redistributed the correct-answer positions. This pass
+   is now superseded for mustKnow by the 2026-07-29 exam-weeks1-4 swap
+   (that page had its own quality pass at build time) but extraPractice
+   still reflects it.
 
-   EAQ 4 imported 2026-07-27 (`EAQ/EAQ 4.md`, 50 questions). Only 24 were
-   added — Elsevier recycles items heavily, and 25 of the 50 were already
-   in this bank from EAQ 1-3 (verified stem by stem), while 1 was a
-   drag-and-drop SEQUENCING item (order the cardinal movements) that the
-   exam engine cannot render. The 24 landed as: reproductive 3,
-   complications 4, intrapartum1 2, intrapartum2 3, week4complications 4,
-   other 8. eaq now totals 157; the bank totals 354.
+   EAQ 4 imported 2026-07-27 (`EAQ/EAQ 4.md`, 50 questions): 24 added
+   (26 were duplicates or unrenderable). EAQ 5 imported 2026-07-29
+   (`EAQ/EAQ 5.md`, 50 questions, all newborn-assessment content): 48
+   added (2 dropped as duplicates — cord vessels and ABO incompatibility
+   already existed elsewhere in the bank), landing in two brand-new
+   eaq-only rows (`week6newborn1` 14, `week6newborn2` 11) plus `other`
+   23. All EAQ-sourced questions (205 total) were re-audited 2026-07-29
+   for answer/rationale mispairing from the PDF-to-Markdown conversion —
+   one genuine source-PDF garble was fixed ("attempting to of it" →
+   "attempting to deny it," the death-and-dying/Denial question); no
+   actual answer/rationale mismatches were found.
+
+   Quality pass 2026-07-29 (evening), after a full audit of the non-EAQ
+   sets — eaq was deliberately NOT touched:
+     * 6 mustKnow questions ADDED to close sub-aspect gaps the audit
+       found inside already-covered Must-Know concepts: pre-anesthetic
+       fluid bolus as PREVENTION, a non-reassuring/Category III tracing
+       as a systemic-analgesia contraindication, the internal-monitoring
+       use of amniotomy, misoprostol's postpartum-bleeding use (all
+       `week4labor`), third-stage oxytocin-then-fundal-massage
+       (`intrapartum1`), and late deceleration = uteroplacental
+       insufficiency (`intrapartum2`). All carry source "quiz-bank".
+       NOT added: Demerol -> decreased variability, which is already
+       tested by intrapartum2 extraPractice — adding it would have
+       created a duplicate.
+     * 9 questions REWRITTEN to remove answer tells (circular stems,
+       correct options carrying their own rationale clause, and one
+       item answerable by elimination because only the keyed option had
+       any risk factor at all). Eight were extraPractice; one — the HPV
+       item — is a mustKnow question, so mustKnow is no longer byte-
+       identical to the archived Weeks 1-4 exam.
+     * 2 Intrapartum Care I extraPractice questions SWAPPED for
+       higher-yield content: the ROA-first-letter item (duplicated a
+       mustKnow question) became the four pelvis shapes, and the
+       5-cm/active-phase item (duplicated another) became the cardinal
+       movements of labor.
+     * 2 mustKnow questions CONVERTED to select-all-that-apply so both
+       Intrapartum topics have one: true-vs-false labor
+       (`intrapartum1`) and reassuring-tracing criteria
+       (`intrapartum2`). No questions were added to do this.
+   Counts after the pass: mustKnow 97, extraPractice 105 (unchanged),
+   eaq 205 — the bank totals 407, with 10 mustKnow SATA and 10
+   extraPractice SATA.
+
+   Follow-up pass 2026-07-29 (same evening, after the user reviewed the
+   above):
+     * FIXED the answer-key clustering flagged above. `hypertensive`
+       (was 4/7 at position D) and `week4complications` (was 8/14 at
+       position D) mustKnow sets had their option order rotated —
+       content and rationale untouched, only option order and the
+       matching answer index changed. Both now sit at or under 2/7 and
+       4/14 in any one position.
+     * Re-scanned every topic (not just Intrapartum I) for
+       mustKnow/extraPractice questions testing the same fact. No
+       further duplicates found — the remaining topical overlaps
+       (e.g. hypertensive's single-reading-recheck MK vs. its
+       two-readings-classification EP) are related but test distinct
+       points, the same pattern the project already keeps deliberately
+       separate elsewhere (e.g. magnesium sulfate for different
+       indications).
+     * SATA rebalanced so every topic except `nutrition` and
+       `reproductive` (Anatomy & Physiology) now carries exactly one
+       mustKnow SATA and one extraPractice SATA: `disorders` MK13
+       (toxic shock syndrome recognition) became a SATA on TSS
+       findings; two of `week4labor`'s three mustKnow SATA (aspiration-
+       prevention measures, post-epidural-hypotension actions) were
+       converted back to single-answer, leaving only the oxytocin
+       pre-induction-checklist SATA. No questions were added or
+       removed to do this.
+   Counts unchanged at 407 total; mustKnow SATA and extraPractice SATA
+   are each 10, one per topic except nutrition/reproductive.
    ============================================================ */
 window.QUIZ_BANK = {
   topics: [
@@ -71,7 +141,7 @@ window.QUIZ_BANK = {
             answer: 1,
             rationale: "The cord has two arteries (carry waste/deoxygenated blood away) and one vein (delivers oxygenated blood to the fetus) — \"backwards\" from adult circulation.",
             topic: "Anatomy & Physiology",
-            source: "exam-2"
+            source: "exam-weeks1-4"
           }
         ],
         extraPractice: [
@@ -116,10 +186,10 @@ window.QUIZ_BANK = {
             source: "quiz-bank"
           },
           {
-            stem: "The nurse is teaching about a group of fatty acids that can both relax and constrict smooth muscle and are used clinically to ripen the cervix and strengthen contractions. These are:",
-            options: ["Prostaglandins","Relaxin","Prolactin","Oxytocin"],
-            answer: 0,
-            rationale: "Prostaglandins are fatty acids that relax and constrict smooth muscle; they are used in labor induction and to increase contractions. Relaxin softens connective tissue; oxytocin is a hormone, not a fatty acid.",
+            stem: "Which substance relaxes and constricts smooth muscle and is used clinically both to ripen the cervix and to strengthen contractions?",
+            options: ["Relaxin","Progesterone","Prostaglandins","Estrogen"],
+            answer: 2,
+            rationale: "Prostaglandins relax and constrict smooth muscle and are used clinically to ripen the cervix and increase contractions. Relaxin softens connective tissue and the pelvic joints, progesterone keeps the uterus quiet during pregnancy, and estrogen supports uterine growth and blood flow.",
             topic: "Anatomy & Physiology",
             source: "quiz-bank"
           },
@@ -236,7 +306,7 @@ window.QUIZ_BANK = {
             answer: 2,
             rationale: "An active HSV lesion at delivery requires a cesarean birth; vaginal exposure can cause a fatal systemic infection in the newborn. Acyclovir is started at 36 weeks to suppress outbreaks, but it does not make a vaginal birth safe once a lesion is present.",
             topic: "Disorders & Genetics",
-            source: "exam-1"
+            source: "exam-weeks1-4"
           },
           {
             stem: "A father has an autosomal DOMINANT disorder and is heterozygous (Dd). The mother is unaffected (dd). What does the nurse teach about each pregnancy?",
@@ -244,47 +314,7 @@ window.QUIZ_BANK = {
             answer: 3,
             rationale: "Dd × dd yields 50% Dd (affected). In an autosomal dominant disorder only ONE abnormal allele is needed, so there is no silent carrier state.",
             topic: "Disorders & Genetics",
-            source: "exam-1"
-          },
-          {
-            stem: "A menstruating patient who uses super-absorbent tampons presents with fever, hypotension, vomiting, and a sunburn-like rash on her trunk. The nurse recognizes this as:",
-            options: ["A yeast infection that can be managed at home","Toxic shock syndrome","Normal premenstrual symptoms","Bacterial vaginosis"],
-            answer: 1,
-            rationale: "Toxic shock syndrome (a Staph aureus toxin linked to super-absorbent tampons) is a medical emergency requiring hospitalization, IV fluids, and antibiotics; it can progress to shock and death.",
-            topic: "Disorders & Genetics",
-            source: "exam-1"
-          },
-          {
-            stem: "A pregnant patient is diagnosed with gonorrhea. Untreated, the nurse knows this most importantly can cause which complication in the newborn?",
-            options: ["Neural tube defects","Macrosomia","Cleft palate","Neonatal eye infection and blindness"],
-            answer: 3,
-            rationale: "Untreated gonorrhea (and chlamydia) can cause neonatal conjunctivitis and blindness. Gonorrhea is treated with ceftriaxone (Rocephin) plus azithromycin.",
-            topic: "Disorders & Genetics",
-            source: "exam-1"
-          },
-          {
-            stem: "A maternal serum alpha-fetoprotein (AFP) level comes back HIGH. Which fetal concern is most associated with this result?",
-            options: ["Down syndrome","An open neural tube defect such as spina bifida","Trisomy 18","Turner syndrome"],
-            answer: 1,
-            rationale: "HIGH AFP is associated with open neural tube defects (spina bifida, anencephaly), and also multiples and diabetes. LOW AFP is linked to Down syndrome or trisomy 18.",
-            topic: "Disorders & Genetics",
-            source: "exam-1"
-          },
-          {
-            stem: "A patient develops pelvic inflammatory disease after an untreated chlamydia infection. Which long-term complication is most important to include in teaching?",
-            options: ["Cervical cancer","Osteoporosis","Tubal damage and infertility","Gestational diabetes"],
-            answer: 2,
-            rationale: "PID can scar the fallopian tubes and cause infertility, which is why untreated chlamydia and gonorrhea are such a concern.",
-            topic: "Disorders & Genetics",
-            source: "exam-2"
-          },
-          {
-            stem: "Which diagnostic test and treatment are correct for syphilis in pregnancy?",
-            options: ["Diagnosed by wet mount; treated with metronidazole","Diagnosed by pH paper; no treatment needed","Diagnosed by culture; treated with fluconazole","Diagnosed by RPR or VDRL; treated with penicillin"],
-            answer: 3,
-            rationale: "Syphilis is screened with RPR or VDRL (RPR preferred) and treated with penicillin. Congenital syphilis can cause IUGR, preterm birth, and stillbirth.",
-            topic: "Disorders & Genetics",
-            source: "exam-2"
+            source: "exam-weeks1-4"
           },
           {
             stem: "Both parents are carriers for cystic fibrosis, an autosomal recessive disorder. What does the nurse teach about each pregnancy?",
@@ -292,23 +322,39 @@ window.QUIZ_BANK = {
             answer: 0,
             rationale: "A carrier × carrier cross (Bb × Bb) yields 25% affected (bb), 50% unaffected carriers (Bb), and 25% completely unaffected (BB) for each pregnancy.",
             topic: "Disorders & Genetics",
-            source: "exam-2"
+            source: "exam-weeks1-4"
           },
           {
-            stem: "A patient reports a thin, grayish, watery discharge with a fishy odor; her vaginal pH is 5.0. Which condition does the nurse most suspect, and what treatment is anticipated?",
-            options: ["Candidiasis — fluconazole","Bacterial vaginosis — metronidazole","Trichomoniasis — metronidazole","Toxic shock syndrome — hospitalization"],
+            stem: "A 26-year-old has an abnormal Pap smear and a biopsy confirming human papillomavirus. She tells the nurse she feels fine and has never had any warts or symptoms. Which teaching is the priority?",
+            options: ["Having no warts means she is not carrying the virus","She needs continued Pap screening despite having no symptoms","A course of oral antibiotics will clear the infection","The Gardasil vaccine will now cure her infection"],
             answer: 1,
-            rationale: "Bacterial vaginosis produces a thin, gray, fishy-smelling discharge with a vaginal pH greater than 4.5; it is treated with metronidazole (Flagyl) or clindamycin cream. Trichomoniasis is also treated with metronidazole, but its discharge is frothy and yellow-green — so the discharge, not the drug, is what distinguishes them.",
+            rationale: "HPV is a viral STI that frequently causes no symptoms - many clients never develop genital warts - and its incubation can run for years, so a normal past Pap does not rule out later exposure. Because HPV is the leading cause of cervical cancer, continued Pap screening is the priority. Warts are treated with cryotherapy or shave/acid removal; Gardasil prevents infection but does not cure an existing one, and antibiotics do not treat a virus.",
             topic: "Disorders & Genetics",
-            source: "exam-2"
+            source: "exam-weeks1-4"
           },
           {
-            stem: "A patient on antibiotics reports thick, curd-like white discharge with severe itching and a vulvar rash. Which treatment does the nurse anticipate?",
-            options: ["Metronidazole","Fluconazole (Diflucan) or nystatin","Penicillin","Ceftriaxone"],
-            answer: 1,
-            rationale: "Thick, white, curd-like discharge with itching indicates candidiasis (yeast); it is treated with fluconazole or nystatin. Antibiotics, diabetes, and immunosuppression are risk factors.",
+            stem: "A patient develops pelvic inflammatory disease after an untreated chlamydia infection. Which long-term complication is most important to include in teaching?",
+            options: ["Cervical cancer","Osteoporosis","Tubal damage and infertility","Gestational diabetes"],
+            answer: 2,
+            rationale: "PID can scar the fallopian tubes and cause infertility, which is why untreated chlamydia and gonorrhea are such a concern.",
             topic: "Disorders & Genetics",
-            source: "exam-2"
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A pregnant patient is diagnosed with gonorrhea. Untreated, the nurse knows this most importantly can cause which complication in the newborn?",
+            options: ["Neural tube defects","Macrosomia","Cleft palate","Neonatal eye infection and blindness"],
+            answer: 3,
+            rationale: "Untreated gonorrhea (and chlamydia) can cause neonatal conjunctivitis and blindness. Gonorrhea is treated with ceftriaxone (Rocephin) plus azithromycin.",
+            topic: "Disorders & Genetics",
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A 32-year-old reports several tender, movable lumps in both breasts that hurt more in the week before her period and ease afterward. Which teaching is most appropriate?",
+            options: ["Limit caffeine and sodium — these cyclic, mobile lumps are the most common benign breast change","A lump that is fixed in place with overlying skin dimpling, like hers, is an expected benign finding","Avoid mammography, because it cannot tell a cyst from a solid mass","Expect infertility, which is the most common complication of this condition"],
+            answer: 0,
+            rationale: "Fibrocystic changes are the most common benign breast disorder, likely from an estrogen/progesterone imbalance. The lumps are mobile, tender, and track with the cycle; treatment is limiting caffeine and sodium, sometimes oral contraceptives. Diagnosis is by mammogram and fine-needle aspiration. A FIXED mass with skin retraction is the cancer red flag — not this.",
+            topic: "Disorders & Genetics",
+            source: "exam-weeks1-4"
           },
           {
             stem: "A patient reports a frothy yellow-green vaginal discharge with itching and dysuria; a wet mount shows a motile organism. Which infection and treatment does the nurse anticipate?",
@@ -316,39 +362,111 @@ window.QUIZ_BANK = {
             answer: 2,
             rationale: "Trichomoniasis (Trichomonas vaginalis, the most common non-viral STI) causes a frothy yellow-green discharge and is diagnosed by seeing the motile organism on a wet mount; it is treated with metronidazole.",
             topic: "Disorders & Genetics",
-            source: "exam-2"
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A patient on antibiotics reports thick, curd-like white discharge with severe itching and a vulvar rash. Which treatment does the nurse anticipate?",
+            options: ["Metronidazole","Fluconazole (Diflucan) or nystatin","Penicillin","Ceftriaxone"],
+            answer: 1,
+            rationale: "Thick, white, curd-like discharge with itching indicates candidiasis (yeast); it is treated with fluconazole or nystatin. Antibiotics, diabetes, and immunosuppression are risk factors.",
+            topic: "Disorders & Genetics",
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A 24-year-old reports no periods for four months, worsening acne, and coarse hair growth on her face. Labs show elevated androgens and insulin resistance, and transvaginal ultrasound shows enlarged ovaries with numerous small cysts. Which condition does the nurse recognize, and which medication is anticipated?",
+            options: ["Polycystic ovarian syndrome — metformin","Endometriosis — a gonadotropin-releasing hormone agonist","Pelvic inflammatory disease — intravenous antibiotics","Fibrocystic breast changes — a thiazide diuretic"],
+            answer: 0,
+            rationale: "PCOS presents with irregular or absent periods, elevated testosterone and androgens (acne, hirsutism, alopecia, a deeper voice), obesity, and insulin resistance, with enlarged ovaries full of small cysts on transvaginal ultrasound. Treatment includes oral contraceptives, metformin, and spironolactone; infertility is the main complication.",
+            topic: "Disorders & Genetics",
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A patient reports a thin, grayish, watery discharge with a fishy odor; her vaginal pH is 5.0. Which condition does the nurse most suspect, and what treatment is anticipated?",
+            options: ["Candidiasis — fluconazole","Bacterial vaginosis — metronidazole","Trichomoniasis — metronidazole","Toxic shock syndrome — hospitalization"],
+            answer: 1,
+            rationale: "Bacterial vaginosis produces a thin, gray, fishy-smelling discharge with a vaginal pH greater than 4.5; it is treated with metronidazole (Flagyl) or clindamycin cream. Trichomoniasis is also treated with metronidazole, but its discharge is frothy and yellow-green — so the discharge, not the drug, is what distinguishes them.",
+            topic: "Disorders & Genetics",
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "Which diagnostic test and treatment are correct for syphilis in pregnancy?",
+            options: ["Diagnosed by wet mount; treated with metronidazole","Diagnosed by pH paper; no treatment needed","Diagnosed by culture; treated with fluconazole","Diagnosed by RPR or VDRL; treated with penicillin"],
+            answer: 3,
+            rationale: "Syphilis is screened with RPR or VDRL (RPR preferred) and treated with penicillin. Congenital syphilis can cause IUGR, preterm birth, and stillbirth.",
+            topic: "Disorders & Genetics",
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A menstruating patient who uses super-absorbent tampons is being evaluated for toxic shock syndrome. Which findings would the nurse expect? Select all that apply.",
+            options: ["Fever","A sunburn-like rash on the trunk","Vomiting","Hypotension","Thick, curd-like white discharge","A painless genital chancre"],
+            answers: [0,1,2,3],
+            rationale: "Toxic shock syndrome (a Staph aureus toxin linked to super-absorbent tampons) presents with fever, a sunburn-like rash on the trunk, vomiting, hypotension, and inflamed mucous membranes; it is a medical emergency requiring hospitalization, IV fluids, and antibiotics. Thick, curd-like discharge describes candidiasis, and a painless chancre is the presentation of syphilis — neither is a finding of toxic shock syndrome.",
+            topic: "Disorders & Genetics",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A 29-year-old has had pelvic pain that peaks with every menstrual period and has been unable to conceive for two years. Laparoscopy shows endometrial tissue outside the uterus. She tells the nurse she still hopes to become pregnant. Which treatment does the nurse anticipate?",
+            options: ["Surgical removal of the endometrial implants","Continuous oral contraceptives","Metronidazole for 7 days","A single intramuscular dose of penicillin"],
+            answer: 0,
+            rationale: "Endometriosis is endometrial tissue growing outside the uterus, diagnosed by laparoscopy and often found during an infertility workup. Surgical removal suits a client who wants to conceive; oral contraceptives are also a treatment but not while she is trying to become pregnant. Adhesions causing infertility are the main complication.",
+            topic: "Disorders & Genetics",
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A maternal serum alpha-fetoprotein (AFP) level comes back HIGH. Which fetal concern is most associated with this result?",
+            options: ["Down syndrome","An open neural tube defect such as spina bifida","Trisomy 18","Turner syndrome"],
+            answer: 1,
+            rationale: "HIGH AFP is associated with open neural tube defects (spina bifida, anencephaly), and also with multiples and diabetes. LOW AFP is linked to Down syndrome or trisomy 18.",
+            topic: "Disorders & Genetics",
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A pregnant client has a history of genital herpes (HSV-2) but no current lesions. At what point does the nurse anticipate suppressive acyclovir will be started?",
+            options: ["At 20 weeks","At the first prenatal visit","At 36 weeks","Only if a lesion appears in labor"],
+            answer: 2,
+            rationale: "Suppressive acyclovir is started at 36 weeks to prevent an outbreak near delivery. An active genital lesion at delivery requires a cesarean, because neonatal herpes can be fatal.",
+            topic: "Disorders & Genetics",
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A client at 22 weeks' gestation has burning with urination, urgency, and a low-grade fever; a urine culture confirms cystitis. She asks why she cannot just wait to see whether it clears up on its own. What is the nurse's best response?",
+            options: ["\"An untreated bladder infection can travel up to your kidneys, and it also raises your risk of preterm labor.\"","\"Cystitis in pregnancy clears on its own once you increase your fluid intake.\"","\"The main worry is that it will cause malformations of your baby's kidneys.\"","\"We wait until the third trimester to treat it, when antibiotics are safest for the baby.\""],
+            answer: 0,
+            rationale: "Cystitis is a lower UTI — usually E. coli or staph — causing dysuria, urgency, hematuria, and a low-grade fever. Untreated it can ascend to pyelonephritis (high fever, chills, unilateral flank pain), and UTIs in pregnancy also increase the risk of preterm labor. It is treated promptly with oral antibiotics guided by the culture.",
+            topic: "Disorders & Genetics",
+            source: "exam-weeks1-4"
           }
         ],
         extraPractice: [
           {
-            stem: "A patient has irregular periods, hirsutism, acne, obesity, and insulin resistance. Which condition is most likely?",
-            options: ["Polycystic ovarian syndrome (PCOS)","Endometriosis","Fibrocystic breast changes","Premature ovarian failure"],
+            stem: "A client is being treated for pelvic inflammatory disease. Which items in her history does the nurse identify as risk factors?",
+            options: ["A history of multiple partners and IUD use","A history of fibrocystic breast changes","A family history of ovarian cancer","Long-term oral contraceptive use"],
             answer: 0,
-            rationale: "PCOS features irregular periods, elevated androgens (hirsutism, acne), obesity, insulin resistance, and infertility. It is managed with oral contraceptives, metformin, and spironolactone.",
+            rationale: "Risk factors for PID are multiple partners, IUD use, and untreated gonorrhea or chlamydia. PID can also be asymptomatic, which is part of why it goes on to cause tubal damage and infertility. Fibrocystic changes, a family cancer history, and oral contraceptives are not risk factors for it.",
             topic: "Disorders & Genetics",
             source: "quiz-bank"
           },
           {
-            stem: "Which procedure definitively diagnoses endometriosis?",
-            options: ["Pelvic ultrasound","Wet mount","Pap smear","Laparoscopy"],
-            answer: 3,
-            rationale: "Endometriosis is diagnosed by laparoscopy — imaging alone is not definitive. It causes pelvic pain around menses and is often found during an infertility workup.",
-            topic: "Disorders & Genetics",
-            source: "quiz-bank"
-          },
-          {
-            stem: "A patient has mobile, tender breast lumps that worsen before her menses. Which is the most likely condition, and what self-care is recommended?",
-            options: ["Breast cancer - biopsy and staging","Fibrocystic breast changes - limit caffeine and sodium","Mastitis - oral antibiotics","Fibroadenoma - surgical excision"],
+            stem: "A client is admitted with suspected toxic shock syndrome. Which laboratory pattern does the nurse expect?",
+            options: ["Low BUN with elevated platelets","Elevated BUN, elevated liver enzymes, and low platelets","Elevated platelets with normal liver enzymes","Low bilirubin with an elevated white count only"],
             answer: 1,
-            rationale: "Fibrocystic breast changes (the most common benign breast disorder) cause mobile, tender lumps that worsen before menses; management includes limiting caffeine and sodium and sometimes oral contraceptives. A FIXED mass with skin retraction is the red flag for cancer.",
+            rationale: "Toxic shock syndrome shows an increased BUN, increased liver enzymes (AST/ALT), increased bilirubin, and LOW platelets. It is a medical emergency treated with hospitalization, IV fluids, and antibiotics.",
             topic: "Disorders & Genetics",
             source: "quiz-bank"
           },
           {
-            stem: "Which sexually transmitted infection is diagnosed by an abnormal Pap smear with biopsy and is the leading cause of cervical cancer?",
-            options: ["Herpes simplex virus","Chlamydia","Human papillomavirus (HPV)","Syphilis"],
+            stem: "Which fertility medication works by inhibiting prolactin so that FSH and LH rise and ovulation is induced?",
+            options: ["Clomiphene citrate (Clomid)","Bromocriptine (Parlodel)","Progesterone supplementation","Gonadotropins (FSH/LH)"],
+            answer: 1,
+            rationale: "Bromocriptine (Parlodel) inhibits prolactin, which allows FSH and LH to rise and induces ovulation. Clomiphene citrate stimulates follicle growth and egg release directly, progesterone supplementation treats inadequate progesterone, and gonadotropins are given when FSH/LH themselves are inadequate.",
+            topic: "Disorders & Genetics",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A 39-year-old asks about a blood test her provider mentioned that screens the fetus for chromosomal conditions without a needle procedure. Which test is the nurse describing?",
+            options: ["Chorionic villus sampling","Amniocentesis","NIPT (cell-free DNA)","A biophysical profile"],
             answer: 2,
-            rationale: "HPV causes genital warts and is the leading cause of cervical cancer; the Gardasil vaccine helps prevent it. It is diagnosed by an abnormal Pap smear and biopsy.",
+            rationale: "NIPT measures circulating fetal cell-free DNA in a sample of maternal blood, and is offered to older mothers, after an abnormal ultrasound, or with a prior affected child. Chorionic villus sampling and amniocentesis both retrieve fetal genetic material through an invasive procedure, and a biophysical profile assesses fetal well-being, not chromosomes.",
             topic: "Disorders & Genetics",
             source: "quiz-bank"
           },
@@ -361,10 +479,10 @@ window.QUIZ_BANK = {
             source: "quiz-bank"
           },
           {
-            stem: "Which prenatal test samples placental tissue and CANNOT detect neural tube defects?",
-            options: ["Amniocentesis","Quad screen","Nonstress test","Chorionic villus sampling (CVS)"],
-            answer: 3,
-            rationale: "CVS samples chorionic villi (placental tissue) and can be performed very early, but it cannot detect neural tube defects. Amniocentesis samples amniotic fluid and can. Its risks include ruptured membranes, bleeding, infection, and possible limb reduction.",
+            stem: "A client is deciding between chorionic villus sampling and amniocentesis. Which statement by the nurse is accurate?",
+            options: ["CVS samples amniotic fluid and amniocentesis samples the placenta","CVS samples the placenta and cannot screen for neural tube defects","Only amniocentesis can identify a chromosomal disorder","CVS is the safer choice because it carries no procedural risk"],
+            answer: 1,
+            rationale: "Both tests retrieve genetic material - CVS samples the chorionic villi (placenta) and amniocentesis samples the amniotic fluid. Because CVS does not sample amniotic fluid, it cannot be used to screen for neural tube defects; alpha-fetoprotein and ultrasound are used for that. Both can identify chromosomal disorders, and both carry procedural risk.",
             topic: "Disorders & Genetics",
             source: "quiz-bank"
           },
@@ -508,44 +626,12 @@ window.QUIZ_BANK = {
       sets: {
         mustKnow: [
           {
-            stem: "A patient reports that her last menstrual period began on March 10 and ended March 15. Using Naegele's rule, what is her estimated date of birth?",
-            options: ["December 22","December 17","January 17","December 10"],
-            answer: 1,
-            rationale: "Naegele's rule uses the FIRST day of the LMP (March 10): subtract 3 months (December 10), then add 7 days = December 17. December 10 is the intermediate step, not the answer.",
-            topic: "Antepartum Care",
-            source: "exam-1"
-          },
-          {
-            stem: "A patient at 30 weeks' gestation has a fundal height of 25 cm. What is the nurse's best interpretation?",
-            options: ["This is expected and requires no action","This confirms intrauterine growth restriction","This discrepancy should be reported for further evaluation","Fundal height is unreliable and should be ignored"],
-            answer: 2,
-            rationale: "Fundal height should be within about ±2 cm of the gestational age in weeks (from ~22–34 weeks). 25 cm at 30 weeks is a 5-cm discrepancy that needs evaluation — but it does not by itself confirm a diagnosis.",
-            topic: "Antepartum Care",
-            source: "exam-1"
-          },
-          {
-            stem: "A patient delivering today at 36 2/7 weeks has this history: one miscarriage at 9 weeks, one vaginal birth at 39 weeks, and a cesarean birth of twins at 35 weeks. All children are living. What is her GTPAL after today's birth?",
-            options: ["G4 T1 P2 A1 L4","G3 T1 P1 A1 L4","G5 T1 P2 A1 L4","G4 T2 P1 A1 L3"],
-            answer: 0,
-            rationale: "Gravida counts pregnancies: miscarriage + term birth + twin pregnancy + today = G4. Term 1 (39 wk). Preterm 2 (the 35-wk twins and today). Abortions 1. Living 4 (1 + twins + today).",
-            topic: "Antepartum Care",
-            source: "exam-1"
-          },
-          {
             stem: "A pregnant patient's partner answers every question for her and will not leave the room. What is the nurse's most appropriate action?",
             options: ["Continue the visit with the partner present to save time","Ask the patient about abuse directly in front of the partner","Document \"no abuse\" since she did not report any","Escort her alone to give a urine sample so she can be screened privately"],
             answer: 3,
             rationale: "Intimate partner violence increases in pregnancy, and patients rarely disclose with a controlling partner present. Create private screening time and never raise it in front of others.",
             topic: "Antepartum Care",
-            source: "exam-2"
-          },
-          {
-            stem: "A primigravida asks when she should first expect to feel her baby move. What is the nurse's best response?",
-            options: ["Between 16 and 22 weeks","Between 8 and 12 weeks","Between 24 and 28 weeks","Between 12 and 16 weeks"],
-            answer: 0,
-            rationale: "Quickening is usually felt around 16–22 weeks, and by about 20 weeks in most women (earlier if it is not her first baby). It is a key indicator of fetal well-being.",
-            topic: "Antepartum Care",
-            source: "exam-2"
+            source: "exam-weeks1-4"
           },
           {
             stem: "A patient at 17 weeks is anxious because her quad screen (MSAFP) came back abnormal. What is the nurse's best teaching?",
@@ -553,23 +639,47 @@ window.QUIZ_BANK = {
             answer: 2,
             rationale: "The quad screen/MSAFP is a maternal blood SCREEN (drawn ~15–22 weeks), not diagnostic — an abnormal result means further testing is needed.",
             topic: "Antepartum Care",
-            source: "exam-2"
+            source: "exam-weeks1-4"
           },
           {
-            stem: "Which findings are POSITIVE (diagnostic) signs of pregnancy? Select all that apply.",
-            options: ["Amenorrhea","Auscultation of the fetal heartbeat by the examiner","A positive urine pregnancy test","Fetal movement felt by the examiner","Visualization of the fetus on ultrasound"],
-            answers: [1, 3, 4],
-            rationale: "Positive signs can only be explained by pregnancy: hearing the fetal heartbeat, the examiner feeling fetal movement, and seeing the fetus on ultrasound. Amenorrhea is presumptive; a positive pregnancy test is probable.",
+            stem: "A primigravida at 20 weeks' gestation tells the nurse she has been feeling \"little flutters\" low in her abdomen for the past few days. How should the nurse interpret this finding?",
+            options: ["Quickening — expected at this gestation, and a presumptive sign of pregnancy","Quickening — expected at this gestation, and a positive sign of pregnancy","Braxton Hicks contractions — expected, and a probable sign of pregnancy","An unexpected finding this early that should be reported to the provider"],
+            answer: 0,
+            rationale: "Quickening is fetal movement first felt by the mother, expected at about 20 weeks. Because only she can feel it, it is subjective — a presumptive sign. Fetal movement felt by the EXAMINER is what makes it a positive sign. Braxton Hicks are painless contractions, not flutters.",
             topic: "Antepartum Care",
-            source: "exam-2"
+            source: "exam-weeks1-4"
           },
           {
-            stem: "Which findings are PROBABLE (objective) signs of pregnancy? Select all that apply.",
-            options: ["Nausea and vomiting","Goodell's, Chadwick's, and Hegar's signs","A positive pregnancy test","Auscultation of the fetal heartbeat by the examiner","Braxton Hicks contractions"],
-            answers: [1, 2, 4],
-            rationale: "Probable (objective) signs include Goodell's/Chadwick's/Hegar's signs, a positive pregnancy test, Braxton Hicks contractions, and palpating the fetal outline. Auscultating the fetal heartbeat is a POSITIVE (diagnostic) sign; nausea and vomiting is PRESUMPTIVE (subjective).",
+            stem: "A patient reports that her last menstrual period began on March 10 and ended March 15. Using Naegele's rule, what is her estimated date of birth?",
+            options: ["December 22","December 17","January 17","December 10"],
+            answer: 1,
+            rationale: "Naegele's rule uses the FIRST day of the LMP (March 10): subtract 3 months (December 10), then add 7 days = December 17. December 10 is the intermediate step, not the answer.",
             topic: "Antepartum Care",
-            source: "exam-2"
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A patient at 30 weeks' gestation has a fundal height of 25 cm. What is the nurse's best interpretation?",
+            options: ["This is expected and requires no action","This confirms intrauterine growth restriction","This discrepancy should be reported for further evaluation","Fundal height is unreliable and should be ignored"],
+            answer: 2,
+            rationale: "Fundal height should be within about ±2 cm of the gestational age in weeks (from ~22–34 weeks). 25 cm at 30 weeks is a 5-cm discrepancy that needs evaluation — but it does not by itself confirm a diagnosis.",
+            topic: "Antepartum Care",
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A patient delivering today at 36 2/7 weeks has this history: one miscarriage at 9 weeks, one vaginal birth at 39 weeks, and a cesarean birth of twins at 35 weeks. All children are living. What is her GTPAL after today's birth?",
+            options: ["G4 T1 P2 A1 L4","G3 T1 P1 A1 L4","G5 T1 P2 A1 L4","G4 T2 P1 A1 L3"],
+            answer: 0,
+            rationale: "Gravida counts pregnancies: miscarriage + term birth + twin pregnancy + today = G4. Term 1 (39 wk). Preterm 2 (the 35-wk twins and today). Abortions 1. Living 4 (1 + twins + today).",
+            topic: "Antepartum Care",
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "Which findings are PRESUMPTIVE (subjective) signs of pregnancy? Select all that apply.",
+            options: ["Amenorrhea","Quickening","Abdominal striae","Urinary frequency","Uterine souffle","Breast tenderness and enlargement"],
+            answers: [0,1,3,5],
+            rationale: "Presumptive (subjective) signs can all be explained by something other than pregnancy: amenorrhea, nausea/vomiting, excessive fatigue, urinary frequency, breast tenderness/enlargement, and quickening. Abdominal striae and a uterine souffle are PROBABLE (objective) signs.",
+            topic: "Antepartum Care",
+            source: "exam-weeks1-4"
           }
         ],
         extraPractice: [
@@ -737,12 +847,36 @@ window.QUIZ_BANK = {
       sets: {
         mustKnow: [
           {
+            stem: "A client's biophysical profile is reported as 6 out of 8. A nursing student asks why no single component was scored a 1. What is the nurse's best response?",
+            options: ["\"Each component scores 0 or 2 — never 1 — so a 6 means one was not met, and a non-stress test comes next.\"","\"Components score 0, 1, or 2; a 6 is reassuring and needs no follow-up.\"","\"Each component scores 0 or 2, and anything under 8 means she goes for an immediate cesarean birth.\"","\"A score of 1 is used only for amniotic fluid volume, which is measured on its own scale.\""],
+            answer: 0,
+            rationale: "Every BPP component — Breathing, Amniotic fluid, Tone, Movement, plus the Non-stress test (BATMAN) — is all-or-nothing: 0 or 2, never 1. Anything short of 8/8 prompts a non-stress test, not immediate delivery.",
+            topic: "Antepartum Care II",
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "The nurse is reviewing the biophysical profile (BPP). Which components are assessed by ultrasound? Select all that apply.",
+            options: ["Fetal breathing","Non-stress test","Amniotic fluid index","Fetal tone","Fetal movement"],
+            answers: [0,2,3,4],
+            rationale: "BATMAN: Breathing, Amniotic fluid, Tone, Movement are the four ultrasound components (up to 8/8); the non-stress test is the fifth component and is not done by ultrasound. Each scores 0 or 2 — never a 1.",
+            topic: "Antepartum Care II",
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A client is undergoing a contraction stress test (CST). Which result is the desired, reassuring finding?",
+            options: ["A positive CST","An equivocal CST","An unsatisfactory CST","A negative CST"],
+            answer: 3,
+            rationale: "The CST is 'backwards': a NEGATIVE result (no late decelerations) is reassuring, while a POSITIVE result (late decels with more than half of contractions) signals poor placental perfusion.",
+            topic: "Antepartum Care II",
+            source: "exam-weeks1-4"
+          },
+          {
             stem: "A fetus at 34 weeks is undergoing a non-stress test. Which finding does the nurse document as REACTIVE?",
             options: ["Two accelerations of 15 bpm above baseline lasting 15 seconds each within 20 minutes","One acceleration of 15 bpm lasting 15 seconds within 20 minutes","Two accelerations of 10 bpm lasting 10 seconds each within 20 minutes","No decelerations over a 40-minute period"],
             answer: 0,
             rationale: "At ≥32 weeks, reactive = at least 2 accelerations of 15 bpm above baseline lasting 15 seconds within 20 minutes. The 10 bpm for 10 seconds criteria apply only under 32 weeks, and the absence of decelerations is not what makes an NST reactive.",
             topic: "Antepartum Care II",
-            source: "exam-1"
+            source: "exam-weeks1-4"
           },
           {
             stem: "An amniocentesis is performed for fetal lung maturity. Which lecithin/sphingomyelin (L/S) ratio indicates MATURE fetal lungs?",
@@ -750,23 +884,7 @@ window.QUIZ_BANK = {
             answer: 2,
             rationale: "An L/S ratio of 2:1 or greater indicates mature fetal lungs (adequate surfactant, which keeps the alveoli open).",
             topic: "Antepartum Care II",
-            source: "exam-1"
-          },
-          {
-            stem: "A contraction stress test shows late decelerations with more than half of the contractions. How does the nurse interpret this result?",
-            options: ["Negative — reassuring","Reactive — reassuring","Equivocal — repeat in one week","Positive — indicating poor placental perfusion"],
-            answer: 3,
-            rationale: "The CST is \"backwards\": a POSITIVE CST (late decels with more than half of contractions) is the bad result, indicating poor placental perfusion. A NEGATIVE CST is the reassuring one; equivocal means suspicious/inconclusive and calls for further monitoring.",
-            topic: "Antepartum Care II",
-            source: "exam-2"
-          },
-          {
-            stem: "The nurse is reviewing the biophysical profile (BPP). Which components are assessed by ultrasound? Select all that apply.",
-            options: ["Fetal breathing","Non-stress test","Amniotic fluid index","Fetal tone","Fetal movement"],
-            answers: [0, 2, 3, 4],
-            rationale: "BATMAN: Breathing, Amniotic fluid, Tone, Movement are the four ultrasound components (up to 8/8); the non-stress test is the fifth component and is not done by ultrasound. Each scores 0 or 2 — never a 1.",
-            topic: "Antepartum Care II",
-            source: "exam-2"
+            source: "exam-weeks1-4"
           }
         ],
         extraPractice: [
@@ -804,9 +922,9 @@ window.QUIZ_BANK = {
           },
           {
             stem: "A patient in her first trimester asks whether she can keep using her hot tub. What is the nurse's best response?",
-            options: ["It is safe as long as she limits it to 30 minutes","It is safe at any point in pregnancy","It is only unsafe in the third trimester","She should avoid it, because hyperthermia in the first trimester can harm the fetus"],
-            answer: 3,
-            rationale: "Hyperthermia should be avoided in the first trimester — no hot tubs or overly warm water — because that is when the organs are forming and early fetal development is most vulnerable.",
+            options: ["It is safe if she keeps each session under 30 minutes","She should avoid it only if she develops a fever","She should avoid it, particularly in the first trimester","It is safe as long as she stays well hydrated"],
+            answer: 2,
+            rationale: "Hot tubs and saunas raise the maternal core temperature, and hyperthermia during the first trimester - the period of organ formation - can harm the fetus. Limiting the session, staying hydrated, and waiting for a fever do not prevent the rise in core temperature.",
             topic: "Antepartum Care II",
             source: "quiz-bank"
           },
@@ -820,9 +938,9 @@ window.QUIZ_BANK = {
           },
           {
             stem: "Why might a segment of umbilical cord be tested for cocaine after delivery?",
-            options: ["Cocaine is stored in the cord for years","The cord is easier to obtain than blood","A maternal urine screen may already be negative, because cocaine metabolizes rapidly","Cocaine is not detectable in maternal urine at all"],
-            answer: 2,
-            rationale: "Cocaine metabolizes fast, so a urine screen can be negative within 24-48 hours; a cord segment reveals exposure during the pregnancy.",
+            options: ["Cocaine is stored in cord tissue for years afterward","Cord tissue reflects exposure over a longer window than maternal urine","The cord is simply easier to collect than a blood sample","Cocaine cannot be detected in maternal urine at all"],
+            answer: 1,
+            rationale: "Cocaine metabolizes rapidly, so a maternal urine screen may already be negative by the time she delivers; a segment of umbilical cord reflects exposure over a longer period. It is not stored for years, ease of collection is not the reason, and cocaine IS detectable in maternal urine within its short window.",
             topic: "Antepartum Care II",
             source: "quiz-bank"
           },
@@ -835,10 +953,10 @@ window.QUIZ_BANK = {
             source: "quiz-bank"
           },
           {
-            stem: "Which test is described as a great predictor of preterm birth because it measures cervical length and detects cervical funneling?",
-            options: ["Nuchal translucency","Doppler flow studies","Biophysical profile","Transvaginal ultrasound"],
-            answer: 3,
-            rationale: "A transvaginal ultrasound uses a sterile probe with the bladder empty to get closer to the structures; it measures cervical length and detects funneling, making it a strong predictor of preterm birth.",
+            stem: "A client with a history of preterm birth is being monitored for cervical change during this pregnancy. Which test does the nurse anticipate?",
+            options: ["Nuchal translucency screening","Transvaginal ultrasound","Doppler flow studies","A biophysical profile"],
+            answer: 1,
+            rationale: "Transvaginal ultrasound measures cervical length and detects funneling, which makes it a strong predictor of preterm birth. Nuchal translucency screens for chromosomal conditions, Doppler flow studies assess placental and fetal blood flow, and a biophysical profile assesses fetal well-being rather than the cervix.",
             topic: "Antepartum Care II",
             source: "quiz-bank"
           },
@@ -1019,15 +1137,7 @@ window.QUIZ_BANK = {
             answer: 1,
             rationale: "At least 400 mcg of folic acid daily is recommended during pregnancy or when trying to conceive; inadequate folic acid is linked to neural tube defects.",
             topic: "Maternal Nutrition",
-            source: "exam-1"
-          },
-          {
-            stem: "A patient with an adequate diet asks whether she really needs any supplement during pregnancy. Which single supplement is still truly required?",
-            options: ["Calcium","Vitamin C","Magnesium","Iron"],
-            answer: 3,
-            rationale: "Even with an adequate diet, iron is the one supplement still truly needed — it supports the expanded maternal blood volume and oxygen-carrying capacity.",
-            topic: "Maternal Nutrition",
-            source: "exam-2"
+            source: "exam-weeks1-4"
           }
         ],
         extraPractice: [
@@ -1120,15 +1230,15 @@ window.QUIZ_BANK = {
             answer: 1,
             rationale: "GDM goals: fasting <95, one hour <140, two hours <120. The fasting 92 and two-hour 112 are at goal; the one-hour 158 is above the 140 target.",
             topic: "Antepartum Complications",
-            source: "exam-2"
+            source: "exam-weeks1-4"
           },
           {
             stem: "The nurse assesses a pregnant patient with a cardiac disorder at each prenatal visit. Which findings indicate cardiac DECOMPENSATION? Select all that apply.",
             options: ["New cough","Weight loss","Dyspnea","Palpitations","Edema"],
-            answers: [0, 2, 3, 4],
+            answers: [0,2,3,4],
             rationale: "Signs of cardiac decompensation include a new cough, dyspnea, edema, palpitations, rales, and weight GAIN — not weight loss.",
             topic: "Antepartum Complications",
-            source: "exam-2"
+            source: "exam-weeks1-4"
           },
           {
             stem: "A patient's 3-hour glucose tolerance test returns with the fasting and 2-hour values elevated; the 1-hour and 3-hour values are normal. How does the nurse interpret this?",
@@ -1136,15 +1246,15 @@ window.QUIZ_BANK = {
             answer: 2,
             rationale: "On the 3-hour glucose tolerance test, if any TWO of the four values are elevated, the patient is diagnosed with gestational diabetes.",
             topic: "Antepartum Complications",
-            source: "exam-2"
+            source: "exam-weeks1-4"
           }
         ],
         extraPractice: [
           {
             stem: "A patient with type 1 diabetes at 9 weeks' gestation reports two episodes of morning hypoglycemia this week on her usual insulin dose. What best explains this?",
-            options: ["Early pregnancy hormones enhance her insulin response, so her needs have dropped","The placenta is already producing insulin for her","Her insulin requirement doubles in the first trimester","Nausea has made her insulin absorb more slowly"],
-            answer: 0,
-            rationale: "Early in pregnancy hormones enhance insulin production and response, so insulin needs DECREASE. From the late first trimester on, those hormones act as insulin antagonists and needs increase — they may double or quadruple by term.",
+            options: ["The placenta has begun producing insulin on her behalf","Early pregnancy hormones enhance her insulin response","Her insulin requirement doubles during the first trimester","Nausea has slowed the absorption of her injected insulin"],
+            answer: 1,
+            rationale: "In the first trimester the insulin requirement DECREASES, because pregnancy hormones enhance insulin production and response, and fetal demand for maternal glucose adds a tendency toward hypoglycemia. Needs climb later, from the late first trimester onward. The placenta does not produce insulin, and nausea affects intake rather than the absorption of injected insulin.",
             topic: "Antepartum Complications",
             source: "quiz-bank"
           },
@@ -1181,10 +1291,10 @@ window.QUIZ_BANK = {
             source: "quiz-bank"
           },
           {
-            stem: "A patient reports she has been unusually thirsty, urinating constantly, always hungry, and has lost six pounds. The nurse recognizes these as:",
-            options: ["expected changes of the second trimester","early signs of hyperemesis gravidarum","signs of a urinary tract infection","the classic signs of diabetes"],
-            answer: 3,
-            rationale: "Polyuria, polydipsia, polyphagia, and weight loss are the classic signs of diabetes, reflecting inadequate insulin production or use.",
+            stem: "A patient at 24 weeks reports she has been unusually thirsty, urinating constantly, always hungry, and has lost six pounds. Which action does the nurse anticipate?",
+            options: ["Reassurance that increased thirst and appetite are expected at this point","A clean-catch urine specimen for culture","Screening for gestational diabetes","An antiemetic, with weekly weight checks"],
+            answer: 2,
+            rationale: "Polyuria, polydipsia, polyphagia, and weight loss are the classic signs of diabetes and call for glucose screening rather than reassurance. A urine culture would fit frequency and dysuria without the other findings, and antiemetics treat hyperemesis, which causes vomiting rather than constant hunger.",
             topic: "Antepartum Complications",
             source: "quiz-bank"
           },
@@ -1336,60 +1446,68 @@ window.QUIZ_BANK = {
       sets: {
         mustKnow: [
           {
-            stem: "A patient at 34 weeks with severe preeclampsia is started on a magnesium sulfate infusion. Her partner asks, \"Is this the medicine that brings her blood pressure down?\" What is the nurse's best response?",
-            options: ["\"Yes — magnesium is our first-line blood pressure medication.\"","\"No — magnesium is given to prevent seizures. A separate medication is used for her blood pressure.\"","\"Yes, and it will also start her labor.\"","\"No — magnesium is given to increase her urine output.\""],
-            answer: 1,
-            rationale: "Magnesium sulfate prevents seizures in severe preeclampsia, eclampsia, and HELLP — it is not an antihypertensive. Blood pressure is treated separately (labetalol, hydralazine, nifedipine).",
-            topic: "Hypertensive Disorders",
-            source: "exam-1"
-          },
-          {
-            stem: "A patient with acute severe hypertension has a history of asthma. Which medication should the nurse question?",
-            options: ["IV hydralazine","Oral nifedipine","IV labetalol","Magnesium sulfate"],
-            answer: 2,
-            rationale: "IV labetalol is a beta-blocker and is avoided in asthma (\"labetalol, lungs\"). Hydralazine or nifedipine would be chosen instead — those two are avoided in tachycardia.",
-            topic: "Hypertensive Disorders",
-            source: "exam-1"
-          },
-          {
-            stem: "A patient on a magnesium sulfate infusion has an indwelling catheter. Over the last 4 hours the drainage bag collected 100 mL. What should the nurse do?",
-            options: ["Nothing — this exceeds the minimum acceptable output","Increase the magnesium infusion rate","Recognize this as an expected side effect of magnesium and continue","Notify the provider that the output is below the acceptable minimum"],
-            answer: 3,
-            rationale: "100 mL ÷ 4 hr = 25 mL/hr, below the minimum of 30 mL/hr. Magnesium is excreted by the kidneys, so falling urine output raises the risk of toxicity and must be reported.",
-            topic: "Hypertensive Disorders",
-            source: "exam-2"
-          },
-          {
-            stem: "Which findings in a patient receiving magnesium sulfate indicate TOXICITY rather than expected side effects? Select all that apply.",
-            options: ["Absent deep tendon reflexes","Feeling flushed and warm","Respiratory rate of 10","Slurred speech and decreased level of consciousness","Mild drowsiness"],
-            answers: [0, 2, 3],
-            rationale: "Toxicity = absent reflexes, decreased respiratory rate, and decreased LOC/slurred speech; antidote is IV calcium gluconate. Flushing, warmth, and mild drowsiness are expected at a therapeutic level (4–7).",
-            topic: "Hypertensive Disorders",
-            source: "exam-1"
-          },
-          {
-            stem: "A patient at 26 weeks has a one-time blood pressure of 146/94 with no proteinuria, headache, or visual changes. What does the nurse anticipate?",
+            stem: "A patient at 26 weeks has a blood pressure of 146/94 with no proteinuria, headache, or visual changes. This is her first elevated reading. What does the nurse anticipate?",
             options: ["Rechecking the blood pressure in at least 4 hours","An immediate diagnosis of gestational hypertension","Starting magnesium sulfate now","Immediate induction of labor"],
             answer: 0,
             rationale: "Hypertension is not diagnosed on a single reading. It requires two readings of ≥140 systolic or ≥90 diastolic at least 4 hours apart.",
             topic: "Hypertensive Disorders",
-            source: "exam-2"
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A patient with acute severe hypertension has a history of asthma. Which medication order should the nurse question?",
+            options: ["IV hydralazine","IV labetalol","Oral nifedipine","Magnesium sulfate"],
+            answer: 1,
+            rationale: "IV labetalol is a beta-blocker and is avoided in asthma (\"labetalol, lungs\"). Hydralazine or nifedipine would be chosen instead — those two are the ones avoided in tachycardia.",
+            topic: "Hypertensive Disorders",
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A client with severe preeclampsia has been on a magnesium sulfate infusion for six hours, and her blood pressure is still 168/108. What does the nurse anticipate?",
+            options: ["Increasing the magnesium infusion rate","Documenting this as an expected response to magnesium","Adding a separate antihypertensive such as labetalol","Discontinuing the magnesium infusion"],
+            answer: 2,
+            rationale: "Magnesium sulfate in preeclampsia is given to PREVENT seizures — not to lower blood pressure. A persistently high pressure calls for a separate antihypertensive (labetalol, hydralazine, nifedipine), not more magnesium.",
+            topic: "Hypertensive Disorders",
+            source: "exam-weeks1-4"
           },
           {
             stem: "A patient with a history of preeclampsia in her last pregnancy is now 14 weeks pregnant. Which preventive medication does the nurse anticipate?",
-            options: ["Magnesium sulfate infusion","IV labetalol","Low-dose aspirin 81 mg daily","Calcium gluconate"],
-            answer: 2,
+            options: ["Low-dose aspirin 81 mg daily","Magnesium sulfate infusion","IV labetalol","Calcium gluconate"],
+            answer: 0,
             rationale: "Low-dose aspirin, 81 mg, is standard for anyone at risk for preeclampsia, started between 12 and 28 weeks. Magnesium and labetalol treat active disease, and calcium gluconate is the magnesium antidote.",
             topic: "Hypertensive Disorders",
-            source: "exam-2"
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A patient on a magnesium sulfate infusion has an indwelling catheter. Over the last 4 hours the drainage bag collected 100 mL. What should the nurse do?",
+            options: ["Nothing — this exceeds the minimum acceptable output","Notify the provider that the output is below the acceptable minimum","Increase the magnesium infusion rate","Recognize this as an expected side effect of magnesium and continue"],
+            answer: 1,
+            rationale: "100 mL ÷ 4 hr = 25 mL/hr, below the minimum of 30 mL/hr. Magnesium is excreted by the kidneys, so a falling urine output raises the risk of toxicity and must be reported.",
+            topic: "Hypertensive Disorders",
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "Which findings in a patient receiving magnesium sulfate indicate TOXICITY rather than expected side effects? Select all that apply.",
+            options: ["Feeling flushed and warm","Absent deep tendon reflexes","Mild drowsiness","Respiratory rate of 10","Slurred speech and a decreased level of consciousness"],
+            answers: [1,3,4],
+            rationale: "Toxicity = absent reflexes, a decreased respiratory rate, and decreased LOC/slurred speech; the antidote is IV calcium gluconate. Flushing, warmth, and mild drowsiness are expected at a therapeutic level (4–7).",
+            topic: "Hypertensive Disorders",
+            source: "exam-weeks1-4"
           },
           {
             stem: "A patient with acute severe hypertension has a heart rate of 128 and no history of asthma. Which order should the nurse question?",
-            options: ["IV labetalol","IV hydralazine","Magnesium sulfate infusion","Low-dose aspirin 81 mg"],
-            answer: 1,
+            options: ["IV labetalol","Magnesium sulfate infusion","IV hydralazine","Low-dose aspirin 81 mg"],
+            answer: 2,
             rationale: "IV hydralazine (and oral nifedipine) should be avoided in tachycardia. Labetalol would be appropriate here — it is the one avoided in asthma.",
             topic: "Hypertensive Disorders",
-            source: "exam-2"
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A patient on a magnesium sulfate infusion has a serum magnesium level of 5.5 mEq/L. She is flushed and mildly drowsy, with 2+ deep tendon reflexes and a respiratory rate of 16. What should the nurse do?",
+            options: ["Stop the infusion and give calcium gluconate","Notify the provider that the level is subtherapeutic","Increase the infusion rate","Continue the infusion and keep monitoring"],
+            answer: 3,
+            rationale: "The therapeutic magnesium range is 4–7, so 5.5 is on target. Flushing, warmth, and mild drowsiness are expected at a therapeutic level. Toxicity would show as absent reflexes, a falling respiratory rate, and a decreased level of consciousness.",
+            topic: "Hypertensive Disorders",
+            source: "exam-weeks1-4"
           }
         ],
         extraPractice: [
@@ -1419,9 +1537,9 @@ window.QUIZ_BANK = {
           },
           {
             stem: "Which patient on the nurse's prenatal caseload is at HIGHEST risk for developing preeclampsia?",
-            options: ["A 25-year-old in her third uncomplicated pregnancy","A 30-year-old with one prior term vaginal birth","A first-time mother with chronic hypertension carrying twins","A 22-year-old with a normal BMI and no medical history"],
+            options: ["A 26-year-old in her third pregnancy with a family history of preeclampsia","A 30-year-old with well-controlled diabetes in her second pregnancy","A 38-year-old first-time mother with chronic hypertension carrying twins","A 22-year-old primigravida with an otherwise normal history"],
             answer: 2,
-            rationale: "Risk factors include a first pregnancy, chronic hypertension, chronic renal disease, diabetes, multiple gestation, age under 20 or over 40, and a family history. Several factors stacked together carry the greatest risk.",
+            rationale: "Risk factors include chronic hypertension, chronic renal disease, diabetes, Rh incompatibility, a first pregnancy, a family history of preeclampsia, age under 20 or over 40, multiple gestation, IVF, and new paternity. Every patient listed carries at least one risk factor, but they stack: this client has chronic hypertension, a first pregnancy, AND a multiple gestation.",
             topic: "Hypertensive Disorders",
             source: "quiz-bank"
           },
@@ -1533,68 +1651,20 @@ window.QUIZ_BANK = {
       sets: {
         mustKnow: [
           {
-            stem: "A client delivered vaginally 35 minutes ago and the placenta has still not separated. Which risk is the nurse's primary concern?",
-            options: ["Hemorrhage and retained placenta","Uterine rupture","Precipitous labor","Cord prolapse"],
-            answer: 0,
-            rationale: "The third stage should last no longer than 30 minutes; beyond that raises the risk of hemorrhage and retained placenta.",
-            topic: "Intrapartum Care I",
-            source: "exam-1"
-          },
-          {
             stem: "A client's sterile vaginal exam is 8 cm / 90% / +1. The nurse identifies this as:",
-            options: ["First stage, latent phase","First stage, active phase","First stage, transition phase","Second stage"],
-            answer: 2,
+            options: ["First stage, active phase","First stage, latent phase","Second stage","First stage, transition phase"],
+            answer: 3,
             rationale: "8–10 cm is the transition phase of the first stage. Phase within the first stage is judged by dilation (latent 0–3, active 4–7, transition 8–10); the second stage does not begin until 10 cm.",
             topic: "Intrapartum Care I",
-            source: "exam-1"
-          },
-          {
-            stem: "A nulliparous client in the second stage of labor has a presenting part at +4 station. What is the nurse's most appropriate action?",
-            options: ["Reassess her cervix in one hour","Prepare for imminent birth","Notify the provider that the head is not yet engaged","Coach her to stop pushing until the provider is at the bedside"],
-            answer: 1,
-            rationale: "At +4 the presenting part is 4 cm below the ischial spines and visible at the perineum, so birth is imminent. Engagement is 0 station at the ischial spines, and +5 is born.",
-            topic: "Intrapartum Care I",
-            source: "exam-1"
-          },
-          {
-            stem: "The nurse is documenting contraction frequency. Which interval does the nurse measure?",
-            options: ["The start of one contraction to the end of that same contraction","The end of one contraction to the start of the next","The start of one contraction to the start of the next","The peak of one contraction to the peak of the next"],
-            answer: 2,
-            rationale: "Frequency = start of one contraction to the start of the next, recorded in minutes. Start-to-end of the same contraction is the duration, recorded in seconds.",
-            topic: "Intrapartum Care I",
-            source: "exam-1"
-          },
-          {
-            stem: "A fetus is documented in the ROA position. What does the nurse know about how this baby will be born?",
-            options: ["Face-up, which typically causes back labor","In a breech presentation","With forceps assistance","Face-down, which is anatomically easier to deliver"],
-            answer: 3,
-            rationale: "Occiput anterior (such as ROA) means the baby is born face-down, which is anatomically easier to deliver. A posterior position (face-up) is harder and causes back labor.",
-            topic: "Intrapartum Care I",
-            source: "exam-1"
+            source: "exam-weeks1-4"
           },
           {
             stem: "A multigravida who is 9 cm dilated reports a strong urge to push. What is the nurse's best action?",
-            options: ["Encourage her to push with each contraction","Apply fundal pressure to speed delivery","Position her for immediate delivery","Coach her to breathe through the contractions until she is fully dilated"],
-            answer: 3,
+            options: ["Coach her to breathe through the contractions until she is fully dilated","Encourage her to push with each contraction","Apply fundal pressure to speed delivery","Position her for immediate delivery"],
+            answer: 0,
             rationale: "Never push before 10 cm — pushing on an incomplete cervix can tear it or cause it to swell. Coach breathing until fully dilated.",
             topic: "Intrapartum Care I",
-            source: "exam-1"
-          },
-          {
-            stem: "The nurse documents that the fetal head is engaged. The presenting part has reached:",
-            options: ["The ischial spines","The ischial tuberosities","The pelvic inlet","The perineum"],
-            answer: 0,
-            rationale: "Engagement occurs when the presenting part reaches 0 station at the ischial spines — the narrowest part of the pelvis.",
-            topic: "Intrapartum Care I",
-            source: "exam-1"
-          },
-          {
-            stem: "A client presents to triage after four hours of contractions. Which finding best confirms she is in TRUE labor?",
-            options: ["Contractions she reports as coming every five minutes","Cervical change from 2 cm to 4 cm over two hours","Contractions she rates as severe","Bloody show on the perineal pad"],
-            answer: 1,
-            rationale: "Progressive cervical dilation and effacement is the hallmark of true labor. Reported frequency, reported intensity, and bloody show can all occur with false labor, so only the documented cervical change confirms it.",
-            topic: "Intrapartum Care I",
-            source: "exam-1"
+            source: "exam-weeks1-4"
           },
           {
             stem: "During the fourth stage, the nurse palpates a soft, boggy uterus. What is the priority action?",
@@ -1602,7 +1672,47 @@ window.QUIZ_BANK = {
             answer: 2,
             rationale: "A soft, boggy uterus is uterine atony — the leading cause of postpartum hemorrhage. Massage the fundus first to firm it. A full bladder displaces the fundus upward and to the right but does not itself make it boggy.",
             topic: "Intrapartum Care I",
-            source: "exam-1"
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A client presents to triage after four hours of contractions. Which findings indicate TRUE labor rather than false labor? Select all that apply.",
+            options: ["Cervical change from 2 cm to 4 cm over two hours","Contractions that grow closer together over time","Contractions that ease after a warm bath and rest","Contractions that become more painful as time passes","Bloody show on the perineal pad"],
+            answers: [0,1,3],
+            rationale: "In true labor the cervix changes progressively, the contractions become regular and closer together, and they hurt more over time; rest, warmth, and massage do NOT relieve them. Contractions that ease with a warm bath and rest point to false labor. Bloody show is a premonitory sign that the cervix is softening and can occur without labor, so it does not distinguish the two. Progressive cervical change remains the single biggest discriminator.",
+            topic: "Intrapartum Care I",
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "On vaginal exam the nurse palpates the fetal occiput in the right anterior quadrant of the maternal pelvis. How should the nurse document the position, and what does it suggest?",
+            options: ["ROA — a favorable position; the baby should be born face-down","LOA — a favorable position; the baby should be born face-down","ROP — an unfavorable position associated with intense back labor","RSA — a breech position that usually requires a cesarean birth"],
+            answer: 0,
+            rationale: "Position is read in three parts: the side of the maternal pelvis (Right), the fetal landmark (Occiput), then the direction (Anterior) — ROA. Find the landmark first. Occiput anterior is the most favorable position and the baby is born face-down; a sacral landmark such as RSA would mean breech.",
+            topic: "Intrapartum Care I",
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A multipara's sterile vaginal exam is documented as 10 cm / 100% / +4. What is the nurse's most appropriate action?",
+            options: ["Coach her to avoid pushing until the head is engaged","Reassess her cervix in one hour","Prepare for imminent birth","Notify the provider that the presenting part is still floating"],
+            answer: 2,
+            rationale: "At +4 the presenting part is 4 cm below the ischial spines and visible at the perineum, so birth is imminent. Engagement is 0 station at the ischial spines, a floating presenting part is a negative station, and +5 is born.",
+            topic: "Intrapartum Care I",
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A client's contractions begin at 10:00, 10:04, and 10:08, each lasting 60 seconds. How should the nurse document the frequency?",
+            options: ["Every 4 minutes","Every 3 minutes","Sixty seconds","Every 4 minutes lasting 4 minutes"],
+            answer: 0,
+            rationale: "Frequency = start of one contraction to the start of the next (in minutes), so 10:00 to 10:04 is every 4 minutes. Start-to-end of the same contraction is the duration (60 seconds).",
+            topic: "Intrapartum Care I",
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A client's placenta delivers eight minutes after the birth. Which action does the nurse anticipate?",
+            options: ["Fundal massage only, reserving oxytocin for heavy bleeding","An IV oxytocin bolus given just before the placenta separates","An IV oxytocin bolus, followed by fundal massage","Waiting until the fourth stage to give any uterotonic"],
+            answer: 2,
+            rationale: "Oxytocin is given as an IV bolus right AFTER the placenta delivers, to decrease blood loss, and fundal massage follows to confirm the uterus stays firm. Giving it before the placenta separates risks trapping the placenta, and waiting for heavy bleeding or for the fourth stage gives up the prevention.",
+            topic: "Intrapartum Care I",
+            source: "quiz-bank"
           }
         ],
         extraPractice: [
@@ -1639,10 +1749,10 @@ window.QUIZ_BANK = {
             source: "quiz-bank"
           },
           {
-            stem: "In the three-letter fetal position notation such as ROA, what does the FIRST letter indicate?",
-            options: ["Which side of the mother's pelvis the presenting part is nearest","Which fetal landmark is presenting","Whether the landmark faces the mother's front or back","The station of the presenting part"],
-            answer: 0,
-            rationale: "The first letter is the side of the MOTHER's pelvis (R or L). The second is the fetal landmark (O = occiput, M = mentum, S = sacrum, A = acromion) and the third is the direction (anterior, posterior, or transverse).",
+            stem: "A client's pelvis is described as flat, with a wide but shallow inlet. Which complication does the nurse most anticipate?",
+            options: ["The fetus settling into an occiput posterior position","The fetus lying transverse, side to side","Rapid descent through the pelvic outlet","Cephalopelvic disproportion from a narrow arch"],
+            answer: 1,
+            rationale: "A platypelloid (flat) pelvis is the least common shape, at about 3%. The baby may take longer to get into the pelvis and is more likely to be in a transverse lie. The anthropoid pelvis raises the risk of an occiput posterior position, and the android (male-type) pelvis, with its longer sacrum and narrow arch, is the one linked to cephalopelvic disproportion.",
             topic: "Intrapartum Care I",
             source: "quiz-bank"
           },
@@ -1663,10 +1773,10 @@ window.QUIZ_BANK = {
             source: "quiz-bank"
           },
           {
-            stem: "A client who is 5 cm dilated asks for an epidural. The nurse documents that she is in which phase of labor?",
-            options: ["Latent phase","Transition phase","Active phase","Second stage"],
+            stem: "During the mechanisms of labor, the fetal head rotates from occiput transverse to occiput anterior. Which movement is the nurse observing?",
+            options: ["Descent","Flexion","Internal rotation","Extension"],
             answer: 2,
-            rationale: "The active phase is 4-7 cm and is typically when patients request an epidural. The latent phase (0-3 cm) is usually the longest and transition (8-10 cm) is the most intense.",
+            rationale: "Internal rotation is the movement in which the fetal head turns from occiput transverse to occiput anterior. Descent is affected by amniotic fluid pressure, contractions, and pushing effort; flexion brings the chin toward the chest so a smaller head diameter presents; and in extension the occiput, then face, then chin deliver.",
             topic: "Intrapartum Care I",
             source: "quiz-bank"
           },
@@ -1818,52 +1928,12 @@ window.QUIZ_BANK = {
       sets: {
         mustKnow: [
           {
-            stem: "A tracing shows decelerations that begin after the contraction peak and do not return to baseline until after the contraction ends. What is the nurse's FIRST intervention?",
-            options: ["Increase the IV fluid rate","Reposition the client to her side","Apply oxygen by non-rebreather mask","Perform a sterile vaginal exam"],
-            answer: 1,
-            rationale: "These are LATE decelerations (uteroplacental insufficiency — a perfusion problem). Changing her position is the first, least invasive step (the C in UNCOIL); oxygen and IV fluids follow.",
-            topic: "Intrapartum Care II",
-            source: "exam-1"
-          },
-          {
-            stem: "A tracing shows abrupt, sharp decelerations that vary in their timing relative to the contractions. The most likely cause is:",
-            options: ["Umbilical cord compression","Head compression","Uteroplacental insufficiency","A fetal sleep cycle"],
-            answer: 0,
-            rationale: "Abrupt, variably-timed decelerations are VARIABLE decelerations, caused by umbilical cord compression (think nuchal cord). Reposition the mother first.",
-            topic: "Intrapartum Care II",
-            source: "exam-1"
-          },
-          {
-            stem: "Two tracings have the same baseline and no decelerations. Which single feature tells the nurse the most about how well each fetus is oxygenated?",
-            options: ["The baseline rate","Variability","The presence of accelerations","Contraction frequency"],
-            answer: 1,
-            rationale: "Variability — the fluctuation around the baseline — is the single best indicator of fetal oxygenation, and moderate (6–25 bpm) is what is desired. Absent variability is the ominous finding.",
-            topic: "Intrapartum Care II",
-            source: "exam-1"
-          },
-          {
             stem: "A laboring client is Group B Strep positive and reports a penicillin allergy. The nurse anticipates which antibiotic for prophylaxis?",
-            options: ["Ampicillin","Gentamicin","Azithromycin","Clindamycin"],
-            answer: 3,
+            options: ["Ampicillin","Clindamycin","Gentamicin","Azithromycin"],
+            answer: 1,
             rationale: "GBS prophylaxis is penicillin (the drug of choice); if she is penicillin-allergic, clindamycin (900 mg IV every 4 hours until delivery) is used.",
             topic: "Intrapartum Care II",
-            source: "exam-1"
-          },
-          {
-            stem: "A fetal baseline is 170 bpm for 12 minutes. What is the nurse's FIRST action?",
-            options: ["Apply oxygen by non-rebreather mask","Give an IV fluid bolus","Check the maternal temperature","Reposition the client to her left side"],
-            answer: 2,
-            rationale: "For fetal tachycardia (>160 for ≥10 min) the first action is to check the maternal temperature — an elevated maternal temp is often reflected in a tachycardic baby.",
-            topic: "Intrapartum Care II",
-            source: "exam-1"
-          },
-          {
-            stem: "A laboring patient is thrashing in pain and the external toco is not registering any contractions. What should the nurse do FIRST?",
-            options: ["Medicate her for pain","Palpate the fundus","Readjust the toco belt and continue monitoring","Increase the oxytocin"],
-            answer: 1,
-            rationale: "If she is thrashing and the toco is not registering, palpate the fundus FIRST to rule out a placental abruption or uterine rupture before readjusting the monitor or medicating.",
-            topic: "Intrapartum Care II",
-            source: "exam-1"
+            source: "exam-weeks1-4"
           },
           {
             stem: "A fetal heart rate deceleration lasts 3 minutes. The nurse is most concerned about:",
@@ -1871,31 +1941,15 @@ window.QUIZ_BANK = {
             answer: 2,
             rationale: "A prolonged deceleration lasts at least 2 but less than 10 minutes; at 10 minutes it becomes a new baseline. Think prolapsed cord or abruption and determine the cause. (Early decelerations are the benign head-compression pattern.)",
             topic: "Intrapartum Care II",
-            source: "exam-1"
+            source: "exam-weeks1-4"
           },
           {
-            stem: "A fetus at 34 weeks has a rise of 15 bpm above baseline lasting 15 seconds. The nurse documents this as:",
-            options: ["An insufficient rise to qualify as an acceleration at this gestational age","Marked variability","A reassuring acceleration","A prolonged deceleration"],
-            answer: 2,
-            rationale: "At ≥32 weeks an acceleration is ≥15 bpm above baseline for ≥15 seconds — a reassuring sign of fetal well-being. Under 32 weeks the criteria drop to 10 bpm for 10 seconds.",
-            topic: "Intrapartum Care II",
-            source: "exam-1"
-          },
-          {
-            stem: "A tracing shows decelerations that mirror the contractions, with the nadir at the peak of the contraction. What is the nurse's FIRST action?",
-            options: ["Turn off the oxytocin","Give a rapid IV fluid bolus","Prepare for a cesarean","Perform a sterile vaginal exam"],
-            answer: 3,
-            rationale: "Mirroring decels are EARLY decelerations (head compression) — benign. Do a vaginal exam; the head may be low and birth approaching.",
-            topic: "Intrapartum Care II",
-            source: "exam-1"
-          },
-          {
-            stem: "A patient with tachysystole is ordered terbutaline. Before giving it, the nurse checks the maternal heart rate and finds it is 124 bpm. What should the nurse do?",
-            options: ["Hold the terbutaline","Give the terbutaline as ordered","Give half the ordered dose","Give it after the next contraction ends"],
+            stem: "An IUPC is in place during an oxytocin induction. Over a 10-minute window the nurse sums the contraction intensities above resting tone and obtains 150 Montevideo units; the resting tone is 12 mm Hg. How should the nurse interpret this?",
+            options: ["Contractions are inadequate to dilate the cervix; anticipate titrating the oxytocin up","Contractions are adequate; maintain the current oxytocin rate","This meets the definition of tachysystole; turn the oxytocin off","The resting tone is too high; stop the infusion and reposition her"],
             answer: 0,
-            rationale: "Terbutaline (a tocolytic) raises the maternal heart rate, so it is held if the maternal heart rate is 120 bpm or higher.",
+            rationale: "Montevideo units are each contraction's peak minus the resting baseline, summed over 10 minutes. Adequate labor needs more than 200 (up to about 300), so 150 is inadequate. A resting tone under 25 mm Hg is normal, and tachysystole is defined by frequency — 6 or more contractions in 10 minutes — not by MVUs.",
             topic: "Intrapartum Care II",
-            source: "exam-1"
+            source: "exam-weeks1-4"
           },
           {
             stem: "The nurse notes a sinusoidal fetal heart rate pattern. What does this finding suggest?",
@@ -1903,7 +1957,47 @@ window.QUIZ_BANK = {
             answer: 3,
             rationale: "A sinusoidal pattern suggests the fetus may be acidotic and needs to be delivered — notify the provider immediately.",
             topic: "Intrapartum Care II",
-            source: "exam-1"
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A tracing shows abrupt, sharp decelerations that vary in their timing relative to the contractions. The most likely cause is:",
+            options: ["Umbilical cord compression","Head compression","Uteroplacental insufficiency","A fetal sleep cycle"],
+            answer: 0,
+            rationale: "Abrupt, variably-timed decelerations are VARIABLE decelerations, caused by umbilical cord compression (think nuchal cord). Reposition the mother first.",
+            topic: "Intrapartum Care II",
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A fetal baseline is 170 bpm for 12 minutes. What is the nurse's FIRST action?",
+            options: ["Apply oxygen by non-rebreather mask","Give an IV fluid bolus","Check the maternal temperature","Reposition the client to her left side"],
+            answer: 2,
+            rationale: "For fetal tachycardia (>160 for ≥10 min) the first action is to check the maternal temperature — an elevated maternal temp is often reflected in a tachycardic baby.",
+            topic: "Intrapartum Care II",
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "Which findings make a fetal heart rate tracing reassuring? Select all that apply.",
+            options: ["A baseline of 110-160 bpm","Absent variability","Moderate variability","Occasional decelerations when the baseline and variability are good","Late decelerations of any magnitude","A sinusoidal pattern"],
+            answers: [0,2,3],
+            rationale: "A reassuring tracing has a baseline of 110-160, moderate (good) variability, and no repetitive decelerations - occasional decels are acceptable when the baseline and variability are good, and a few variables alongside an acceleration and good variability is still reassuring. Variability is the single best indicator of fetal oxygenation. Absent variability, late decelerations of ANY magnitude, and a sinusoidal pattern are all non-reassuring.",
+            topic: "Intrapartum Care II",
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A patient with tachysystole is ordered terbutaline. Before giving it, the nurse checks the maternal heart rate and finds it is 124 bpm. What should the nurse do?",
+            options: ["Hold the terbutaline","Give the terbutaline as ordered","Give half the ordered dose","Give it after the next contraction ends"],
+            answer: 0,
+            rationale: "Terbutaline (a tocolytic) raises the maternal heart rate, so it is held if the maternal heart rate is 120 bpm or higher.",
+            topic: "Intrapartum Care II",
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A laboring patient is thrashing in pain and the external toco is not registering any contractions. What should the nurse do FIRST?",
+            options: ["Medicate her for pain","Palpate the fundus","Readjust the toco belt and continue monitoring","Increase the oxytocin"],
+            answer: 1,
+            rationale: "If she is thrashing and the toco is not registering, palpate the fundus FIRST to rule out a placental abruption or uterine rupture before readjusting the monitor or medicating.",
+            topic: "Intrapartum Care II",
+            source: "exam-weeks1-4"
           },
           {
             stem: "The fetus is in the ROA position. Where should the nurse place the fetal heart rate transducer?",
@@ -1911,23 +2005,15 @@ window.QUIZ_BANK = {
             answer: 1,
             rationale: "The FHR is heard best over the fetal shoulders/back. ROA = occiput anterior on the mother's right with the head down — so the right lower quadrant.",
             topic: "Intrapartum Care II",
-            source: "exam-1"
+            source: "exam-weeks1-4"
           },
           {
-            stem: "In a 10-minute window the nurse counts 7 contractions. The nurse recognizes this as:",
-            options: ["Normal active labor","An elevated resting tone","Uterine tachysystole","Inadequate uterine activity"],
+            stem: "A tracing shows the fetal heart rate beginning to fall at the peak of each contraction and not returning to baseline until after the contraction has ended. What does this pattern indicate?",
+            options: ["Head compression as the fetus descends","Umbilical cord compression","Uteroplacental insufficiency","An expected response to a strong contraction"],
             answer: 2,
-            rationale: "Tachysystole is 6 or more contractions in a 10-minute period — the uterus does not get enough time to rest. Resting tone is a separate measurement taken between contractions.",
+            rationale: "A deceleration that starts around the peak of the contraction and has NOT returned to baseline by the time the contraction ends is a LATE deceleration. In VEAL CHOP, Late pairs with Placental insufficiency - a perfusion problem that always has to be corrected. Early decelerations mirror the contraction and are the benign head-compression pattern, and variables are abrupt and tied to cord compression.",
             topic: "Intrapartum Care II",
-            source: "exam-1"
-          },
-          {
-            stem: "An external tocotransducer is in place and the provider asks how strong the contractions are. What must the nurse do to answer?",
-            options: ["Palpate the abdomen","Read the intensity off the toco monitor","Wait for the provider to assess her","Document that intensity cannot be assessed in labor"],
-            answer: 0,
-            rationale: "The external toco gives frequency and duration only — the nurse must palpate the abdomen to judge intensity. Only an internal intrauterine pressure catheter measures it numerically.",
-            topic: "Intrapartum Care II",
-            source: "exam-2"
+            source: "quiz-bank"
           }
         ],
         extraPractice: [
@@ -2200,20 +2286,20 @@ window.QUIZ_BANK = {
       sets: {
         mustKnow: [
           {
+            stem: "A client is scheduled for an oxytocin induction. Which items must the nurse confirm are complete before the induction begins? Select all that apply.",
+            options: ["An epidural already placed","A reactive non-stress test","A sterile vaginal exam with a Bishop score","Signed informed consent","Baseline maternal vital signs"],
+            answers: [1,2,3,4],
+            rationale: "Before an induction you need a reactive NST, a sterile vaginal exam with a Bishop score, signed consent, and baseline vital signs. An epidural is not required, and a NON-reactive NST would be a reason to hold.",
+            topic: "Artificial Management of Labor",
+            source: "exam-weeks1-4"
+          },
+          {
             stem: "A client at 9-10 cm with a strong urge to push asks for IV pain medication. What is the nurse's best response?",
             options: ["Give the full ordered dose right away","Give half the ordered dose","Give it and alert the nursery that the newborn may need support","Withhold it and offer non-pharmacologic comfort measures"],
             answer: 3,
             rationale: "Systemic analgesia crosses the placenta; given close to delivery the medication can cause neonatal respiratory depression. With imminent birth the nurse withholds it and uses non-pharmacologic comfort measures rather than planning around a depressed newborn.",
             topic: "Artificial Management of Labor",
-            source: "exam-1"
-          },
-          {
-            stem: "The nurse reviews the Bishop scores of four clients being considered for induction. Which score indicates the highest likelihood of a successful vaginal birth?",
-            options: ["A score of 10","A score of 7","A score of 5","A score of 2"],
-            answer: 0,
-            rationale: "The higher the Bishop score, the more favorable the cervix — a score of 8 or higher predicts odds similar to spontaneous labor, so 10 is the most favorable. A low score means a ripening agent is needed before oxytocin.",
-            topic: "Artificial Management of Labor",
-            source: "exam-1"
+            source: "exam-weeks1-4"
           },
           {
             stem: "During a cesarean birth, before delivery, the client's blood pressure drops and the fetal heart rate falls. What is the nurse's first action?",
@@ -2221,15 +2307,23 @@ window.QUIZ_BANK = {
             answer: 1,
             rationale: "Supine positioning lets the uterus compress the vena cava, dropping the blood pressure and fetal perfusion. Tilting her to the left with a wedge under the right hip restores venous return and comes before medicating. (The wedge is removed after the baby is born.)",
             topic: "Artificial Management of Labor",
-            source: "exam-1"
+            source: "exam-weeks1-4"
           },
           {
-            stem: "A client is scheduled for an oxytocin induction. Which items must the nurse confirm are complete before the induction begins? Select all that apply.",
-            options: ["An epidural already placed","A reactive non-stress test","A sterile vaginal exam with a Bishop score","Signed informed consent","Baseline maternal vital signs"],
-            answers: [1,2,3,4],
-            rationale: "Before an induction you need a reactive NST, a sterile vaginal exam with a Bishop score, signed consent, and baseline vital signs. An epidural is not required, and a NON-reactive NST would be a reason to hold.",
+            stem: "A client desires a vaginal birth after cesarean (VBAC). Which finding in her records is the priority concern the nurse reports to the provider?",
+            options: ["A previous classical (vertical) uterine incision","A previous low-transverse uterine incision","One prior cesarean birth","A Pfannenstiel skin incision"],
+            answer: 0,
+            rationale: "A classical (vertical) uterine incision carries a high risk of uterine rupture in labor and contraindicates a VBAC — future births should be cesarean. A low-transverse incision is the one that supports a VBAC, and the skin incision does not determine eligibility.",
             topic: "Artificial Management of Labor",
-            source: "exam-1"
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A client needs an emergent cesarean birth and her platelet count is 42,000. Which type of anesthesia does the nurse anticipate?",
+            options: ["An epidural","A spinal","A pudendal block","General anesthesia"],
+            answer: 3,
+            rationale: "General anesthesia is reserved for emergent deliveries, a very low platelet count (a spinal or epidural puncture would raise the bleeding and hematoma risk), and cases where a spinal cannot be placed, such as scoliosis rods. Its biggest risks are aspiration and postpartum hemorrhage, so regional anesthesia is preferred whenever possible.",
+            topic: "Artificial Management of Labor",
+            source: "exam-weeks1-4"
           },
           {
             stem: "During an amniotomy the client's membranes rupture and clear fluid escapes. What is the nurse's priority action?",
@@ -2237,31 +2331,7 @@ window.QUIZ_BANK = {
             answer: 2,
             rationale: "Amniotic fluid cushions the cord; once it is lost the cord can be compressed, so assessing the FHR is the priority. Documenting the time, checking the temperature, and palpating contractions all follow.",
             topic: "Artificial Management of Labor",
-            source: "exam-1"
-          },
-          {
-            stem: "After an epidural, a client's systolic blood pressure falls to 92 mm Hg and a late deceleration appears. Which actions should the nurse take? Select all that apply.",
-            options: ["Turn her to a side-lying position","Give an IV fluid bolus of lactated Ringer's","Slow the IV rate to avoid fluid overload","Administer prescribed ephedrine","Apply oxygen by non-rebreather mask"],
-            answers: [0,1,3,4],
-            rationale: "Post-anesthesia hypotension with a late decel is treated by turning her to the side, giving an IV fluid bolus, ephedrine (5-10 mg IV), and oxygen. Slowing the IV would worsen the hypotension — the bolus is what restores her pressure.",
-            topic: "Artificial Management of Labor",
-            source: "exam-1"
-          },
-          {
-            stem: "A client is being prepared for an unscheduled cesarean birth. Which measures does the nurse anticipate to reduce her risk of aspiration? Select all that apply.",
-            options: ["Placing a wedge to tilt her to the left","Famotidine (Pepcid) IV","Withholding oral intake for 8 hours before the incision","Metoclopramide (Reglan) IV","Bicitra by mouth within 30 minutes of incision"],
-            answers: [1,3,4],
-            rationale: "A pregnant client is treated as a 'full stomach.' Famotidine and metoclopramide plus a Bicitra drink neutralize and reduce stomach acid to lower aspiration risk. The left tilt prevents supine hypotension, not aspiration, and an unscheduled cesarean does not allow an 8-hour fast.",
-            topic: "Artificial Management of Labor",
-            source: "exam-1"
-          },
-          {
-            stem: "During an oxytocin induction the nurse counts 7 contractions in a 10-minute window with a rising resting tone, and the fetus develops late decelerations. What is the priority action?",
-            options: ["Turn off the oxytocin infusion","Decrease the oxytocin by half and reassess","Administer the ordered terbutaline","Apply oxygen and continue the infusion"],
-            answer: 0,
-            rationale: "Six or more contractions in 10 minutes is tachysystole; with late decels the baby is not tolerating it. Turning the oxytocin OFF is the priority — it is the cause. Terbutaline and oxygen may follow, but not while the cause is still infusing.",
-            topic: "Artificial Management of Labor",
-            source: "exam-1"
+            source: "exam-weeks1-4"
           },
           {
             stem: "A multipara in active labor stops making cervical change after her epidural, and her contractions space out. The provider orders oxytocin. The nurse documents this intervention as:",
@@ -2269,7 +2339,15 @@ window.QUIZ_BANK = {
             answer: 2,
             rationale: "She was already in active labor, so stimulating her stalled contractions is augmentation. Induction is starting labor in someone who is not laboring.",
             topic: "Artificial Management of Labor",
-            source: "exam-1"
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A client is being prepared for an unscheduled cesarean birth. Which nursing action specifically reduces her risk of aspiration during the procedure?",
+            options: ["Placing a wedge to tilt her to the left","Administering famotidine (Pepcid) and metoclopramide (Reglan) IV","Withholding oral intake for 8 hours before the incision","Inserting an indwelling urinary catheter"],
+            answer: 1,
+            rationale: "A pregnant client is treated as a 'full stomach.' Famotidine and metoclopramide, plus a Bicitra drink, neutralize and reduce stomach acid to lower aspiration risk. The left tilt prevents supine hypotension, not aspiration; an unscheduled cesarean does not allow time for an 8-hour fast; and a urinary catheter has no bearing on aspiration risk.",
+            topic: "Artificial Management of Labor",
+            source: "quiz-bank"
           },
           {
             stem: "Immediately after a forceps-assisted birth, the client's fundus is firm and midline but she has a steady trickle of bright-red blood. What does the nurse suspect first?",
@@ -2277,31 +2355,7 @@ window.QUIZ_BANK = {
             answer: 0,
             rationale: "Bright-red bleeding with a firm, well-contracted fundus points to a laceration — a known risk of instrument deliveries — rather than atony, which causes a boggy fundus.",
             topic: "Artificial Management of Labor",
-            source: "exam-1"
-          },
-          {
-            stem: "A client received misoprostol (Cytotec) for cervical ripening two hours ago. The provider now orders oxytocin. What is the nurse's best action?",
-            options: ["Begin the oxytocin now at 2 milliunits/min","Begin the oxytocin after another 30 minutes","Begin the oxytocin once she is contracting every 5 minutes","Wait until at least 4 hours have passed since the misoprostol dose"],
-            answer: 3,
-            rationale: "Oxytocin should not be started within 4 hours of a misoprostol dose — together they can overstimulate the uterus and cause tachysystole.",
-            topic: "Artificial Management of Labor",
-            source: "exam-1"
-          },
-          {
-            stem: "A client is receiving an amnioinfusion for repetitive variable decelerations. The nurse notes the peri-pad has stayed dry and the uterine resting tone is climbing. What should the nurse do?",
-            options: ["Continue and document a normal finding","Increase the infusion rate","Stop the amnioinfusion","Place the client in high Fowler's"],
-            answer: 2,
-            rationale: "Fluid going in must come back out. A dry pad with a rising resting tone means fluid is being trapped — stop the infusion immediately to avoid over-distending or rupturing the uterus.",
-            topic: "Artificial Management of Labor",
-            source: "exam-1"
-          },
-          {
-            stem: "A client desires a vaginal birth after cesarean (VBAC). Which finding in her records is the priority concern the nurse reports to the provider?",
-            options: ["A previous low-transverse uterine incision","A previous classical (vertical) uterine incision","One prior cesarean birth","A Pfannenstiel skin incision"],
-            answer: 1,
-            rationale: "A classical (vertical) uterine incision carries a high risk of uterine rupture in labor and contraindicates a VBAC — future births should be cesarean. A low-transverse incision is the one that supports a VBAC, and the skin incision does not determine eligibility.",
-            topic: "Artificial Management of Labor",
-            source: "exam-1"
+            source: "exam-weeks1-4"
           },
           {
             stem: "A client who has been induced with oxytocin for two days becomes confused and lethargic and begins vomiting. What is the nurse's priority action?",
@@ -2309,23 +2363,31 @@ window.QUIZ_BANK = {
             answer: 2,
             rationale: "Prolonged high-dose oxytocin has an antidiuretic-like effect and can cause water intoxication (acute hyponatremia) — confusion, lethargy, and vomiting. Stop the oxytocin first, then give normal saline and furosemide as ordered; adding more maintenance fluid would worsen it.",
             topic: "Artificial Management of Labor",
-            source: "exam-1"
+            source: "exam-weeks1-4"
           },
           {
-            stem: "A client who received a spinal for a cesarean reports a headache that is worse when she sits up and improves when she lies flat. The nurse recognizes this as:",
-            options: ["An intravascular injection of local anesthetic","A post-dural-puncture headache","Hypotension from the spinal block","A normal postoperative finding"],
-            answer: 1,
-            rationale: "A positional headache after a spinal or epidural suggests a CSF leak from the puncture (a 'wet tap'). It is treated with rest, fluids, and analgesia; if it persists, a blood patch seals the leak. An intravascular injection presents immediately with ringing ears, a metallic taste, and dyspnea.",
-            topic: "Artificial Management of Labor",
-            source: "exam-1"
-          },
-          {
-            stem: "The provider strips (sweeps) a client's membranes at her 39-week visit. How does the nurse explain the way this promotes labor?",
-            options: ["It releases oxytocin from the posterior pituitary","It ruptures the amniotic sac","It releases prostaglandins","It softens the cervix with pressure from a balloon"],
+            stem: "A client is receiving an amnioinfusion for repetitive variable decelerations. The nurse notes the peri-pad has stayed dry and the uterine resting tone is climbing. What should the nurse do?",
+            options: ["Continue and document a normal finding","Increase the infusion rate","Stop the amnioinfusion","Place the client in high Fowler's"],
             answer: 2,
-            rationale: "Separating the amniotic membrane from the lower uterine segment releases prostaglandins (not oxytocin), which stimulate contractions. Only an OB, nurse midwife, or NP performs it; it is often uncomfortable and may cause a little vaginal bleeding afterward.",
+            rationale: "Fluid going in must come back out. A dry pad with a rising resting tone means fluid is being trapped — stop the infusion immediately to avoid over-distending or rupturing the uterus.",
             topic: "Artificial Management of Labor",
-            source: "quiz-bank"
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A client received misoprostol (Cytotec) for cervical ripening two hours ago. The provider now orders oxytocin. What is the nurse's best action?",
+            options: ["Begin the oxytocin now at 2 milliunits/min","Begin the oxytocin after another 30 minutes","Begin the oxytocin once she is contracting every 5 minutes","Wait until at least 4 hours have passed since the misoprostol dose"],
+            answer: 3,
+            rationale: "Oxytocin should not be started within 4 hours of a misoprostol dose — together they can overstimulate the uterus and cause tachysystole.",
+            topic: "Artificial Management of Labor",
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "The provider asks the nurse to obtain a Bishop score before starting an induction. Which assessments does the nurse need to complete?",
+            options: ["Cervical dilatation, effacement, position, and consistency, plus fetal station","Cervical dilatation, effacement, and consistency, plus contraction frequency and duration","Fetal station, lie, presentation, and attitude, plus cervical dilatation","Cervical dilatation and effacement, plus maternal vital signs and the fetal heart rate baseline"],
+            answer: 0,
+            rationale: "The Bishop score has five components — four cervical (dilatation, effacement, position, consistency) and one fetal (station). The higher the score the more likely a vaginal birth; 8 or higher is favorable, about the same odds as someone already in spontaneous labor.",
+            topic: "Artificial Management of Labor",
+            source: "exam-weeks1-4"
           },
           {
             stem: "A newborn was delivered with vacuum assistance. Which finding does the nurse expect on assessment?",
@@ -2333,13 +2395,61 @@ window.QUIZ_BANK = {
             answer: 3,
             rationale: "A vacuum cup is placed on the fetal occiput, so the reddened, swollen area of the scalp marks where it was applied. That bruising raises the bilirubin, so jaundice is a risk to monitor. Facial nerve palsy is a forceps injury; the baby must already be low before a vacuum is used.",
             topic: "Artificial Management of Labor",
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "The provider strips (sweeps) a client's membranes at her 39-week visit. How does the nurse explain the way this promotes labor?",
+            options: ["It releases oxytocin from the posterior pituitary","It ruptures the amniotic sac","It releases prostaglandins","It softens the cervix with pressure from a balloon"],
+            answer: 2,
+            rationale: "Separating the amniotic membrane from the lower uterine segment releases prostaglandins (not oxytocin), which stimulate contractions. Only an OB, nurse midwife, or NP performs it; it is often uncomfortable and may cause a little vaginal bleeding afterward.",
+            topic: "Artificial Management of Labor",
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "After an epidural, a client's systolic blood pressure falls to 92 mm Hg and a late deceleration appears. Which action should the nurse take FIRST?",
+            options: ["Slow the IV infusion rate","Turn the client to a side-lying position","Notify the anesthesia provider","Prepare for an emergency cesarean birth"],
+            answer: 1,
+            rationale: "Post-anesthesia hypotension with a late deceleration is treated first by turning her to a side-lying position to relieve vena cava compression, followed by an IV fluid bolus, ephedrine, and oxygen. Slowing the IV would worsen the hypotension — the bolus, not less fluid, is what restores her pressure. Notifying the provider and preparing for cesarean are premature before trying repositioning and fluid.",
+            topic: "Artificial Management of Labor",
             source: "quiz-bank"
           },
           {
-            stem: "A client needs an emergent cesarean birth and her platelet count is 42,000. Which type of anesthesia does the nurse anticipate?",
-            options: ["An epidural","A spinal","A pudendal block","General anesthesia"],
-            answer: 3,
-            rationale: "General anesthesia is reserved for emergent deliveries, a very low platelet count (a spinal or epidural puncture would raise the bleeding and hematoma risk), and cases where a spinal cannot be placed, such as scoliosis rods. Its biggest risks are aspiration and postpartum hemorrhage, so regional anesthesia is preferred whenever possible.",
+            stem: "During an oxytocin induction the nurse counts 7 contractions in a 10-minute window with a rising resting tone, and the fetus develops late decelerations. What is the priority action?",
+            options: ["Turn off the oxytocin infusion","Decrease the oxytocin by half and reassess","Administer the ordered terbutaline","Apply oxygen and continue the infusion"],
+            answer: 0,
+            rationale: "Six or more contractions in 10 minutes is tachysystole; with late decels the baby is not tolerating it. Turning the oxytocin OFF is the priority — it is the cause. Terbutaline and oxygen may follow, but not while the cause is still infusing.",
+            topic: "Artificial Management of Labor",
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A client is about to receive an epidural, and the nurse hangs 1,000 mL of warmed lactated Ringer's to infuse before the block is placed. Which complication is this intended to prevent?",
+            options: ["A post-dural-puncture headache","Intravascular injection of the anesthetic","Maternal hypotension after the block","Urinary retention after the block"],
+            answer: 2,
+            rationale: "Warmed lactated Ringer's or normal saline (1,000-1,500 mL) is given BEFORE a spinal or epidural because hypotension is the most common side effect of the block, and the added volume supports her circulation. A wet tap causes the post-dural-puncture headache, a test dose is what detects intravascular injection, and urinary retention is managed with a bladder catheter.",
+            topic: "Artificial Management of Labor",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A client at 6 cm requests IV pain medication. Her contractions are every 3 minutes, her vital signs are stable, and the fetal tracing shows a baseline of 145 bpm with absent variability and recurrent late decelerations. What is the nurse's best action?",
+            options: ["Give the medication, since her labor pattern is well established","Withhold the medication and report the tracing to the provider","Give half the ordered dose to limit fetal exposure","Give the medication and alert the nursery to possible neonatal depression"],
+            answer: 1,
+            rationale: "Before systemic analgesia is given, the baby should have a baseline of 110-160, a reactive non-stress test, and moderate variability - a non-reassuring strip is a contraindication. Absent variability with recurrent late decelerations is a Category III tracing, which has to be reported and acted on rather than medicated around. Halving or timing the dose does not make an abnormal tracing safe.",
+            topic: "Artificial Management of Labor",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A client's labor has stalled and the external toco is not picking up her contractions adequately. The provider performs an amniotomy. Which purpose does this serve for this client?",
+            options: ["It confirms the fetal position","It allows an internal monitor to be placed","It establishes her Bishop score","It prevents compression of the umbilical cord"],
+            answer: 1,
+            rationale: "An amniotomy is used to induce labor, to augment labor, and to allow internal monitoring - a fetal scalp electrode or intrauterine pressure catheter can only be placed once the membranes are ruptured, which is what this client needs. It does not confirm position or establish a Bishop score, and losing the fluid cushion RAISES the risk of cord compression, which is why the fetal heart rate is checked as soon as the membranes rupture.",
+            topic: "Artificial Management of Labor",
+            source: "quiz-bank"
+          },
+          {
+            stem: "Misoprostol (Cytotec) is ordered for a client. In which situation is this medication appropriate?",
+            options: ["To ripen the cervix while an oxytocin infusion is running","To control bleeding after the placenta has delivered","To stop preterm contractions as a tocolytic","To reverse magnesium sulfate toxicity"],
+            answer: 1,
+            rationale: "Misoprostol is a prostaglandin given vaginally to ripen the cervix and stimulate contractions, and it is also given AFTER delivery to control bleeding - never with a baby still in utero for that purpose. It must not run at the same time as oxytocin; wait at least 4 hours after the last misoprostol dose. It is not a tocolytic, and calcium gluconate is the magnesium antidote.",
             topic: "Artificial Management of Labor",
             source: "quiz-bank"
           }
@@ -2453,20 +2563,12 @@ window.QUIZ_BANK = {
       sets: {
         mustKnow: [
           {
-            stem: "A client with preterm premature rupture of membranes at 30 weeks receives the first dose of betamethasone. Which statement best reflects the nurse's understanding of this order?",
-            options: ["The medication will stop her contractions","The medication is repeated every 6 hours until she delivers","Delivery should be avoided for at least 48 hours if possible","The medication is only indicated after 34 weeks"],
-            answer: 2,
-            rationale: "Betamethasone triggers surfactant release to accelerate fetal lung maturity. It is given under about 34 weeks, and the goal is to avoid delivery within 48 hours of the first dose so it has time to work.",
+            stem: "A client's labor has slowed to fewer than 2 contractions in 10 minutes with little cervical change. Which assessment finding best explains this pattern?",
+            options: ["The fetus is in a transverse lie","The client is 34 years old","The client is at 39 weeks' gestation","The amniotic fluid index is 12 cm"],
+            answer: 0,
+            rationale: "A dysfunctional (hypotonic) labor pattern is linked to an abnormal fetal presentation — a transverse lie keeps the presenting part from pressing on the cervix. Maternal age itself is not associated, and the gestational age and AFI listed are both normal.",
             topic: "Intrapartum Complications",
-            source: "exam-1"
-          },
-          {
-            stem: "During a vaginal exam the nurse feels a pulsating umbilical cord ahead of the presenting part. What is the nurse's FIRST action?",
-            options: ["Place the client in Trendelenburg position","Apply oxygen by face mask","Notify the provider and prepare for a cesarean","Lift the presenting part off the cord with the gloved hand"],
-            answer: 3,
-            rationale: "With a prolapsed cord the priority is to immediately relieve the compression by lifting the presenting part off the cord with the gloved hand. Trendelenburg, oxygen, notifying the provider, and preparing for cesarean all follow — and the hand stays in place until delivery.",
-            topic: "Intrapartum Complications",
-            source: "exam-1"
+            source: "exam-weeks1-4"
           },
           {
             stem: "A client at 32 weeks arrives with bright-red, painless vaginal bleeding. Which action is contraindicated?",
@@ -2474,55 +2576,23 @@ window.QUIZ_BANK = {
             answer: 1,
             rationale: "Painless, bright-red bleeding suggests a placenta previa, and a vaginal exam could puncture the placenta and cause severe hemorrhage. Confirm the placenta's location by ultrasound instead; external monitoring and IV access are appropriate.",
             topic: "Intrapartum Complications",
-            source: "exam-1"
+            source: "exam-weeks1-4"
           },
           {
-            stem: "A client's labor has slowed to fewer than 2 contractions in 10 minutes with little cervical change. Which assessment finding best explains this pattern?",
-            options: ["The client is 34 years old","The client is at 39 weeks' gestation","The amniotic fluid index is 12 cm","The fetus is in a transverse lie"],
-            answer: 3,
-            rationale: "A dysfunctional (hypotonic) labor pattern is linked to an abnormal fetal presentation — a transverse lie keeps the presenting part from pressing on the cervix. Maternal age itself is not associated, and the gestational age and AFI listed are both normal.",
+            stem: "A client in preterm labor is started on nifedipine as a tocolytic. Before giving a dose, the nurse should hold the medication and notify the provider if:",
+            options: ["The maternal heart rate is 118 bpm","The client reports mild flushing","The systolic blood pressure is less than 90 mm Hg","The client has 2+ deep tendon reflexes"],
+            answer: 2,
+            rationale: "Nifedipine relaxes uterine smooth muscle but also lowers blood pressure. Because this client is not hypertensive, hold the dose if the systolic pressure drops below 90. The 120-bpm hold parameter belongs to terbutaline, and 2+ reflexes are normal.",
             topic: "Intrapartum Complications",
-            source: "exam-1"
-          },
-          {
-            stem: "A client is now at 42 3/7 weeks' gestation. Which fetal risk does the nurse most anticipate?",
-            options: ["Decreased placental perfusion","Polyhydramnios","Surfactant deficiency","Erythroblastosis fetalis"],
-            answer: 0,
-            rationale: "Past 42 weeks the aging placenta perfuses the fetus less well, raising the risk of fetal compromise, macrosomia or SGA, and meconium-stained fluid — with OLIGOhydramnios, not polyhydramnios. Surfactant deficiency is a preterm problem.",
-            topic: "Intrapartum Complications",
-            source: "exam-1"
-          },
-          {
-            stem: "After the fetal head delivers, the provider reports a shoulder dystocia. Which action does the nurse anticipate first?",
-            options: ["Apply fundal pressure","Assist the client to flex her hips and bring both knees toward her chest","Prepare for an immediate cesarean birth","Prepare for a forceps-assisted delivery"],
-            answer: 1,
-            rationale: "Flexing the hips and bringing the knees toward the chest is the McRoberts maneuver, which (with suprapubic pressure) frees the trapped shoulder. Fundal pressure is contraindicated — it only jams the shoulder harder against the pubic bone.",
-            topic: "Intrapartum Complications",
-            source: "exam-1"
-          },
-          {
-            stem: "Forty minutes after birth the placenta has not delivered, gentle cord traction has been unsuccessful, and bleeding is increasing. What does the nurse anticipate next?",
-            options: ["Continued fundal massage for another 30 minutes","Manual removal of the placenta by the provider","Ambulating the client to encourage separation","Administering an additional uterotonic to expel the placenta"],
-            answer: 1,
-            rationale: "The placenta should deliver within 30 minutes; beyond that, a retained placenta raises the risk of hemorrhage and infection and may require manual removal (and possibly a transfusion). Abnormal adherence — accreta, increta, percreta — should also be considered.",
-            topic: "Intrapartum Complications",
-            source: "exam-1"
-          },
-          {
-            stem: "A client is admitted for delivery of a fetus that died in utero. Which nursing action best supports her and her family?",
-            options: ["Move her immediately to a unit far from the maternity floor","Ask her what she would like — such as holding the baby, mementos, or where to recover","Reassure her that she can have another baby","Limit her time with the infant to protect her from grief"],
-            answer: 1,
-            rationale: "Individualized, patient-led care is best: ask what she wants (holding the baby, pictures, a memory box, where to recover). Do not assume or minimize the loss. In Kentucky, KODA is notified of any death.",
-            topic: "Intrapartum Complications",
-            source: "exam-1"
+            source: "exam-weeks1-4"
           },
           {
             stem: "A client is discharged home after a cerclage for cervical insufficiency. Which statement shows she understood the discharge teaching?",
-            options: ["\"I'll be on strict bed rest until delivery.\"","\"I'll need a cesarean because of the stitch.\"","\"I'll call my provider if I have uterine cramping or low back pain.\"","\"I'll take antibiotics for the rest of my pregnancy.\""],
-            answer: 2,
+            options: ["\"I'll be on strict bed rest until delivery.\"","\"I'll need a cesarean because of the stitch.\"","\"I'll take antibiotics for the rest of my pregnancy.\"","\"I'll call my provider if I have uterine cramping or low back pain.\""],
+            answer: 3,
             rationale: "After a cerclage she should report cramping, low back pain, pelvic pressure, discharge changes, or bleeding. Strict bed rest, a mandatory cesarean, and lifelong antibiotics are all incorrect.",
             topic: "Intrapartum Complications",
-            source: "exam-1"
+            source: "exam-weeks1-4"
           },
           {
             stem: "A client's membranes ruptured 20 hours ago. Which assessment is the nurse's priority?",
@@ -2530,23 +2600,55 @@ window.QUIZ_BANK = {
             answer: 0,
             rationale: "Once membranes have been ruptured longer than 18 hours the protective barrier is gone and infection is the priority concern — hence frequent temperature checks and often prophylactic antibiotics.",
             topic: "Intrapartum Complications",
-            source: "exam-1"
+            source: "exam-weeks1-4"
           },
           {
-            stem: "A client whose labor is being augmented with oxytocin develops tachysystole. Which action is contraindicated?",
-            options: ["Repositioning the client to her side","Assessing the fetal heart rate","Increasing the oxytocin rate","Providing comfort measures"],
+            stem: "A client is admitted with vaginal bleeding, and the team is trying to distinguish placenta previa from placental abruption. Which assessment finding best differentiates the two?",
+            options: ["The volume of bleeding on the pad","The presence and character of abdominal pain","The fetal heart rate baseline","The hemoglobin and hematocrit"],
+            answer: 1,
+            rationale: "Abdominal pain is the key differentiator: an abruption is painful with a firm, tender, board-like uterus, whereas a previa is classically painless bleeding with a soft uterus. Bleeding volume is misleading, because an abruption can conceal blood behind the placenta.",
+            topic: "Intrapartum Complications",
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "Thirty-five minutes after birth the placenta still has not delivered. In the operating room the provider reports that it has invaded the uterine muscle but has not perforated through it. Which term describes this finding?",
+            options: ["Placenta accreta","Placenta percreta","Placenta increta","Placenta previa"],
             answer: 2,
-            rationale: "With tachysystole the uterus is already contracting too often, so increasing the oxytocin would worsen it. The nurse assesses, repositions, provides comfort, and turns the oxytocin down or off.",
+            rationale: "Accreta attaches to the myometrium, increta invades into it, and percreta perforates through it — the deeper the invasion, the greater the hemorrhage risk. Previa is an implantation problem over the cervical os, not an adherence problem. A placenta undelivered at 30 minutes is retained, carrying hemorrhage and infection risk.",
             topic: "Intrapartum Complications",
-            source: "exam-1"
+            source: "exam-weeks1-4"
           },
           {
-            stem: "A laboring client suddenly develops chest pain, dyspnea, hypotension, and frothy sputum shortly after her membranes rupture. Which findings support a diagnosis of amniotic fluid embolism? Select all that apply.",
-            options: ["Chest pain","Hypertension","Dyspnea","Frothy sputum","Hypotension"],
-            answers: [0,2,3,4],
-            rationale: "Amniotic fluid embolism strikes the respiratory and cardiovascular systems: chest pain, dyspnea, frothy sputum, and HYPOtension. Care is to support the cardiovascular and respiratory systems, and to displace the uterus if CPR is needed.",
+            stem: "A client is now at 42 3/7 weeks' gestation. Which fetal risk does the nurse most anticipate?",
+            options: ["Polyhydramnios","Surfactant deficiency","Erythroblastosis fetalis","Decreased placental perfusion"],
+            answer: 3,
+            rationale: "Past 42 weeks the aging placenta perfuses the fetus less well, raising the risk of fetal compromise, macrosomia or SGA, and meconium-stained fluid — with OLIGOhydramnios, not polyhydramnios. Surfactant deficiency is a preterm problem.",
             topic: "Intrapartum Complications",
-            source: "exam-1"
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A client is admitted for delivery of a fetus that died in utero. Which nursing action best supports her and her family?",
+            options: ["Ask her what she would like — such as holding the baby, mementos, or where to recover","Move her immediately to a unit far from the maternity floor","Reassure her that she can have another baby","Limit her time with the infant to protect her from grief"],
+            answer: 0,
+            rationale: "Individualized, patient-led care is best: ask what she wants (holding the baby, pictures, a memory box, where to recover). Do not assume or minimize the loss. In Kentucky, KODA is notified of any death.",
+            topic: "Intrapartum Complications",
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "After the fetal head delivers, the provider reports a shoulder dystocia. Which action does the nurse anticipate first?",
+            options: ["Apply fundal pressure","Assist the client to flex her hips and bring both knees toward her chest","Prepare for an immediate cesarean birth","Prepare for a forceps-assisted delivery"],
+            answer: 1,
+            rationale: "Flexing the hips and bringing the knees toward the chest is the McRoberts maneuver, which (with suprapubic pressure) frees the trapped shoulder. Fundal pressure is contraindicated — it only jams the shoulder harder against the pubic bone.",
+            topic: "Intrapartum Complications",
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A client with preterm premature rupture of membranes at 30 weeks receives the first dose of betamethasone. Which statement best reflects the nurse's understanding of this order?",
+            options: ["The medication will stop her contractions","The medication is repeated every 6 hours until she delivers","Delivery should be avoided for at least 48 hours if possible","The medication is only indicated after 34 weeks"],
+            answer: 2,
+            rationale: "Betamethasone triggers surfactant release to accelerate fetal lung maturity. It is given under about 34 weeks, and the goal is to avoid delivery within 48 hours of the first dose so it has time to work.",
+            topic: "Intrapartum Complications",
+            source: "exam-weeks1-4"
           },
           {
             stem: "An ultrasound reports an amniotic fluid index (AFI) of 3 cm. The nurse monitors the fetus most closely for:",
@@ -2554,23 +2656,31 @@ window.QUIZ_BANK = {
             answer: 3,
             rationale: "A normal AFI is 5-25 cm; an AFI of 3 is oligohydramnios. Too little fluid risks cord compression and pulmonary hypoplasia (the fetus needs to breathe in fluid for the lungs to develop), along with renal and skeletal problems. Overdistention and malpresentation are polyhydramnios problems.",
             topic: "Intrapartum Complications",
-            source: "exam-1"
+            source: "exam-weeks1-4"
           },
           {
-            stem: "A client is admitted with vaginal bleeding, and the team is trying to distinguish placenta previa from placental abruption. Which assessment finding best differentiates the two?",
-            options: ["The presence and character of abdominal pain","The volume of bleeding on the pad","The fetal heart rate baseline","The hemoglobin and hematocrit"],
+            stem: "During a vaginal exam the nurse feels a pulsating umbilical cord ahead of the presenting part. What is the nurse's FIRST action?",
+            options: ["Lift the presenting part off the cord with the gloved hand","Place the client in Trendelenburg position","Apply oxygen by face mask","Notify the provider and prepare for a cesarean"],
             answer: 0,
-            rationale: "Abdominal pain is the key differentiator: an abruption is painful with a firm, tender, board-like uterus, whereas a previa is classically painless bleeding with a soft uterus. Bleeding volume is misleading, because an abruption can conceal blood behind the placenta.",
+            rationale: "With a prolapsed cord the priority is to immediately relieve the compression by lifting the presenting part off the cord with the gloved hand. Trendelenburg, oxygen, notifying the provider, and preparing for cesarean all follow — and the hand stays in place until delivery.",
             topic: "Intrapartum Complications",
-            source: "exam-1"
+            source: "exam-weeks1-4"
           },
           {
-            stem: "A client in preterm labor is started on nifedipine as a tocolytic. Before giving a dose, the nurse should hold the medication and notify the provider if:",
-            options: ["The systolic blood pressure is less than 90 mm Hg","The maternal heart rate is 118 bpm","The client reports mild flushing","The client has 2+ deep tendon reflexes"],
-            answer: 0,
-            rationale: "Nifedipine relaxes uterine smooth muscle but also lowers blood pressure. Because this client is not hypertensive, hold the dose if the systolic pressure drops below 90. The 120-bpm hold parameter belongs to terbutaline, and 2+ reflexes are normal.",
+            stem: "Forty minutes after birth the placenta has not delivered, gentle cord traction has been unsuccessful, and bleeding is increasing. What does the nurse anticipate next?",
+            options: ["Continued fundal massage for another 30 minutes","Manual removal of the placenta by the provider","Ambulating the client to encourage separation","Administering an additional uterotonic to expel the placenta"],
+            answer: 1,
+            rationale: "The placenta should deliver within 30 minutes; beyond that, a retained placenta raises the risk of hemorrhage and infection and may require manual removal (and possibly a transfusion). Abnormal adherence — accreta, increta, percreta — should also be considered.",
             topic: "Intrapartum Complications",
-            source: "exam-1"
+            source: "exam-weeks1-4"
+          },
+          {
+            stem: "A laboring client suddenly develops chest pain, dyspnea, hypotension, and frothy sputum shortly after her membranes rupture. Which findings support a diagnosis of amniotic fluid embolism? Select all that apply.",
+            options: ["Chest pain","Hypertension","Dyspnea","Frothy sputum","Hypotension"],
+            answers: [0,2,3,4],
+            rationale: "Amniotic fluid embolism strikes the respiratory and cardiovascular systems: chest pain, dyspnea, frothy sputum, and HYPOtension. Care is to support the cardiovascular and respiratory systems, and to displace the uterus if CPR is needed.",
+            topic: "Intrapartum Complications",
+            source: "exam-weeks1-4"
           }
         ],
         extraPractice: [
@@ -2692,7 +2802,7 @@ window.QUIZ_BANK = {
             stem: "A client who recently was told by her primary health care provider that she has extensive terminal metastatic carcinoma of the breast tells the nurse that she believes an error has been made. She states that she does not have breast cancer, and she is not going to die. Which stage of death and dying is the client experiencing?",
             options: ["Anger","Denial","Bargaining","Acceptance"],
             answer: 1,
-            rationale: "The client has difficulty accepting the inevitability of death and is attempting to of it. In the anger stage the client strikes out with \"Why me?\" and \"How could God do this?\" types of statements. The client is angry at life and still angrier to be removed from it by death. In the bargaining stage the client tries to bargain for more time. The reality of death is no longer denied, but the client attempts to manipulate and extend the remaining time. In the acceptance stage the client accepts the inevitability of death and peacefully awaits it.",
+            rationale: "The client has difficulty accepting the inevitability of death and is attempting to deny it. In the anger stage the client strikes out with \"Why me?\" and \"How could God do this?\" types of statements. The client is angry at life and still angrier to be removed from it by death. In the bargaining stage the client tries to bargain for more time. The reality of death is no longer denied, but the client attempts to manipulate and extend the remaining time. In the acceptance stage the client accepts the inevitability of death and peacefully awaits it.",
             topic: "Intrapartum Complications",
             source: "eaq"
           },
@@ -2850,6 +2960,236 @@ window.QUIZ_BANK = {
             rationale: "Kegel exercises may be resumed immediately and should be done for the rest of the client's life because they help strengthen muscles needed for urinary continence and may enhance sexual intercourse. Episiotomy sutures do not have to be removed. Bowel movements should spontaneously return in 2 to 3 days after the client gives birth; a delay of bowel movements promotes constipation, perineal discomfort, and trauma. The usual postpartum examination is 6 weeks after birth; the menses may return earlier or later than this and should not be a factor when the client is scheduling a postpartum examination.",
             topic: "Postpartum Care & Complications",
             source: "eaq"
+          },
+          {
+            stem: "The nurse is teaching participants in a prenatal class regarding breast-feeding versus formula feeding. A client asks, \"What is the primary advantage of breast-feeding?\" Which response is most appropriate?",
+            options: ["\"Breast-fed infants have fewer infections.\"","\"Breast-feeding inhibits ovulation in the mother.\"","\"Breast-fed infants adhere more easily to a feeding schedule.\"","\"Breast-feeding provides more protein than cow's milk formula does.\""],
+            answer: 0,
+            rationale: "Maternal antibodies are transferred from the mother in breast milk, providing protection for a longer time than do antibodies transferred to the fetus by way of the placenta. The neonate is protected by the antibodies and thus has fewer infections. The fetus' own antibody system is immature at birth. Women who breast-feed completely (day and night with no supplementary feedings) may avoid ovulation and resumption of the menstrual cycle. Use of formula or solid foods decreases breast-feeding frequency and can lead to ovulation. Ovulation generally occurs before menses, making it difficult to know when the menstrual cycle is resuming. Therefore, breast-feeding is considered one of the least reliable methods of contraception for the new mother. Because of the higher carbohydrate content of breast milk, which is digested rapidly, breast-fed infants wake more frequently than formula-fed infants. Their feeding demands take more time to regulate than do the formula-fed infants'. Breast milk has 1.1 g protein/100 mL; cow's milk has 3.5 g/100 mL. Whole cow's milk is unsuitable for infants.",
+            topic: "Postpartum Care & Complications",
+            source: "eaq"
+          }
+        ]
+      }
+    },
+    {
+      id: "week6newborn1",
+      label: "Newborn Assessment & Care I",
+      week: 6,
+      sets: {
+        mustKnow: [],
+        extraPractice: [],
+        eaq: [
+          {
+            stem: "Which sign in the newborn infant would reflect an Apgar score of 1 in the category of respiration?",
+            options: ["Spontaneous respirations","Grimace","Absent respiration","Weak cry"],
+            answer: 3,
+            rationale: "A slow, weak cry would be scored as a 1 in the category of respiration in the Apgar scoring system. Spontaneous respirations with strong, lusty cry would receive a score of 2. A grimace is a sign that is evaluated in the category of reflex irritability, not respiration. Absent respiration would receive a score of 0 in the respiration category of the Apgar score system.",
+            topic: "Newborn Assessment & Care I",
+            source: "eaq"
+          },
+          {
+            stem: "Immediately after birth, a newborn is dried before being placed in skin-to-skin contact with the mother. Which type of heat loss would this intervention prevent?",
+            options: ["Radiation","Convection","Conduction","Evaporation"],
+            answer: 3,
+            rationale: "Evaporative heat loss is a result of the conversion of moisture into vapor, which is avoided when the newborn is dried. Radiation is the loss of heat to colder solid surfaces that are not in direct contact. Convective heat loss is a result of contact of the exposed skin with cooler surrounding air currents. Conductive heat loss is a result of direct skin contact with a cold solid object.",
+            topic: "Newborn Assessment & Care I",
+            source: "eaq"
+          },
+          {
+            stem: "Which finding is indicative of hypothermia in a newborn?",
+            options: ["Seizures","Diaphoresis","Flushed skin","Hypoglycemia"],
+            answer: 3,
+            rationale: "Hypoglycemia in a newborn can indicate hypothermia or cold stress. Seizures, diaphoresis, and flushed skin are indicative of hyperthermia.",
+            topic: "Newborn Assessment & Care I",
+            source: "eaq"
+          },
+          {
+            stem: "A client has delivered her infant by cesarean birth. The nurse monitors the newborn’s respiration closely, because infants born via the cesarean method are prone to atelectasis. Why does this occur?",
+            options: ["The ribcage is not compressed and released during birth.","The sudden temperature change at birth causes aspiration.","There is usually oxygen deprivation after a cesarean birth.","There is no gravity during the birth to promote drainage from the lungs."],
+            answer: 0,
+            rationale: "The release after compression of the chest during a vaginal birth is the mechanism for expansion of the newborn’s lungs; because this does not occur during a cesarean birth, lung expansion may be incomplete, and atelectasis may result. Temperature change is not implicated in aspiration. The infant is monitored closely to prevent oxygen deprivation. The newborn’s head may be held lower than the chest to allow gravity to promote drainage from the lungs after a cesarean birth.",
+            topic: "Newborn Assessment & Care I",
+            source: "eaq"
+          },
+          {
+            stem: "Which condition would the nurse document when a newborn infant is noted to have small, flat pink spots on the nape of the neck?",
+            options: ["Nevi","Desquamation","Mongolian spots","Erythema toxicum"],
+            answer: 0,
+            rationale: "Nevi, described as small, flat pink spots, are the result of a superficial capillary defect and are most commonly found on the upper eyelids, nose, upper lip, and nape of the neck. Desquamation is peeling skin that occurs a few days after birth. Mongolian spots are bluish-black areas of pigmentation. Erythema toxicum is a transient rash that appears 24 to 72 hours after birth that can last up to 3 weeks of age.",
+            topic: "Newborn Assessment & Care I",
+            source: "eaq"
+          },
+          {
+            stem: "Which characteristic would the nurse anticipate in an infant born at 32 weeks’ gestation?",
+            options: ["Barely visible areolae and nipples","Ear pinnae that spring back when folded","Definite creases of the infant’s palms and soles","A zero-degree angle on the square window sign"],
+            answer: 0,
+            rationale: "Breast tissue is not palpable in a newborn of less than 33 weeks’ gestation. The ear pinnae spring back in an infant at 36 weeks’ gestation. Creases of the palms and soles are not clearly defined until after the 37th week of gestation. A zero-degree square window sign is present in an infant at 40 to 42 weeks’ gestation.",
+            topic: "Newborn Assessment & Care I",
+            source: "eaq"
+          },
+          {
+            stem: "When calculating the Apgar score for a newborn, which would the nurse assess in addition to the heart rate?",
+            options: ["Muscle tone","Amount of mucus","Degree of head lag","Depth of respirations"],
+            answer: 0,
+            rationale: "The five areas that are assessed when the Apgar score is calculated are heart rate, respiratory effort, muscle tone, reflex irritability, and color. The rate of respirations, not the depth, is assessed for an Apgar score. Amount of mucus, degree of head lag, and depth of respirations are not tested for an Apgar score.",
+            topic: "Newborn Assessment & Care I",
+            source: "eaq"
+          },
+          {
+            stem: "After the birth of a neonate, a parent asks, \"What is that white substance over the baby’s body?\" How would the nurse respond?",
+            options: ["\"It’s a fungal infection called thrush.\"","\"It’s unexpected, and it’s called milia.\"","\"It’s expected, and it’s called vernix caseosa.\"","\"It’s a group of capillaries called telangiectatic nevi.\""],
+            answer: 2,
+            rationale: "Vernix caseosa, a cheeselike substance that protects the skin, is secreted by the fetus’s skin toward the end of pregnancy. Thrush is an oral fungal infection caused by Candida albicans; usually it is acquired during the birth process. Milia are distended tiny sweat (eccrine) glands that look like whiteheads on the infant’s nose; they disappear without special care. Telangiectatic nevi (stork bites, capillary hemangiomas) are pinkish-red, easily blanched spots that may appear on the upper eyelids, nose, upper lip, lower occiput, and nape of the neck; they have no clinical significance and fade between the first and second years of age.",
+            topic: "Newborn Assessment & Care I",
+            source: "eaq"
+          },
+          {
+            stem: "The nurse is differentiating between cephalhematoma and caput succedaneum. Which finding is unique to caput succedaneum?",
+            options: ["Edema that crosses the suture line","Scalp tenderness over the affected area","Edema that increases during the first day","Scalp over the area becomes ecchymosed"],
+            answer: 0,
+            rationale: "Edema that crosses the suture line is the sign that differentiates these two conditions; cephalhematoma does not extend beyond the suture line. Pain or tenderness is not associated with either condition. Edema that increases during the first day of life is unusual; it should shrink. Bruising may occur with either condition.",
+            topic: "Newborn Assessment & Care I",
+            source: "eaq"
+          },
+          {
+            stem: "Which is the most important parameter for the nurse to monitor during the first 24 hours after the birth of an infant at 36 weeks’ gestation?",
+            options: ["Duration of cry","Respiratory distress","Frequency of voiding","Poor nutritional intake"],
+            answer: 1,
+            rationale: "Respiratory distress is a common response in the preterm infant, related to possible immaturity of the newborn’s respiratory tract, manifesting as a small lumen, weakness of the respiratory musculature, paucity of functional alveoli, or insufficient calcification of the bony thorax. The tone of the cry is more pertinent than its duration. Frequency of voiding is not the priority because the newborn’s intake is limited during the first 24 hours. If the infant is in respiratory distress, the nutritional intake is not important.",
+            topic: "Newborn Assessment & Care I",
+            source: "eaq"
+          },
+          {
+            stem: "Which is the most common complication for which the nurse must monitor preterm infants?",
+            options: ["Hemorrhage","Brain damage","Respiratory distress","Aspiration of mucus"],
+            answer: 2,
+            rationale: "Immaturity of the respiratory tract in preterm infants is evidenced by a lack of functional alveoli, smaller lumina with increased possibility of collapse of the respiratory passages, weakness of respiratory musculature, and insufficient calcification of the bony thorax, leading to respiratory distress. Hemorrhage is not a common occurrence at the time of birth unless trauma has occurred. Brain damage is not a primary concern unless severe hypoxia occurred during labor; it is difficult to diagnose at this time. Aspiration of mucus may be a problem, but generally the air passageway is suctioned as needed.",
+            topic: "Newborn Assessment & Care I",
+            source: "eaq"
+          },
+          {
+            stem: "While assessing a newborn suspected of having Trisomy 21 (Down syndrome), which would the nurse expect to note as part of the findings?",
+            options: ["Long, thin fingers","Large, protruding ears","Hypertonic neck muscles","A single crease across each palm"],
+            answer: 3,
+            rationale: "A single crease across the palm of each hand, a characteristic finding in newborns with Down syndrome, is known as a simian crease. Stubby fingers, not long, slim fingers, are commonly found in newborns with Down syndrome. Small ears, not large, protruding ears, are commonly found in newborns with Down syndrome. Newborns with Down syndrome have hypotonic, not hypertonic, muscles.",
+            topic: "Newborn Assessment & Care I",
+            source: "eaq"
+          },
+          {
+            stem: "An infant is admitted to the nursery after a shoulder dystocia vaginal delivery. For which condition would the nurse assess the newborn?",
+            options: ["Facial paralysis","Cephalohematoma","Brachial plexus injury","Spinal cord syndrome"],
+            answer: 2,
+            rationale: "Brachial plexus injury (Erb-Duchenne palsy) is the most common injury associated with shoulder dystocia; it is caused by pressure and traction on the brachial plexus during the birth process. The newborn’s face is not normally affected following shoulder dystocia. Cephalohematoma is a soft-tissue injury of the head and is not related to shoulder dystocia. A cephalohematoma may occur in any birth. Spinal cord syndrome is associated with a breech presentation and is not related to shoulder dystocia.",
+            topic: "Newborn Assessment & Care I",
+            source: "eaq"
+          },
+          {
+            stem: "The parent of a preterm infant asks the nurse in the neonatal intensive care unit why the baby is in a bed with a radiant warmer. How would the nurse explain the increased risk for hypothermia in preterm infants?",
+            options: ["Have a smaller body surface area than full-term newborns","Lack the subcutaneous fat that usually provides insulation","Perspire excessively, causing a constant loss of body heat","Have a limited ability to produce antibodies against infections"],
+            answer: 1,
+            rationale: "Much of a full-term infant’s birth weight (almost a third) is gained during the last month of gestation, and most of this final spurt is related to an increase in subcutaneous fat, which serves as insulation; the preterm infant did not have enough time to grow in the uterus and has little of this insulating layer. The preterm infant has a relatively larger surface area per body weight than does a term infant. Preterm infants do not shiver or perspire. Depressed antibody production is unrelated to maintenance of body temperature.",
+            topic: "Newborn Assessment & Care I",
+            source: "eaq"
+          }
+        ]
+      }
+    },
+    {
+      id: "week6newborn2",
+      label: "Newborn Assessment & Care II",
+      week: 6,
+      sets: {
+        mustKnow: [],
+        extraPractice: [],
+        eaq: [
+          {
+            stem: "Which major group of substances in human milk are of special importance to the newborn and cannot be reproduced in a bottle formula?",
+            options: ["Amino acids","Gamma globulins","Essential electrolytes","Complex carbohydrates"],
+            answer: 1,
+            rationale: "The gamma globulin antibodies in human milk provide the infant with immunity against all or most of the pathogens that the mother has encountered. Amino acids and essential electrolytes are present in commercial formulas. Complex carbohydrates are not required by the infant.",
+            topic: "Newborn Assessment & Care II",
+            source: "eaq"
+          },
+          {
+            stem: "Which situation is correlated with a positive Babinski sign in a newborn infant?",
+            options: ["Hypoxia during labor","Neurological injury during birth","Hyperreflexia of the muscular system","Immaturity of the central nervous system (CNS)"],
+            answer: 3,
+            rationale: "Stimulation of the newborn’s immature neuromuscular system causes dorsiflexion of the big toe and fanning of the remaining toes ( Babinski sign). CNS damage resulting from hypoxia may manifest as a lack of Babinski sign. The newborn would not elicit the Babinski reflex if there were neurological injury during birth. Hyperreflexia is an abnormal increase in reflexes; it is not related to the Babinski reflex.",
+            topic: "Newborn Assessment & Care II",
+            source: "eaq"
+          },
+          {
+            stem: "Which intervention will be delayed until the newborn is 36 to 48 hours old?",
+            options: ["Vitamin K injection","Test for blood glucose level","Screening for phenylketonuria","Test for necrotizing enterocolitis"],
+            answer: 2,
+            rationale: "In 36 to 48 hours the newborn will have ingested an ample amount of the amino acid phenylalanine, which, if not metabolized because of a lack of a specific liver enzyme, can result in excessive levels of phenylalanine in the bloodstream and brain, resulting in cognitive impairment; early detection is essential to prevent this. The infant will have a vitamin K injection soon after birth to prevent bleeding problems. Blood is withdrawn from the heel soon after birth to test for hypoglycemia. Necrotizing enterocolitis is a disorder that can affect preterm infants. It is not identified with the use of a test.",
+            topic: "Newborn Assessment & Care II",
+            source: "eaq"
+          },
+          {
+            stem: "Which method of swaddling could cause risk for injury?",
+            options: ["Knees flexed","Arms flexed","Legs extended","Arms extended"],
+            answer: 2,
+            rationale: "Swaddling an infant tightly with the legs extended is associated with an increased risk for hip dislocation. The correct way to swaddle an infant is with the hips in slight flexion and abducted and allowing for freedom of movement of the knees. Swaddling the infant with the arms either flexed or extended does not place the newborn at risk for injury.",
+            topic: "Newborn Assessment & Care II",
+            source: "eaq"
+          },
+          {
+            stem: "A full-term infant who is large for gestational age (LGA) should be monitored for which risk?",
+            options: ["Hypotension","Hypothermia","Hypocalcemia","Hypoglycemia"],
+            answer: 3,
+            rationale: "Infants that are LGA are considered at risk for hypoglycemia, and their glucose should be monitored following a protocol. LGA infants are not at an increased risk for hypotension, hypothermia, or hypocalcemia.",
+            topic: "Newborn Assessment & Care II",
+            source: "eaq"
+          },
+          {
+            stem: "Which part of the newborn’s foot is the best site to use to obtain blood for the required newborn metabolic testing?",
+            options: ["Big toe","Foot pad","Inner sole","Outer heel"],
+            answer: 3,
+            rationale: "The outer heel is the preferred site to obtain blood because it is well perfused and heals quickly. The big toe, foot pad, and inner sole are all inappropriate sites from which to obtain a blood specimen from a newborn.",
+            topic: "Newborn Assessment & Care II",
+            source: "eaq"
+          },
+          {
+            stem: "Which factor contributes to the development of physiological jaundice in a newborn?",
+            options: ["Immature liver function","An inability to synthesize bile","An increased maternal hemoglobin level","A high hemoglobin and low hematocrit level"],
+            answer: 0,
+            rationale: "Jaundice occurs because of the expected physiological breakdown of fetal red blood cells and the inability of the newborn’s immature liver to conjugate the resulting bilirubin. Conjugation and excretion, not synthesis of bile, are compromised because of the immature liver. The mother’s hemoglobin level is unrelated to the newborn’s; the mother and the fetus had separate circulations. Newborns usually have high hemoglobin and high hematocrit levels.",
+            topic: "Newborn Assessment & Care II",
+            source: "eaq"
+          },
+          {
+            stem: "The nurse notes that a healthy newborn is lying in the supine position with the head turned to the side with the legs and arms extended on the same side and flexed on the opposite side. Which reflex would the nurse document?",
+            options: ["Moro","Babinski","Tonic neck","Palmar grasp"],
+            answer: 2,
+            rationale: "The tonic neck reflex (fencing position) is a spontaneous postural reflex of the newborn that is present until the third month. The Moro reflex is exhibited when a sudden change in equilibrium causes extension and abduction of the extremities followed by flexion and adduction. The Babinski reflex is exhibited when the examiner runs a finger up the lateral (small toe side) undersurface of the foot from the heel to the toes and then across the ball of the foot; the toes separate and flare out in response. The palmar grasp reflex is exhibited when the fingers flex around a person’s finger placed in the infant’s palm.",
+            topic: "Newborn Assessment & Care II",
+            source: "eaq"
+          },
+          {
+            stem: "The nurse in the clinic determines that a 4-day-old neonate who was born at home has purulent discharge from the eyes. Which condition would the nurse suspect?",
+            options: ["Chlamydia trachomatis infection","Human immunodeficiency virus (HIV) infection","Retinopathy of prematurity (retrolental fibroplasia)","A reaction to the ophthalmic antibiotic instilled after birth"],
+            answer: 0,
+            rationale: "Chlamydia trachomatis infection occurs 3 to 4 days after birth; if it is not treated prophylactically with an antibiotic at birth or within 3 days, chronic follicular conjunctivitis with conjunctival scarring will occur. HIV infection in the newborn does not manifest with conjunctivitis. The high oxygen concentrations given to severely compromised preterm infants cause vasoconstriction of retinal capillaries, which can lead to blindness; there are no data to indicate that this infant was preterm (so this is not retinopathy of prematurity), severely compromised, or received oxygen. A chemical conjunctivitis occurs within the first 48 hours and is not purulent. The antibiotic instilled at birth would have prevented the infection, not caused it.",
+            topic: "Newborn Assessment & Care II",
+            source: "eaq"
+          },
+          {
+            stem: "How would the nurse best explain the probable cause of jaundice to the parents of a 3-day-old newborn?",
+            options: ["An allergic response to the feedings","The body is slow to get rid of the fetal red blood cells that have been destroyed","A temporary bile duct obstruction commonly found in newborns","The seepage of maternal Rh-negative blood into the neonate’s bloodstream"],
+            answer: 1,
+            rationale: "After birth, fetal erythrocytes hemolyze, releasing bilirubin into the circulation; the immature liver cannot metabolize the bilirubin as rapidly as it is produced, resulting in physiological jaundice. Jaundice is not an allergic response; it is a physiological destruction of fetal red blood cells. Bile duct obstruction, which is not common in newborns, is not the cause of the jaundice. The newborn and mother have independent circulations, and Rh-negative blood does not enter the fetus’s bloodstream. A problem may occur if the mother is sensitized, because her antibodies can enter the fetal circulation.",
+            topic: "Newborn Assessment & Care II",
+            source: "eaq"
+          },
+          {
+            stem: "How would the nurse screen the newborn of a diabetic mother for hypoglycemia?",
+            options: ["Testing for glucose tolerance","Drawing arterial blood for glucose evaluation","Arranging for a fasting blood glucose determination","Testing heel blood with the use of a glucose-oxidase strip"],
+            answer: 3,
+            rationale: "Glucose-oxidase strips are used by nurses to screen infants for hypoglycemia. The glucose tolerance test and serum glucose determination using arterial blood are not used to screen newborns for hypoglycemia. Fasting blood glucose levels are not used routinely to screen newborns for hypoglycemia.",
+            topic: "Newborn Assessment & Care II",
+            source: "eaq"
           }
         ]
       }
@@ -2990,14 +3330,6 @@ window.QUIZ_BANK = {
             source: "eaq"
           },
           {
-            stem: "The nurse is teaching participants in a prenatal class regarding breast-feeding versus formula feeding. A client asks, \"What is the primary advantage of breast-feeding?\" Which response is most appropriate?",
-            options: ["\"Breast-fed infants have fewer infections.\"","\"Breast-feeding inhibits ovulation in the mother.\"","\"Breast-fed infants adhere more easily to a feeding schedule.\"","\"Breast-feeding provides more protein than cow's milk formula does.\""],
-            answer: 0,
-            rationale: "Maternal antibodies are transferred from the mother in breast milk, providing protection for a longer time than do antibodies transferred to the fetus by way of the placenta. The neonate is protected by the antibodies and thus has fewer infections. The fetus' own antibody system is immature at birth. Women who breast-feed completely (day and night with no supplementary feedings) may avoid ovulation and resumption of the menstrual cycle. Use of formula or solid foods decreases breast-feeding frequency and can lead to ovulation. Ovulation generally occurs before menses, making it difficult to know when the menstrual cycle is resuming. Therefore, breast-feeding is considered one of the least reliable methods of contraception for the new mother. Because of the higher carbohydrate content of breast milk, which is digested rapidly, breast-fed infants wake more frequently than formula-fed infants. Their feeding demands take more time to regulate than do the formula-fed infants'. Breast milk has 1.1 g protein/100 mL; cow's milk has 3.5 g/100 mL. Whole cow's milk is unsuitable for infants.",
-            topic: "Other EAQ Questions",
-            source: "eaq"
-          },
-          {
             stem: "A client has just given birth to an infant with Down syndrome. The mother is crying and asks the nurse what she is supposed to do now. Which response would the nurse give?",
             options: ["\"Tell me what you know about Down syndrome.\"","\"I would just continue to rest and recover from your delivery.\"","\"You really need to pull yourself together for your baby.\"","- \"Should I call in a chaplain or social worker for you?\""],
             answer: 0,
@@ -3050,6 +3382,190 @@ window.QUIZ_BANK = {
             options: ["Standard","Droplet","Contact","Airborne"],
             answer: 2,
             rationale: "Contact precautions include a gown, mask, and gloves; the client should be in a private room. Airborne and droplet precautions are not necessary for a person with genital herpes. The client and newborn should be placed in contact precautions until infant culture results are available and neonatal infection has been ruled out. This neonate may have been exposed to genital herpes when the client arrived with ruptured membranes in active labor. Normally, the amniotic sac serves as another protection against neonatal exposure. Maternal genital herpes, when neonatal exposure is not suspected following rupture of membranes, requires only standard precautions.",
+            topic: "Other EAQ Questions",
+            source: "eaq"
+          },
+          {
+            stem: "The nurse teaches a new mother how to position her newborn during feedings. Which is the best way to evaluate if the teaching is effective?",
+            options: ["Develop a basic teaching plan.","Ask the mother if she understands.","Observe the mother feeding the infant.","Determine the mother’s readiness to learn."],
+            answer: 2,
+            rationale: "A return demonstration can confirm that the desired learning from earlier teaching has taken place. Developing a teaching plan is part of the planning of the nursing process, not evaluating. A return demonstration is a more effective way of evaluating than asking the mother if she understands. Determining the mother’s readiness to learn is part of planning in the nursing process, not evaluating.",
+            topic: "Other EAQ Questions",
+            source: "eaq"
+          },
+          {
+            stem: "Which finding in a newborn is a behavioral response to pain?",
+            options: ["Crying","Tachypnea","Diaphoresis","Tachycardia"],
+            answer: 0,
+            rationale: "Crying is a behavioral response. Tachypnea, diaphoresis, and tachycardia are physiological responses to pain.",
+            topic: "Other EAQ Questions",
+            source: "eaq"
+          },
+          {
+            stem: "Which stool finding would the nurse anticipate in a breastfed neonate?",
+            options: ["Mustard yellow in color","Light brown in color","Firm consistency","Smooth consistency"],
+            answer: 0,
+            rationale: "The breastfed neonate would have a mustard yellow stool with a seedy, pasty consistency. Bottle-fed infants typically have stool that is pale yellow to light brown in color and firm, smooth consistency.",
+            topic: "Other EAQ Questions",
+            source: "eaq"
+          },
+          {
+            stem: "Which finding is indicative of abnormal newborn breathing?",
+            options: ["Stridor","Pallor","Bradypnea","Nasal flaring","Expiratory grunting"],
+            answers: [0,1,2,3,4],
+            rationale: "Findings indicative of abnormal breathing in newborns include stridor, pallor, bradypnea, nasal flaring, and expiratory grunting.",
+            topic: "Other EAQ Questions",
+            source: "eaq"
+          },
+          {
+            stem: "Which is a gastrointestinal manifestation of infection in the newborn?",
+            options: ["Lethargy","Irritability","Nasal flaring","Glucose instability"],
+            answer: 3,
+            rationale: "Glucose instability is a gastrointestinal manifestation of newborn infection. Lethargy and irritability are central nervous systems changes associated with infection. Nasal flaring is a respiratory manifestation of infection.",
+            topic: "Other EAQ Questions",
+            source: "eaq"
+          },
+          {
+            stem: "Which adverse effect would the nurse monitor for after administering vitamin K to a newborn?",
+            options: ["Bronchospasm","Elevation in liver enzymes","Jaundice","Dyspnea","Hemolysis"],
+            answers: [0,1,2,3,4],
+            rationale: "After administering vitamin K to a newborn, the nurse would monitor for bronchospasm because parenteral vitamin K can rarely cause hypersensitivity or anaphylactoid reactions that lead to airway constriction and wheezing. Elevation in liver enzymes may occur because vitamin K is metabolized by the liver and newborns have immature hepatic function, which can result in temporary stress to the liver. Jaundice is a potential adverse effect due to increased bilirubin levels in newborns whose livers are not fully developed. Dyspnea may develop as part of an allergic or anaphylactic reaction, requiring close observation of respiratory status. Hemolysis, although rare with vitamin K, can occur and may lead to both anemia and increased bilirubin levels.",
+            topic: "Other EAQ Questions",
+            source: "eaq"
+          },
+          {
+            stem: "The nurse is reviewing the laboratory report of a newborn whose hematocrit level is 45%. Which value denotes a healthy infant?",
+            options: ["Less than 40%","More than 75%","Between 45% and 65%","Between 65% and 75%"],
+            answer: 2,
+            rationale: "The expected hematocrit level for a healthy newborn is between 45% and 65%. Less than 40% is below the expected level and is considered anemia. More than 75% is high and is considered polycythemia. Between 65% and 75% is above the expected range.",
+            topic: "Other EAQ Questions",
+            source: "eaq"
+          },
+          {
+            stem: "Where would the nurse find the area of involvement associated with parietal swelling?",
+            options: ["Over the eyes","Behind the ears","At the back of the head","On the top of the skull"],
+            answer: 3,
+            rationale: "The parietal areas behind the frontal bone form the top surfaces of the cranial cavity. A swelling in one of these areas that does not cross the suture line is a cephalhematoma. The frontal area is the area over the eyes. The temporal area is the area behind the ears. The occipital area is the area at the back of the head.",
+            topic: "Other EAQ Questions",
+            source: "eaq"
+          },
+          {
+            stem: "The practice of separating parents from their newborn immediately after birth and limiting their time with the infant during the first few days after delivery contradicts studies related to which?",
+            options: ["Early rooming-in","Taking-in behaviors","Taking-hold behaviors","Parent-child attachment"],
+            answer: 3,
+            rationale: "There is a sensitive period in the first minutes or hours after birth during which it is important for later interpersonal development that the parents have close contact with their newborn. Rooming-in may not be instituted immediately after birth. Taking-in is a maternal psychological behavior described by Reva Rubin that occurs during the first 2 postpartum days. Taking-hold is a maternal psychological behavior described by Rubin that occurs after the third postpartum day.",
+            topic: "Other EAQ Questions",
+            source: "eaq"
+          },
+          {
+            stem: "The nurse is assessing a newborn with exstrophy of the bladder. Which other defect is often associated with exstrophy of the bladder and may be of concern to the nurse?",
+            options: ["Absence of one kidney","Congenital heart disease","Pubic bone malformation","Tracheoesophageal fistula"],
+            answer: 2,
+            rationale: "Incomplete formation of the pubic bone is often associated with exstrophy of the bladder. Absence of one kidney, congenital heart disease, and tracheoesophageal fistula are not associated with exstrophy of the bladder.",
+            topic: "Other EAQ Questions",
+            source: "eaq"
+          },
+          {
+            stem: "Although the newborn was just cleaned and examined, the mother notes a red rash consisting of small papules on the face, chest, and back of the newborn. Which condition would the nurse recognize?",
+            options: ["Harlequin sign","Vernix caseosa","Nevus flammeus","Erythema toxicum"],
+            answer: 3,
+            rationale: "Erythema toxicum is a benign, generalized, transient rash that is a reaction to the new environment in which a neonate finds itself. It disappears a short time after birth. It is not the harlequin sign, which is dilation of blood vessels on one side of the body resulting in red skin on one side and white skin on the other. It is not vernix caseosa, which is a thick, white, greasy substance that protects the skin in utero. It is not nevus flammeus, or port wine stain, which is a reddish-purple capillary angioma below the dermis.",
+            topic: "Other EAQ Questions",
+            source: "eaq"
+          },
+          {
+            stem: "Which is a risk factor of necrotizing enterocolitis in the preterm infant?",
+            options: ["Polycythemia","Hypoglycemia","Ventilatory support","Antibiotic administration"],
+            answer: 0,
+            rationale: "Necrotizing enterocolitis (NEC) is an acute inflammatory disease of the GI mucosa, commonly complicated by bowel necrosis and perforation. Polycythemia places the preterm infant at risk for necrotizing enterocolitis. Hypoglycemia and ventilatory support are not risk factors associated with necrotizing enterocolitis. Gut infections can lead to NEC, but the use of antibiotics does not.",
+            topic: "Other EAQ Questions",
+            source: "eaq"
+          },
+          {
+            stem: "Which is prevented by providing warm, humidified oxygen to a preterm infant?",
+            options: ["Apnea","Cold stress","Respiratory distress","Bronchopulmonary dysplasia"],
+            answer: 1,
+            rationale: "By warming and humidifying oxygen, the nurse will prevent cold stress and drying of the mucosa. Apnea and bronchopulmonary dysplasia are not associated with the administration of oxygen that is not warmed or humidified. Respiratory distress can develop in a preterm infant as a result of the cold stress.",
+            topic: "Other EAQ Questions",
+            source: "eaq"
+          },
+          {
+            stem: "Why should the use of baby powder on an infant be avoided?",
+            options: ["Skin irritation","Skin infection","Lung irritation","Respiratory infection"],
+            answer: 2,
+            rationale: "The use of baby powder or cornstarch should be avoided on an infant because it is associated with lung irritation. The use of baby powder or cornstarch is not directly associated with skin irritation or with skin or respiratory infections.",
+            topic: "Other EAQ Questions",
+            source: "eaq"
+          },
+          {
+            stem: "While teaching a new mother ways to decrease the risk of infection for the newborn, which type of immunity would the nurse explain was transferred to her baby through the placenta?",
+            options: ["Active natural","Passive natural","Active artificial","Passive artificial"],
+            answer: 1,
+            rationale: "Passive natural immunity is developed from an antigen-antibody response in the mother that is transmitted to the fetus. Active natural immunity is acquired by an individual in response to a disease or an infection. Active artificial immunity is acquired by an individual in response to small amounts of antigenic material (e.g., vaccination). Passive artificial immunity is conferred by the injection of antibodies prepared in another host.",
+            topic: "Other EAQ Questions",
+            source: "eaq"
+          },
+          {
+            stem: "Which reason would the nurse provide to a new mother about neonatal weight loss in the first 3 days of life?",
+            options: ["An allergy to formula","A hypoglycemic response","Ineffective feeding techniques","Excretion of accumulated excess fluids"],
+            answer: 3,
+            rationale: "Early weight loss occurs because excess fluid is lost, not body mass. Weight loss is expected; there are no data to support an allergic response. Weight loss is not related to hypoglycemia. Neither breast-feeding nor formula feeding will prevent the 7% to 10% weight loss that is expected in the first few days of life.",
+            topic: "Other EAQ Questions",
+            source: "eaq"
+          },
+          {
+            stem: "Which condition is a risk factor that may place infants at a higher risk for developing jaundice?",
+            options: ["Infection","African-American race","Prematurity","Breast-feeding","Formula feeding","Maternal diabetes"],
+            answers: [0,2,3,5],
+            rationale: "Infants are at a higher risk of jaundice if they have an infection, are born prematurely, are exclusively breastfed, or if their mothers have diabetes. Newborns with a genetic predisposition to increased bilirubin production or delayed metabolism — including those of Middle Eastern, Mediterranean, Arabian Peninsula, Sub-Saharan African, and Southeast Asian descent — have a higher risk of developing jaundice than African-American newborns. African American infants are generally considered at the lowest risk for developing neonatal hyperbilirubinemia (newborn jaundice) compared to other racial groups. Infants who are formula-fed do not develop jaundice as often as breastfed infants.",
+            topic: "Other EAQ Questions",
+            source: "eaq"
+          },
+          {
+            stem: "The nurse is monitoring the newborn of a diabetic mother for tremors, periods of apnea, cyanosis, and poor suckling ability. With which complication are these manifestations associated?",
+            options: ["Hypoglycemia","Hypercalcemia","Central nervous system edema","Congenital depression of the islets of Langerhans"],
+            answer: 0,
+            rationale: "The pancreas of a fetus of a diabetic mother responds to the mother’s hyperglycemia by secreting large amounts of insulin; this leads to hypoglycemia after birth. Hypoglycemic manifestations are tremors, periods of apnea, cyanosis, and poor suckling ability. Hypocalcemia, not hypercalcemia, occurs in hypoglycemia. Edema may be generalized in hypoglycemia, not specific to the central nervous system. In response to the increased glucose received from the mother, the islets of Langerhans in the fetus may become hypertrophied; these cells are not congenitally depressed.",
+            topic: "Other EAQ Questions",
+            source: "eaq"
+          },
+          {
+            stem: "An infant is born with a bilateral cleft palate. Plans are made to begin reconstruction immediately. Which nursing intervention would be included to promote parent-infant attachment?",
+            options: ["Demonstrating positive acceptance of the infant","Placing the infant in a nursery away from view of the general public","Explaining to the parents that the infant will look normal after the surgery","Encouraging the parents to limit contact with the infant until after the surgery"],
+            answer: 0,
+            rationale: "By demonstrating acceptance of the infant, without regard for the defect, the nurse acts as a role model for the parents, thereby encouraging their acceptance. Infants with cleft palates can remain in the newborn nursery; they should not be hidden. Telling the parents that the child will look normal after surgery is false reassurance; it does not promote parent-infant attachment behaviors. Encouraging the parents to limit contact will delay attachment; the parents should be encouraged to have frequent contact with their infant.",
+            topic: "Other EAQ Questions",
+            source: "eaq"
+          },
+          {
+            stem: "A new mother with class II heart disease tells the nurse that she is afraid that her heart condition will prevent her from caring for her baby at home when she is discharged. How would the nurse respond?",
+            options: ["Suggesting that the client arrange for help at home","Asking the client to describe her concerns more fully","Telling the client to speak to her primary health care provider about her concerns","Recommending that the client schedule times when family members can assist her"],
+            answer: 1,
+            rationale: "Information-seeking by asking is the first step in problem-solving. Suggesting that the client arrange for help at home is presumptuous and possibly too expensive. The nurse would not make decisions for the client. Telling her to speak to her primary health care provider shifts the responsibility to the primary health care provider; the nurse would explore the client’s concerns. Recommending that she schedule times when family members can assist her is presumptuous, because it assumes that the family is willing and able to help.",
+            topic: "Other EAQ Questions",
+            source: "eaq"
+          },
+          {
+            stem: "The primary health care provider tells a mother that her newborn has multiple visible birth defects. The mother seems composed and asks to see her baby. Which nursing action will be most helpful in easing the mother’s stress when she sees her child for the first time?",
+            options: ["Bringing the infant as requested before she changes her mind","Describing how the infant looks before bringing the infant to her","Staying with her after bringing the infant to help her verbalize her feelings","Showing the mother pictures of the birth defects, then bringing the infant to her"],
+            answer: 2,
+            rationale: "Allowing the client time to verbalize her feelings and staying with her when she sees the infant for the first time are measures that will provide support, acceptance, and understanding. Bringing the infant to the mother as requested does not allow the mother adequate time to prepare to see her infant. Anomalies are difficult to describe accurately in words, especially when the mother has not been given time to express her feelings. Showing pictures may not be helpful, and discussion of treatment is premature.",
+            topic: "Other EAQ Questions",
+            source: "eaq"
+          },
+          {
+            stem: "Which is included in the care of a newborn infant whose mother has had untreated syphilis since the second trimester of pregnancy?",
+            options: ["Examining for a cleft palate","Testing for congenital syphilis","Assessing the infant for muscle hypotonicity","Inspecting the soles for maculopapular lesions"],
+            answer: 1,
+            rationale: "Because physical signs of congenital syphilis are difficult to detect at birth, the infant should be tested immediately to determine whether treatment is necessary. Cleft palate is a congenital defect that occurs in the first trimester; Treponema pallidum does not affect a fetus before the sixteenth week of gestation. Muscle hypotonicity is found in children with Down syndrome, not those with congenital syphilis. Maculopapular lesions of the soles do not manifest in the infant with congenital syphilis until about 3 months of age.",
+            topic: "Other EAQ Questions",
+            source: "eaq"
+          },
+          {
+            stem: "How would the nurse suction a term neonate choking on mucus using a bulb syringe?",
+            options: ["By suctioning the mouth before the nostrils","By applying oxygen and then suctioning the pharynx","By positioning the bulb far into the throat before beginning suctioning","By placing the bulb in the mouth, compressing the bulb, and starting suctioning"],
+            answer: 0,
+            rationale: "The mouth is suctioned before the nostrils because if the nostrils are suctioned first a reflex gasp may be stimulated, resulting in aspiration of mucus from the mouth. The newborn will be unable to inhale oxygen or even breathe if the nose and throat are occluded with mucus. Placing the bulb too far into the mouth may cause trauma or reflex bradycardia. The bulb should be compressed before it is placed in the newborn’s mouth; timing of bulb compression is essential, or mucus may be forced farther into the throat.",
             topic: "Other EAQ Questions",
             source: "eaq"
           }

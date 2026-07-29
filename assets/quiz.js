@@ -34,9 +34,9 @@ const QUIZ_VER = (function () {
   let html = '<div class="quiz-picker">';
   html += '<p class="note">Select any combination of question sets from the below table to build a custom practice exam.</p>';
   html += '<ul class="qb-legend">' +
-    '<li><b>Must Know:</b> Everything the live lectures explicitly stated or heavily hinted will be on an exam.</li>' +
-    '<li><b>Extra Practice:</b> Other topics from the lecture content.</li>' +
-    '<li><b>EAQs:</b> Your EAQ sets 1&ndash;4 (200 questions) sorted by topic, with duplicates removed &mdash; 157 unique.</li>' +
+    '<li><b>Must Know:</b> Everything the live lectures explicitly stated or heavily hinted will be tested.</li>' +
+    '<li><b>Extra Practice:</b> Other topics from the lecture content, prioritized by highest yield.</li>' +
+    '<li><b>EAQs:</b> All 250 questions from EAQ sets 1&ndash;5 sorted by topic, with duplicates removed.</li>' +
     '</ul>';
   html += '<div class="quiz-actions-top"><button type="button" class="btn btn-ghost" data-pick="all">Select all</button><button type="button" class="btn btn-ghost" data-pick="none">Clear</button></div>';
 

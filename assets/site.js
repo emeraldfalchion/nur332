@@ -70,15 +70,13 @@ const SITE = {
     {
       label: "Exam Prep",
       items: [
-        { id: "exam-1",          num: "1", title: "Practice Exam 1",          file: "exam-1.html" },
-        { id: "exam-2",          num: "2", title: "Practice Exam 2",          file: "exam-2.html" },
-        { id: "quiz-builder",    num: "3", title: "Build Your Own Exam",      file: "quiz-builder.html" },
-        { id: "torture-chamber", num: "4", title: "The Torture Chamber",     file: "torture-chamber.html" },
-        { id: "exam-hints",      num: "5", title: "Must Know Quick Reference",   file: "exam-hints.html" },
-        { id: "sprint-review-1", num: "6", title: "Week 2 Sprint Review",    file: "sprint-review-1.html" },
-        { id: "week3-lecture-review", num: "7", title: "Week 3 Lecture Review", file: "week3-lecture-review.html" },
-        { id: "week4-sprint-review",  num: "8", title: "Week 4 Sprint Review",  file: "week4-sprint-review.html" },
-        { id: "week4-lecture-review", num: "9", title: "Week 4 Lecture Review", file: "week4-lecture-review.html" },
+        { id: "exam-hints",      num: "1", title: "Must Know Quick Reference",   file: "exam-hints.html" },
+        { id: "quiz-builder",    num: "2", title: "Build Your Own Exam",      file: "quiz-builder.html" },
+        { id: "torture-chamber", num: "3", title: "The Torture Chamber",     file: "torture-chamber.html" },
+        { id: "sprint-review-1", num: "4", title: "Week 2 Sprint Review",    file: "sprint-review-1.html" },
+        { id: "week3-lecture-review", num: "5", title: "Week 3 Lecture Review", file: "week3-lecture-review.html" },
+        { id: "week4-sprint-review",  num: "6", title: "Week 4 Sprint Review",  file: "week4-sprint-review.html" },
+        { id: "week4-lecture-review", num: "7", title: "Week 4 Lecture Review", file: "week4-lecture-review.html" },
       ]
     }
   ]
