@@ -77,6 +77,7 @@ const SITE = {
         { id: "week3-lecture-review", num: "5", title: "Week 3 Lecture Review", file: "week3-lecture-review.html" },
         { id: "week4-sprint-review",  num: "6", title: "Week 4 Sprint Review",  file: "week4-sprint-review.html" },
         { id: "week4-lecture-review", num: "7", title: "Week 4 Lecture Review", file: "week4-lecture-review.html" },
+        { id: "week5-lecture-review", num: "8", title: "Week 5 Lecture Review", file: "week5-lecture-review.html" },
       ]
     }
   ]

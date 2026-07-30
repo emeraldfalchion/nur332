@@ -2288,7 +2288,7 @@ window.QUIZ_BANK = {
           {
             stem: "A client is scheduled for an oxytocin induction. Which items must the nurse confirm are complete before the induction begins? Select all that apply.",
             options: ["An epidural already placed","A reactive non-stress test","A sterile vaginal exam with a Bishop score","Signed informed consent","Baseline maternal vital signs"],
-            answers: [1,2,3,4],
+            answers: [1, 2, 3, 4],
             rationale: "Before an induction you need a reactive NST, a sterile vaginal exam with a Bishop score, signed consent, and baseline vital signs. An epidural is not required, and a NON-reactive NST would be a reason to hold.",
             topic: "Artificial Management of Labor",
             source: "exam-weeks1-4"
@@ -2310,14 +2310,6 @@ window.QUIZ_BANK = {
             source: "exam-weeks1-4"
           },
           {
-            stem: "A client desires a vaginal birth after cesarean (VBAC). Which finding in her records is the priority concern the nurse reports to the provider?",
-            options: ["A previous classical (vertical) uterine incision","A previous low-transverse uterine incision","One prior cesarean birth","A Pfannenstiel skin incision"],
-            answer: 0,
-            rationale: "A classical (vertical) uterine incision carries a high risk of uterine rupture in labor and contraindicates a VBAC — future births should be cesarean. A low-transverse incision is the one that supports a VBAC, and the skin incision does not determine eligibility.",
-            topic: "Artificial Management of Labor",
-            source: "exam-weeks1-4"
-          },
-          {
             stem: "A client needs an emergent cesarean birth and her platelet count is 42,000. Which type of anesthesia does the nurse anticipate?",
             options: ["An epidural","A spinal","A pudendal block","General anesthesia"],
             answer: 3,
@@ -2330,14 +2322,6 @@ window.QUIZ_BANK = {
             options: ["Document the time of rupture","Check the maternal temperature","Assess the fetal heart rate","Palpate the uterus for contractions"],
             answer: 2,
             rationale: "Amniotic fluid cushions the cord; once it is lost the cord can be compressed, so assessing the FHR is the priority. Documenting the time, checking the temperature, and palpating contractions all follow.",
-            topic: "Artificial Management of Labor",
-            source: "exam-weeks1-4"
-          },
-          {
-            stem: "A multipara in active labor stops making cervical change after her epidural, and her contractions space out. The provider orders oxytocin. The nurse documents this intervention as:",
-            options: ["Labor induction","Cervical ripening","Labor augmentation","Amnioinfusion"],
-            answer: 2,
-            rationale: "She was already in active labor, so stimulating her stalled contractions is augmentation. Induction is starting labor in someone who is not laboring.",
             topic: "Artificial Management of Labor",
             source: "exam-weeks1-4"
           },
@@ -2398,28 +2382,12 @@ window.QUIZ_BANK = {
             source: "exam-weeks1-4"
           },
           {
-            stem: "The provider strips (sweeps) a client's membranes at her 39-week visit. How does the nurse explain the way this promotes labor?",
-            options: ["It releases oxytocin from the posterior pituitary","It ruptures the amniotic sac","It releases prostaglandins","It softens the cervix with pressure from a balloon"],
-            answer: 2,
-            rationale: "Separating the amniotic membrane from the lower uterine segment releases prostaglandins (not oxytocin), which stimulate contractions. Only an OB, nurse midwife, or NP performs it; it is often uncomfortable and may cause a little vaginal bleeding afterward.",
-            topic: "Artificial Management of Labor",
-            source: "exam-weeks1-4"
-          },
-          {
             stem: "After an epidural, a client's systolic blood pressure falls to 92 mm Hg and a late deceleration appears. Which action should the nurse take FIRST?",
             options: ["Slow the IV infusion rate","Turn the client to a side-lying position","Notify the anesthesia provider","Prepare for an emergency cesarean birth"],
             answer: 1,
             rationale: "Post-anesthesia hypotension with a late deceleration is treated first by turning her to a side-lying position to relieve vena cava compression, followed by an IV fluid bolus, ephedrine, and oxygen. Slowing the IV would worsen the hypotension — the bolus, not less fluid, is what restores her pressure. Notifying the provider and preparing for cesarean are premature before trying repositioning and fluid.",
             topic: "Artificial Management of Labor",
             source: "quiz-bank"
-          },
-          {
-            stem: "During an oxytocin induction the nurse counts 7 contractions in a 10-minute window with a rising resting tone, and the fetus develops late decelerations. What is the priority action?",
-            options: ["Turn off the oxytocin infusion","Decrease the oxytocin by half and reassess","Administer the ordered terbutaline","Apply oxygen and continue the infusion"],
-            answer: 0,
-            rationale: "Six or more contractions in 10 minutes is tachysystole; with late decels the baby is not tolerating it. Turning the oxytocin OFF is the priority — it is the cause. Terbutaline and oxygen may follow, but not while the cause is still infusing.",
-            topic: "Artificial Management of Labor",
-            source: "exam-weeks1-4"
           },
           {
             stem: "A client is about to receive an epidural, and the nurse hangs 1,000 mL of warmed lactated Ringer's to infuse before the block is placed. Which complication is this intended to prevent?",
@@ -2619,14 +2587,6 @@ window.QUIZ_BANK = {
             source: "exam-weeks1-4"
           },
           {
-            stem: "A client is now at 42 3/7 weeks' gestation. Which fetal risk does the nurse most anticipate?",
-            options: ["Polyhydramnios","Surfactant deficiency","Erythroblastosis fetalis","Decreased placental perfusion"],
-            answer: 3,
-            rationale: "Past 42 weeks the aging placenta perfuses the fetus less well, raising the risk of fetal compromise, macrosomia or SGA, and meconium-stained fluid — with OLIGOhydramnios, not polyhydramnios. Surfactant deficiency is a preterm problem.",
-            topic: "Intrapartum Complications",
-            source: "exam-weeks1-4"
-          },
-          {
             stem: "A client is admitted for delivery of a fetus that died in utero. Which nursing action best supports her and her family?",
             options: ["Ask her what she would like — such as holding the baby, mementos, or where to recover","Move her immediately to a unit far from the maternity floor","Reassure her that she can have another baby","Limit her time with the infant to protect her from grief"],
             answer: 0,
@@ -2677,7 +2637,7 @@ window.QUIZ_BANK = {
           {
             stem: "A laboring client suddenly develops chest pain, dyspnea, hypotension, and frothy sputum shortly after her membranes rupture. Which findings support a diagnosis of amniotic fluid embolism? Select all that apply.",
             options: ["Chest pain","Hypertension","Dyspnea","Frothy sputum","Hypotension"],
-            answers: [0,2,3,4],
+            answers: [0, 2, 3, 4],
             rationale: "Amniotic fluid embolism strikes the respiratory and cardiovascular systems: chest pain, dyspnea, frothy sputum, and HYPOtension. Care is to support the cardiovascular and respiratory systems, and to displace the uterus if CPR is needed.",
             topic: "Intrapartum Complications",
             source: "exam-weeks1-4"
@@ -2862,8 +2822,274 @@ window.QUIZ_BANK = {
       label: "Postpartum Care & Complications",
       week: 5,
       sets: {
-        mustKnow: [],
-        extraPractice: [],
+        mustKnow: [
+          {
+            stem: "The mother of a 2-day-old proudly reports that her baby is \"such a good sleeper\" and went 6 hours overnight without waking to eat. Which response is best?",
+            options: ["\"That is a reassuring sign that he is well fed; let him set his own schedule\"","\"Offer him a bottle of water overnight so he does not become dehydrated\"","\"Wake him at least every 3 to 4 hours — going longer shortchanges his intake and your supply\"","\"Sleeping 6 hours at this age means he should be evaluated for jaundice\""],
+            answer: 2,
+            rationale: "A newborn should never go longer than 4 hours between feedings, however sleepy. Waiting shortchanges his nutrition and stops signaling the breast to keep producing milk. Sleeping through the night is not a reassuring sign at this age.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A breastfeeding client is diagnosed with mastitis in the right breast and started on antibiotics. She asks whether she has to stop nursing. Which response is correct?",
+            options: ["\"Stop nursing on that side until the redness resolves, then resume\"","\"Stop nursing on both sides while you are on antibiotics and pump and dump\"","\"Wean completely, because continuing will reinfect the breast\"","\"Keep that breast emptied — nurse or pump — and finish the entire course of antibiotics\""],
+            answer: 3,
+            rationale: "Mastitis is treated with antibiotics and analgesics while continuing to empty the breast. She may nurse or, if the breast is too tender, pump that side — the point is to keep the milk moving and the supply up. The antibiotic in her system is safe for the baby, and the full course must be finished.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A nurse is preparing to assess a client's fundus 8 hours after a vaginal birth. Which action should the nurse take first?",
+            options: ["Elevate the head of the bed to 45 degrees for her comfort","Position her side-lying with the upper leg lifted","Have her lie completely flat and empty her bladder","Ask her to take a deep breath and bear down"],
+            answer: 2,
+            rationale: "The fundal level is charted against the umbilicus, so she must be lying completely flat with an empty bladder — sitting up distorts the level, and a full bladder pushes the uterus up and to the side. Then support above the symphysis with one hand and palpate with the heel of the other. Side-lying is the position for assessing the perineum.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "Which finding in a client's lochia on postpartum day 4 should the nurse report to the provider?",
+            options: ["An offensive odor","A pink color","A small amount of brownish discharge mixed in","A gush of blood when she first stands up"],
+            answer: 0,
+            rationale: "Lochia should never smell foul — an offensive odor is a warning sign of infection. Pink serosa is expected around day 4, a brownish tinge simply means older rather than fresh blood, and a gush on standing is pooled lochia draining.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A client is 4 hours post vaginal delivery. The nurse changed her peripad 45 minutes ago and now finds it fully saturated. Which conclusion is correct?",
+            options: ["This amount is expected during the first 24 hours after birth","This is simply pooled lochia draining after she repositioned","This amount of bleeding is excessive and requires immediate assessment","This is only concerning if a clot larger than a golf ball is also present"],
+            answer: 2,
+            rationale: "Saturating a peripad in less than 1 hour is too much bleeding — no weighing is required to know that. Pooled lochia does drain with repositioning, but that produces a gush, not a fully soaked pad inside an hour, and the absence of large clots does not make the volume acceptable.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A nurse weighs a blood-soaked chux pad at 385 grams. An identical dry chux weighs 45 grams. How much blood loss should the nurse document from this item?",
+            options: ["340 mL","385 mL","430 mL","170 mL"],
+            answer: 0,
+            rationale: "One gram of blood is counted as one milliliter. Subtract the dry weight from the used weight: 385 − 45 = 340 g, which converts to 340 mL. This is quantitative blood loss, and it catches a hemorrhage sooner than eyeballing (estimated blood loss), which tends to under-estimate.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A client is bleeding heavily 90 minutes after a vaginal birth. Her fundus is firm and midline, the placenta delivered intact, and her platelet count is normal. Using the four T's, which cause is most likely?",
+            options: ["Tone","Trauma","Tissue","Thrombin"],
+            answer: 1,
+            rationale: "The four T's are tone (atony), trauma (a laceration), tissue (retained placenta), and thrombin (a coagulation disorder). A firm midline fundus rules out tone, an intact placenta makes retained tissue unlikely, and a normal platelet count argues against thrombin — leaving trauma, meaning a laceration the provider needs to find.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A client returns to the emergency department 12 days after a vaginal birth with heavy bright red bleeding. Which cause should the nurse anticipate?",
+            options: ["Uterine atony","Retained placental fragments","A cervical laceration","Postpartum preeclampsia"],
+            answer: 1,
+            rationale: "Uterine atony is the most significant risk factor for an EARLY postpartum hemorrhage, in the hours right after birth. Retained placental fragments are what point to a LATE hemorrhage days to weeks out. A laceration would have bled at the time of delivery.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A client one hour after a vaginal delivery calls out that she is bleeding a lot. Which action should the nurse take first?",
+            options: ["Obtain a full set of vital signs","Notify the provider","Increase her IV fluid rate","Palpate her fundus"],
+            answer: 3,
+            rationale: "Go to the most likely source of the problem. Vital signs would only describe what you can already see — a freely bleeding client is of course likely to be hypotensive and tachycardic. Palpating the fundus tells you why she is bleeding: boggy means atony, so massage immediately; firm and still bleeding means a laceration, so call the provider.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A client with a history of chronic hypertension has a boggy uterus and continued bleeding that has not responded to oxytocin. Which medication should the nurse anticipate next?",
+            options: ["Methylergonovine (Methergine)","Labetalol","Carboprost (Hemabate)","Magnesium sulfate"],
+            answer: 2,
+            rationale: "Methergine can cause rebound hypertension, so it is avoided — or is a last resort — in a client with hypertension, even though her pressure is low from bleeding right now. Carboprost is the IM next line; warn her about sudden explosive diarrhea and have chucks ready. Labetalol does nothing for tone, and magnesium sulfate would relax the uterus further.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A nurse plans to inspect a client's perineal repair. Which position best exposes the area?",
+            options: ["Semi-Fowler's with the knees flexed and separated","Side-lying with the upper leg lifted and the head of the bed flat","Knee-chest","Lithotomy with the head of the bed elevated"],
+            answer: 1,
+            rationale: "Side-lying with the upper leg raised gives the best view, particularly with the head of the bed lowered. Elevating the head works against you, because she settles down onto her bottom and hides the area. Knee-chest is not used postpartum, and mother-baby beds have no stirrups for lithotomy.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A client who sustained a fourth-degree laceration is being prepared for discharge. Which orders should the nurse expect?",
+            options: ["A prophylactic antibiotic and a stool softener","A stool softener and a stimulant laxative","An enema before discharge and a high-fiber diet","No specific orders, since a fourth-degree repair heals like any other"],
+            answer: 0,
+            rationale: "A third- or fourth-degree laceration extends toward the rectum, so infection risk is high and prophylactic antibiotics are typical. These clients dread having a bowel movement, so stool softeners, fiber-rich foods, and plenty of water are pushed hard. Laxatives and enemas are avoided after a vaginal birth — a sudden forceful movement is exactly what a fresh repair does not need.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A client who received an epidural has not voided 5 hours after a vaginal birth and denies any urge to go. Which explanation should the nurse give her?",
+            options: ["The anesthesia slowed her kidneys, so she is making very little urine right now","This is expected because of the fluid she lost during delivery","Her bladder is most likely empty because she voided during the pushing stage","The anesthesia blunted the sensation of her bladder filling, so it is filling without her feeling it"],
+            answer: 3,
+            rationale: "Anesthesia causes loss of the sensation of bladder filling — the bladder still fills, she simply cannot feel it, which is how bladder distension leads to urinary retention. The kidneys are actually working harder postpartum, clearing 2,000 to 3,000 mL. A distended bladder also displaces the uterus and increases bleeding, so she may need an in-and-out catheterization.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A client with severe preeclampsia delivered 12 hours ago. Her urine output has increased from 25 mL/hr to 90 mL/hr. How should the nurse interpret this change?",
+            options: ["She is developing magnesium sulfate toxicity","She is becoming dehydrated from the diuresis","Her renal perfusion is improving","Her preeclampsia is worsening"],
+            answer: 2,
+            rationale: "Preeclamptic kidneys are very sensitive to poor perfusion and make little urine when perfusion is poor. Rising output means perfusion is improving, which is a positive sign. Falling output would be the worrying direction.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A client who had a vaginal birth 36 hours ago is anxious because she has not had a bowel movement. Which response is best?",
+            options: ["\"Let's get an order for an enema so you can go before discharge\"","\"That's expected — most women go around day 2 or 3. Let's start a stool softener\"","\"You will need a stimulant laxative before you can be discharged\"","\"Not having gone by now suggests an obstruction; I will notify the provider\""],
+            answer: 1,
+            rationale: "The first bowel movement averages day 2 to 3, and the bowels are sluggish from progesterone, decreased muscle tone, the birth itself, and anesthesia. Docusate sodium and other stool softeners are the right choice. Laxatives and enemas are avoided after a vaginal birth, and a bowel movement is not required for discharge — passing flatus is.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "On the second postpartum day a client who had been content to let the nurses bathe and change her newborn now wants to do it herself but repeatedly asks whether she is doing it right. Which phase does this represent?",
+            options: ["Taking in","Taking hold","Letting go","The anticipatory stage of maternal role attainment"],
+            answer: 1,
+            rationale: "Taking hold begins around day 2 to 3: she resumes control and takes on mothering tasks, is more confident and autonomous, but needs reassurance that she is doing it correctly. Taking in is the first 1 to 2 days, when she is more passive and dependent and focused on her own food and rest and on processing the birth.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A client 4 days postpartum begins crying while telling the nurse how well her baby is nursing, then laughs and says she has no idea why she is upset. Which response is best?",
+            options: ["\"Many mothers feel this way in the first couple of weeks — let's talk about it, and about what your partner should watch for\"","\"This is an early sign of postpartum depression; I will arrange a psychiatric referral\"","\"Try to focus on the positives so these feelings do not take hold\"","\"You may want to stop breastfeeding, since the hormones are causing this\""],
+            answer: 0,
+            rationale: "Postpartum blues affect 50 to 80% of mothers, usually appear days 3 to 5, resolve within about 10 to 14 days, and are more common in first-time mothers. The hallmark is mood swings and tearfulness without an apparent cause. The nursing response is anticipatory guidance and validation, plus teaching her and her support person what would signal this has become something more.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "Which client is at highest risk for postpartum depression?",
+            options: ["A 32-year-old on her third pregnancy who is exclusively breastfeeding","A 28-year-old with well-controlled type 1 diabetes","A 17-year-old first-time mother treated for major depression 2 years ago","A 35-year-old whose labor ended in an unplanned cesarean"],
+            answer: 2,
+            rationale: "The strongest risk factors are a history of depression, a first pregnancy, and young maternal age — under 18, not over. Breastfeeding and a chronic illness such as diabetes may weigh on mood, but neither is a specific risk factor for postpartum depression.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A client 3 weeks postpartum has not slept in days, is agitated and confused, and tells the nurse she keeps having thoughts about the oven that she knows make no sense. Which action is the priority?",
+            options: ["Reassure her that intrusive thoughts are a normal part of the baby blues","Suggest a family member take the baby so she can nap, and reassess tomorrow","Teach relaxation techniques and schedule follow-up in one week","Ensure she is not left alone with the infant and arrange an urgent mental health evaluation"],
+            answer: 3,
+            rationale: "Insomnia, agitation, confusion, and illogical or delusional thinking in the first 1 to 3 months describe postpartum psychosis, which carries a risk of both suicide and infanticide. Safety and an urgent referral come first. With treatment about 95% improve within 2 to 3 months — but only if it is recognized.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A client receiving magnesium sulfate for postpartum preeclampsia wants her newborn to room in overnight. Her partner has gone home. What should the nurse do?",
+            options: ["Arrange for the newborn to stay in the nursery until another adult can be present","Allow rooming-in and check on her every 2 hours","Allow rooming-in as long as the side rails are up and the bassinet is beside the bed","Discontinue the magnesium so she can safely care for her newborn"],
+            answer: 0,
+            rationale: "Magnesium slows her arousal and response, so she must never be the only adult in the room with the baby — if the newborn choked or needed care she might not be able to respond. Another responsible adult stays, or the baby goes to the nursery until the magnesium is finished. The infusion is usually continued at least 24 hours after delivery and is not stopped for convenience.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A client is 47 hours post vaginal birth and asks to go home. Which findings indicate she is ready for discharge? Select all that apply.",
+            options: ["She has voided without difficulty","She is passing flatus","Her fundus is firm, midline, and descending","Her episiotomy edges are well approximated","She has had a bowel movement","Her oral temperature is 100.8°F"],
+            answers: [0, 1, 2, 3],
+            rationale: "She must void, and she must be passing flatus to show the bowels have woken up. The uterus should be firm, midline, and involuting, and the repair well approximated — not healed yet, just lined up so it can heal. A bowel movement is NOT required: the first one averages day 2 to 3 and the typical vaginal stay is about 48 hours, so many women go home before having one. A temperature of 100.8°F past the first 24 hours is a fever and needs a source found first. (On transfer to the unit, remember the nurse — not the provider — prepares the report, bedside report improves safety and satisfaction, and Apgars are scored at 1 and 5 minutes of life.)",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A client's prenatal record shows she is rubella non-immune. When should the nurse expect the MMR vaccine to be given?",
+            options: ["At her 6-week postpartum visit, once lochia has stopped","At the first prenatal visit of her next pregnancy","It is contraindicated because she is breastfeeding","Before discharge, now that she has delivered"],
+            answer: 3,
+            rationale: "MMR is a live-virus vaccine, so it cannot be given during pregnancy. Postpartum, when we are confident she is not pregnant, is exactly the right time — so it is given before she goes home. Breastfeeding is not a contraindication.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A client 3 days postpartum calls reporting a severe headache. Her home blood pressures have been 150/100 and 160/90. Which action should the nurse take?",
+            options: ["Have her come in to be evaluated for postpartum preeclampsia","Reassure her that headaches are common from the postpartum fluid shift","Advise acetaminophen with caffeine and a call back if it lasts 24 hours","Advise her to lie flat, since this is most likely a spinal headache"],
+            answer: 0,
+            rationale: "Preeclampsia can develop for the first time AFTER delivery. Two elevated readings on postpartum days 2 and 3 with a severe headache need evaluation, not reassurance. A spinal headache would be positional and would come with a normal blood pressure.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          }
+        ],
+        extraPractice: [
+          {
+            stem: "A multiparous client 12 hours postpartum reports strong cramping that intensifies each time she breastfeeds. Her platelet count is 210,000 and she has no history of a hypertensive disorder. Which intervention is most appropriate?",
+            options: ["Give the ordered ibuprofen and have her sit upright with her knees drawn up","Give the ordered ibuprofen and have her lie prone with a pillow under her abdomen","Withhold analgesia, since afterpains mean the uterus is contracting normally","Massage the fundus vigorously each time the cramping begins"],
+            answer: 1,
+            rationale: "Afterpains are the intermittent contractions of involution and intensify with nursing, because breastfeeding releases more oxytocin. Lying prone with a pillow under the abdomen keeps the uterus contracted and eases them, and ibuprofen works well — though it is held if platelets are under 70,000 or she has a history of a hypertensive disorder, neither of which applies here.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A client is on her third postpartum day after an uncomplicated vaginal birth. At approximately which level should the nurse expect to palpate the fundus?",
+            options: ["Three fingerbreadths below the umbilicus","At the level of the umbilicus","One fingerbreadth above the umbilicus","At the symphysis pubis"],
+            answer: 0,
+            rationale: "The fundus reaches the umbilicus within 6 to 12 hours of birth and then descends about 1 to 2 cm — roughly one fingerbreadth — every 24 hours, so by day 3 it is around three fingerbreadths below. It reaches the true pelvis by about day 10, and the uterus returns to pre-pregnancy size around 5 to 6 weeks.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A nurse is observing a first-time mother latch her newborn. Which observation indicates the latch is correct?",
+            options: ["The lips are pursed tightly around the nipple alone","A rhythmic smacking sound accompanies each suck","The lips are flared outward and much of the areola is inside the mouth","The newborn's chin is tucked toward his chest"],
+            answer: 2,
+            rationale: "A good latch makes a fish shape with flared lips, taking in as much nipple AND areola as possible, and there should be no smacking sounds. To fix a poor latch, slip a finger into the baby's mouth to break the suction, take him off, and re-latch — stroking the chin opens the mouth wider.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A client who delivered by cesarean 8 hours ago is struggling to find a comfortable breastfeeding position. Which position should the nurse suggest?",
+            options: ["Football hold","Cradle hold","Prone with the newborn resting on her abdomen","Modified cradle with the newborn lying across her incision"],
+            answer: 0,
+            rationale: "The football hold keeps the newborn off the abdomen entirely, which is why it suits a client after a cesarean — and a mother with large breasts. Side-lying is also comfortable after abdominal surgery, although the adult must not fall asleep.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A client who has breastfed for 6 months wants to begin weaning. Which approach should the nurse recommend?",
+            options: ["Stop nursing entirely and bind the breasts for a week","Substitute one cup or bottle feeding for one nursing session over several days, then gradually add more","Replace every other feeding starting today and finish weaning within 3 days","Nurse only at night and give bottles all day, starting tomorrow"],
+            answer: 1,
+            rationale: "A slow method is preferred: it prevents engorgement, lets the infant adjust its eating at its own rate, and allows time for psychological adjustment. Abrupt weaning invites engorgement and plugged ducts.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A client is 4 days post cesarean with a temperature of 101.8°F, chills, uterine tenderness, and foul-smelling lochia. Which condition should the nurse suspect, and what treatment should she anticipate?",
+            options: ["Mastitis — antibiotics for 7 to 10 days","A urinary tract infection — increased fluids and a urine culture","The normal fever of milk coming in — reassurance and comfort measures","Endometritis — broad-spectrum antibiotics continued until she is afebrile for 24 to 48 hours"],
+            answer: 3,
+            rationale: "Uterine tenderness with a high fever, chills, and foul-smelling lochia is endometritis, an infection of the uterine lining, and cesarean birth is itself a risk factor. Treatment is broad-spectrum antibiotics such as clindamycin and gentamicin until culture and sensitivity guide therapy, continued until she is afebrile for 24 to 48 hours.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A client had a cesarean birth yesterday and is not yet ambulating well. Which measures should the nurse include to reduce her risk of thrombophlebitis? Select all that apply.",
+            options: ["Apply sequential compression devices to her lower legs","Get her up and walking as early as she is able","Teach her to avoid crossing her legs","Keep her knees elevated on pillows for comfort","Encourage prolonged sitting in the chair to build endurance"],
+            answers: [0, 1, 2],
+            rationale: "Sequential compression devices are used when a client cannot ambulate, and early ambulation is the single best measure — it also reduces constipation and respiratory dysfunction and improves overall well-being. She should avoid crossing her legs and avoid prolonged sitting or standing. Elevating the knees on pillows and prolonged sitting both promote venous stasis.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A nurse assesses a client 8 hours postpartum and finds a heart rate of 54 beats per minute. She is alert, her fundus is firm, and her lochia is moderate. Which action is appropriate?",
+            options: ["Notify the provider of symptomatic bradycardia","Increase her IV fluid rate","Place her in Trendelenburg and apply oxygen","Document the finding as expected"],
+            answer: 3,
+            rationale: "Bradycardia is normal during the first 6 to 10 days postpartum. It is tachycardia that should prompt concern — rule out bleeding, fever, respiratory disease, or pulmonary edema, since a rising pulse with a falling blood pressure can be a rebound response to hemorrhage.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A client who had a cesarean birth is being discharged with Steri-Strips over her incision. Which instruction should the nurse give?",
+            options: ["Remove the strips after 48 hours and gently scrub the incision with soap","Keep the incision under an occlusive dressing until the strips are removed at her follow-up visit","Let soapy water run over the incision in the shower, pat it dry, and let the strips fall off on their own","Apply antibiotic ointment under the strips twice a day"],
+            answer: 2,
+            rationale: "In the shower she lets soapy water run over the incision and then pats it dry — no scrubbing — and Steri-Strips are left to peel off on their own. She should assess the incision using REEDA and report redness, drainage, or edges that are no longer approximated.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A breastfeeding client asks how her diet should change now that she has delivered. Which teaching is correct?",
+            options: ["Increase her intake by about 300 calories a day, continue her prenatal vitamin, and eat iron-rich foods","Return to her pre-pregnancy intake immediately and stop the prenatal vitamin","Decrease her intake by about 300 calories a day to help lose the pregnancy weight","Restrict fluids to about 1 liter a day to reduce engorgement"],
+            answer: 0,
+            rationale: "A breastfeeding mother increases her intake by about 300 kcal a day and continues her prenatal vitamin; a mother who is not breastfeeding can decrease her intake. Iron-rich foods matter after the blood loss of delivery, and some women need an iron supplement. Fluids should be generous — she must take in good fluid to make good milk.",
+            topic: "Postpartum Care & Complications",
+            source: "quiz-bank"
+          }
+        ],
         eaq: [
           {
             stem: "A client who has just given birth is holding her newborn and asks, \"Is my baby normal?\" Which response would the nurse provide?",
