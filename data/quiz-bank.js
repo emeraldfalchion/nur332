@@ -1667,14 +1667,6 @@ window.QUIZ_BANK = {
             source: "exam-weeks1-4"
           },
           {
-            stem: "During the fourth stage, the nurse palpates a soft, boggy uterus. What is the priority action?",
-            options: ["Assess for a full bladder","Increase the oxytocin infusion","Massage the fundus","Notify the provider"],
-            answer: 2,
-            rationale: "A soft, boggy uterus is uterine atony — the leading cause of postpartum hemorrhage. Massage the fundus first to firm it. A full bladder displaces the fundus upward and to the right but does not itself make it boggy.",
-            topic: "Intrapartum Care I",
-            source: "exam-weeks1-4"
-          },
-          {
             stem: "A client presents to triage after four hours of contractions. Which findings indicate TRUE labor rather than false labor? Select all that apply.",
             options: ["Cervical change from 2 cm to 4 cm over two hours","Contractions that grow closer together over time","Contractions that ease after a warm bath and rest","Contractions that become more painful as time passes","Bloody show on the perineal pad"],
             answers: [0,1,3],
@@ -1700,8 +1692,8 @@ window.QUIZ_BANK = {
           },
           {
             stem: "A client's contractions begin at 10:00, 10:04, and 10:08, each lasting 60 seconds. How should the nurse document the frequency?",
-            options: ["Every 4 minutes","Every 3 minutes","Sixty seconds","Every 4 minutes lasting 4 minutes"],
-            answer: 0,
+            options: ["Every 3 minutes","Every 4 minutes","Sixty seconds","Every 4 minutes lasting 4 minutes"],
+            answer: 1,
             rationale: "Frequency = start of one contraction to the start of the next (in minutes), so 10:00 to 10:04 is every 4 minutes. Start-to-end of the same contraction is the duration (60 seconds).",
             topic: "Intrapartum Care I",
             source: "exam-weeks1-4"
@@ -2350,14 +2342,6 @@ window.QUIZ_BANK = {
             source: "exam-weeks1-4"
           },
           {
-            stem: "A client is receiving an amnioinfusion for repetitive variable decelerations. The nurse notes the peri-pad has stayed dry and the uterine resting tone is climbing. What should the nurse do?",
-            options: ["Continue and document a normal finding","Increase the infusion rate","Stop the amnioinfusion","Place the client in high Fowler's"],
-            answer: 2,
-            rationale: "Fluid going in must come back out. A dry pad with a rising resting tone means fluid is being trapped — stop the infusion immediately to avoid over-distending or rupturing the uterus.",
-            topic: "Artificial Management of Labor",
-            source: "exam-weeks1-4"
-          },
-          {
             stem: "A client received misoprostol (Cytotec) for cervical ripening two hours ago. The provider now orders oxytocin. What is the nurse's best action?",
             options: ["Begin the oxytocin now at 2 milliunits/min","Begin the oxytocin after another 30 minutes","Begin the oxytocin once she is contracting every 5 minutes","Wait until at least 4 hours have passed since the misoprostol dose"],
             answer: 3,
@@ -2987,7 +2971,7 @@ window.QUIZ_BANK = {
             stem: "A client is 47 hours post vaginal birth and asks to go home. Which findings indicate she is ready for discharge? Select all that apply.",
             options: ["She has voided without difficulty","She is passing flatus","Her fundus is firm, midline, and descending","Her episiotomy edges are well approximated","She has had a bowel movement","Her oral temperature is 100.8°F"],
             answers: [0, 1, 2, 3],
-            rationale: "She must void, and she must be passing flatus to show the bowels have woken up. The uterus should be firm, midline, and involuting, and the repair well approximated — not healed yet, just lined up so it can heal. A bowel movement is NOT required: the first one averages day 2 to 3 and the typical vaginal stay is about 48 hours, so many women go home before having one. A temperature of 100.8°F past the first 24 hours is a fever and needs a source found first. (On transfer to the unit, remember the nurse — not the provider — prepares the report, bedside report improves safety and satisfaction, and Apgars are scored at 1 and 5 minutes of life.)",
+            rationale: "She must void, and she must be passing flatus to show the bowels have woken up. The uterus should be firm, midline, and involuting, and the repair well approximated — not healed yet, just lined up so it can heal. A bowel movement is NOT required: the first one averages day 2 to 3 and the typical vaginal stay is about 48 hours, so many women go home before having one. A temperature of 100.8°F past the first 24 hours is a fever and needs a source found first.",
             topic: "Postpartum Care & Complications",
             source: "quiz-bank"
           },
