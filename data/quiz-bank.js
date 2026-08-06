@@ -42,90 +42,15 @@
    "quiz-bank", or "eaq") so future breakdown/report changes don't
    require re-reading and re-categorizing every question.
    Internal ids/filenames still say "quiz" (quiz-builder.html,
-   window.QUIZ_BANK, assets/quiz.js) — only user-facing text was
-   renamed to "Build Your Own Exam".
+   window.QUIZ_BANK, #quiz-select, .quiz-* classes) even though the page
+   is titled "Build Your Own Exam".
 
-   Revised 2026-07-26 (mustKnow + extraPractice only, back when mustKnow
-   was still exam-1/exam-2-sourced — the eaq sets were deliberately NOT
-   touched): stripped giveaway phrasing out of stems, removed
-   self-explaining answer options, replaced throwaway distractors with
-   plausible near-misses, reframed straight recall as clinical
-   vignettes, and redistributed the correct-answer positions. This pass
-   is now superseded for mustKnow by the 2026-07-29 exam-weeks1-4 swap
-   (that page had its own quality pass at build time) but extraPractice
-   still reflects it.
-
-   EAQ 4 imported 2026-07-27 (`EAQ/EAQ 4.md`, 50 questions): 24 added
-   (26 were duplicates or unrenderable). EAQ 5 imported 2026-07-29
-   (`EAQ/EAQ 5.md`, 50 questions, all newborn-assessment content): 48
-   added (2 dropped as duplicates — cord vessels and ABO incompatibility
-   already existed elsewhere in the bank), landing in two brand-new
-   eaq-only rows (`week6newborn1` 14, `week6newborn2` 11) plus `other`
-   23. All EAQ-sourced questions (205 total) were re-audited 2026-07-29
-   for answer/rationale mispairing from the PDF-to-Markdown conversion —
-   one genuine source-PDF garble was fixed ("attempting to of it" →
-   "attempting to deny it," the death-and-dying/Denial question); no
-   actual answer/rationale mismatches were found.
-
-   Quality pass 2026-07-29 (evening), after a full audit of the non-EAQ
-   sets — eaq was deliberately NOT touched:
-     * 6 mustKnow questions ADDED to close sub-aspect gaps the audit
-       found inside already-covered Must-Know concepts: pre-anesthetic
-       fluid bolus as PREVENTION, a non-reassuring/Category III tracing
-       as a systemic-analgesia contraindication, the internal-monitoring
-       use of amniotomy, misoprostol's postpartum-bleeding use (all
-       `week4labor`), third-stage oxytocin-then-fundal-massage
-       (`intrapartum1`), and late deceleration = uteroplacental
-       insufficiency (`intrapartum2`). All carry source "quiz-bank".
-       NOT added: Demerol -> decreased variability, which is already
-       tested by intrapartum2 extraPractice — adding it would have
-       created a duplicate.
-     * 9 questions REWRITTEN to remove answer tells (circular stems,
-       correct options carrying their own rationale clause, and one
-       item answerable by elimination because only the keyed option had
-       any risk factor at all). Eight were extraPractice; one — the HPV
-       item — is a mustKnow question, so mustKnow is no longer byte-
-       identical to the archived Weeks 1-4 exam.
-     * 2 Intrapartum Care I extraPractice questions SWAPPED for
-       higher-yield content: the ROA-first-letter item (duplicated a
-       mustKnow question) became the four pelvis shapes, and the
-       5-cm/active-phase item (duplicated another) became the cardinal
-       movements of labor.
-     * 2 mustKnow questions CONVERTED to select-all-that-apply so both
-       Intrapartum topics have one: true-vs-false labor
-       (`intrapartum1`) and reassuring-tracing criteria
-       (`intrapartum2`). No questions were added to do this.
-   Counts after the pass: mustKnow 97, extraPractice 105 (unchanged),
-   eaq 205 — the bank totals 407, with 10 mustKnow SATA and 10
-   extraPractice SATA.
-
-   Follow-up pass 2026-07-29 (same evening, after the user reviewed the
-   above):
-     * FIXED the answer-key clustering flagged above. `hypertensive`
-       (was 4/7 at position D) and `week4complications` (was 8/14 at
-       position D) mustKnow sets had their option order rotated —
-       content and rationale untouched, only option order and the
-       matching answer index changed. Both now sit at or under 2/7 and
-       4/14 in any one position.
-     * Re-scanned every topic (not just Intrapartum I) for
-       mustKnow/extraPractice questions testing the same fact. No
-       further duplicates found — the remaining topical overlaps
-       (e.g. hypertensive's single-reading-recheck MK vs. its
-       two-readings-classification EP) are related but test distinct
-       points, the same pattern the project already keeps deliberately
-       separate elsewhere (e.g. magnesium sulfate for different
-       indications).
-     * SATA rebalanced so every topic except `nutrition` and
-       `reproductive` (Anatomy & Physiology) now carries exactly one
-       mustKnow SATA and one extraPractice SATA: `disorders` MK13
-       (toxic shock syndrome recognition) became a SATA on TSS
-       findings; two of `week4labor`'s three mustKnow SATA (aspiration-
-       prevention measures, post-epidural-hypotension actions) were
-       converted back to single-answer, leaving only the oxytocin
-       pre-induction-checklist SATA. No questions were added or
-       removed to do this.
-   Counts unchanged at 407 total; mustKnow SATA and extraPractice SATA
-   are each 10, one per topic except nutrition/reproductive.
+   2026-08-06: mustKnow was re-synced to the culled Must Know Quick
+   Reference — Weeks 4 and 5 were cut from 23 bullets each to 12, so the
+   questions serving the removed bullets were dropped (26 in total). Two
+   questions were converted to SATA so those topics keep their one
+   mustKnow SATA, and one question was ADDED for the surviving
+   C-section-incision bullet, which had never had one.
    ============================================================ */
 window.QUIZ_BANK = {
   topics: [
@@ -220,7 +145,7 @@ window.QUIZ_BANK = {
           {
             stem: "Which statements about meiosis (versus mitosis) are true? Select all that apply.",
             options: ["It produces eggs and sperm","Its daughter cells carry only half the genetic material","Oogenesis is complete at birth","Spermatogenesis begins at puberty","It produces exact copies of cells for tissue repair","It occurs in every body cell throughout life"],
-            answers: [0, 1, 2, 3],
+            answers: [0,1,2,3],
             rationale: "Meiosis produces gametes with half the genetic material; oogenesis is complete at birth and spermatogenesis begins at puberty. Producing exact copies for growth/repair, and occurring in body cells throughout life, both describe mitosis.",
             topic: "Anatomy & Physiology",
             source: "quiz-bank"
@@ -513,7 +438,7 @@ window.QUIZ_BANK = {
           {
             stem: "Which are essential factors for female fertility? Select all that apply.",
             options: ["Favorable cervical mucus","A retroverted uterus","Patent, normally motile fallopian tubes","Ovaries that produce and release normal eggs","A favorable endometrium"],
-            answers: [0, 2, 3, 4],
+            answers: [0,2,3,4],
             rationale: "Female fertility requires favorable cervical mucus, patent/motile tubes, ovulation of normal eggs, a favorable endometrium, and adequate hormones. A retroverted uterus is not required.",
             topic: "Disorders & Genetics",
             source: "quiz-bank"
@@ -758,7 +683,7 @@ window.QUIZ_BANK = {
           {
             stem: "Which are Rubin's maternal tasks of pregnancy? Select all that apply.",
             options: ["Ensuring safe passage through pregnancy, labor, and birth","Returning to pre-pregnancy weight before delivery","Seeking acceptance of the child by others","Seeking acceptance of herself as a mother ('binding in')","Learning to give of oneself on behalf of the child"],
-            answers: [0, 2, 3, 4],
+            answers: [0,2,3,4],
             rationale: "Rubin's four tasks are ensuring safe passage, seeking acceptance of the child by others, seeking acceptance of self as mother, and learning to give of oneself for the child. Weight is not one of them.",
             topic: "Antepartum Care",
             source: "quiz-bank"
@@ -963,7 +888,7 @@ window.QUIZ_BANK = {
           {
             stem: "Which outcomes are associated with maternal tobacco use in pregnancy? Select all that apply.",
             options: ["Low birth weight","Fetal macrosomia","Preterm birth","Premature rupture of membranes","Increased SIDS risk after birth"],
-            answers: [0, 2, 3, 4],
+            answers: [0,2,3,4],
             rationale: "Tobacco causes vasoconstriction, leading to low birth weight, preterm birth, PROM, and (after birth) increased SIDS and infections. Macrosomia is linked to diabetes, not smoking.",
             topic: "Antepartum Care II",
             source: "quiz-bank"
@@ -1325,7 +1250,7 @@ window.QUIZ_BANK = {
           {
             stem: "Which are MATERNAL risks of diabetes in pregnancy? Select all that apply.",
             options: ["Polyhydramnios","Preeclampsia or eclampsia","Ketoacidosis (a major cause of stillbirth)","Difficult labor (dystocia) from a large baby","Chronically low blood glucose"],
-            answers: [0, 1, 2, 3],
+            answers: [0,1,2,3],
             rationale: "Maternal risks of diabetes include polyhydramnios, preeclampsia/eclampsia, ketoacidosis (a major cause of stillbirth), dystocia, and infections. Maternal blood glucose runs high, not low.",
             topic: "Antepartum Complications",
             source: "quiz-bank"
@@ -1586,7 +1511,7 @@ window.QUIZ_BANK = {
           {
             stem: "Which are FETAL effects of preeclampsia? Select all that apply.",
             options: ["Placental abruption","Intrauterine growth restriction (IUGR)","Oligohydramnios","Stillbirth","Fetal macrosomia"],
-            answers: [0, 1, 2, 3],
+            answers: [0,1,2,3],
             rationale: "Reduced placental perfusion in preeclampsia causes placental abruption, IUGR, oligohydramnios, abnormal umbilical artery Doppler, and stillbirth. Macrosomia is associated with diabetes, not preeclampsia.",
             topic: "Hypertensive Disorders",
             source: "quiz-bank"
@@ -1783,7 +1708,7 @@ window.QUIZ_BANK = {
           {
             stem: "Which are cephalic (head-first) presentations? Select all that apply.",
             options: ["Vertex","Military","Brow","Face","Frank breech","Complete breech"],
-            answers: [0, 1, 2, 3],
+            answers: [0,1,2,3],
             rationale: "Vertex, military, brow, and face are all cephalic (head-first) presentations, differing only by how flexed the fetal head is. Frank and complete breech are both breech (bottom-first) presentations.",
             topic: "Intrapartum Care I",
             source: "quiz-bank"
@@ -2084,7 +2009,7 @@ window.QUIZ_BANK = {
           {
             stem: "Which does a sterile vaginal exam in labor assess? Select all that apply.",
             options: ["Cervical dilation","Cervical effacement","Fetal station","Fetal presentation","Maternal blood pressure"],
-            answers: [0, 1, 2, 3],
+            answers: [0,1,2,3],
             rationale: "A sterile vaginal exam assesses cervical dilation (0-10 cm), effacement (0-100%), fetal station, and the presenting part/position. Blood pressure is not assessed by a vaginal exam.",
             topic: "Intrapartum Care II",
             source: "quiz-bank"
@@ -2269,8 +2194,7 @@ window.QUIZ_BANK = {
           }
         ]
       }
-    }
-,
+    },
     {
       id: "week4labor",
       label: "Artificial Management of Labor",
@@ -2280,16 +2204,8 @@ window.QUIZ_BANK = {
           {
             stem: "A client is scheduled for an oxytocin induction. Which items must the nurse confirm are complete before the induction begins? Select all that apply.",
             options: ["An epidural already placed","A reactive non-stress test","A sterile vaginal exam with a Bishop score","Signed informed consent","Baseline maternal vital signs"],
-            answers: [1, 2, 3, 4],
+            answers: [1,2,3,4],
             rationale: "Before an induction you need a reactive NST, a sterile vaginal exam with a Bishop score, signed consent, and baseline vital signs. An epidural is not required, and a NON-reactive NST would be a reason to hold.",
-            topic: "Artificial Management of Labor",
-            source: "exam-weeks1-4"
-          },
-          {
-            stem: "A client at 9-10 cm with a strong urge to push asks for IV pain medication. What is the nurse's best response?",
-            options: ["Give the full ordered dose right away","Give half the ordered dose","Give it and alert the nursery that the newborn may need support","Withhold it and offer non-pharmacologic comfort measures"],
-            answer: 3,
-            rationale: "Systemic analgesia crosses the placenta; given close to delivery the medication can cause neonatal respiratory depression. With imminent birth the nurse withholds it and uses non-pharmacologic comfort measures rather than planning around a depressed newborn.",
             topic: "Artificial Management of Labor",
             source: "exam-weeks1-4"
           },
@@ -2302,36 +2218,12 @@ window.QUIZ_BANK = {
             source: "exam-weeks1-4"
           },
           {
-            stem: "A client needs an emergent cesarean birth and her platelet count is 42,000. Which type of anesthesia does the nurse anticipate?",
-            options: ["An epidural","A spinal","A pudendal block","General anesthesia"],
-            answer: 3,
-            rationale: "General anesthesia is reserved for emergent deliveries, a very low platelet count (a spinal or epidural puncture would raise the bleeding and hematoma risk), and cases where a spinal cannot be placed, such as scoliosis rods. Its biggest risks are aspiration and postpartum hemorrhage, so regional anesthesia is preferred whenever possible.",
-            topic: "Artificial Management of Labor",
-            source: "exam-weeks1-4"
-          },
-          {
-            stem: "During an amniotomy the client's membranes rupture and clear fluid escapes. What is the nurse's priority action?",
-            options: ["Document the time of rupture","Check the maternal temperature","Assess the fetal heart rate","Palpate the uterus for contractions"],
-            answer: 2,
-            rationale: "Amniotic fluid cushions the cord; once it is lost the cord can be compressed, so assessing the FHR is the priority. Documenting the time, checking the temperature, and palpating contractions all follow.",
-            topic: "Artificial Management of Labor",
-            source: "exam-weeks1-4"
-          },
-          {
             stem: "A client is being prepared for an unscheduled cesarean birth. Which nursing action specifically reduces her risk of aspiration during the procedure?",
-            options: ["Placing a wedge to tilt her to the left","Administering famotidine (Pepcid) and metoclopramide (Reglan) IV","Withholding oral intake for 8 hours before the incision","Inserting an indwelling urinary catheter"],
-            answer: 1,
+            options: ["Administering famotidine (Pepcid) and metoclopramide (Reglan) IV","Placing a wedge to tilt her to the left","Withholding oral intake for 8 hours before the incision","Inserting an indwelling urinary catheter"],
+            answer: 0,
             rationale: "A pregnant client is treated as a 'full stomach.' Famotidine and metoclopramide, plus a Bicitra drink, neutralize and reduce stomach acid to lower aspiration risk. The left tilt prevents supine hypotension, not aspiration; an unscheduled cesarean does not allow time for an 8-hour fast; and a urinary catheter has no bearing on aspiration risk.",
             topic: "Artificial Management of Labor",
             source: "quiz-bank"
-          },
-          {
-            stem: "Immediately after a forceps-assisted birth, the client's fundus is firm and midline but she has a steady trickle of bright-red blood. What does the nurse suspect first?",
-            options: ["A vaginal or cervical laceration","Uterine atony","Retained placental fragments","A full bladder"],
-            answer: 0,
-            rationale: "Bright-red bleeding with a firm, well-contracted fundus points to a laceration — a known risk of instrument deliveries — rather than atony, which causes a boggy fundus.",
-            topic: "Artificial Management of Labor",
-            source: "exam-weeks1-4"
           },
           {
             stem: "A client who has been induced with oxytocin for two days becomes confused and lethargic and begins vomiting. What is the nurse's priority action?",
@@ -2342,33 +2234,17 @@ window.QUIZ_BANK = {
             source: "exam-weeks1-4"
           },
           {
-            stem: "A client received misoprostol (Cytotec) for cervical ripening two hours ago. The provider now orders oxytocin. What is the nurse's best action?",
-            options: ["Begin the oxytocin now at 2 milliunits/min","Begin the oxytocin after another 30 minutes","Begin the oxytocin once she is contracting every 5 minutes","Wait until at least 4 hours have passed since the misoprostol dose"],
-            answer: 3,
-            rationale: "Oxytocin should not be started within 4 hours of a misoprostol dose — together they can overstimulate the uterus and cause tachysystole.",
-            topic: "Artificial Management of Labor",
-            source: "exam-weeks1-4"
-          },
-          {
             stem: "The provider asks the nurse to obtain a Bishop score before starting an induction. Which assessments does the nurse need to complete?",
-            options: ["Cervical dilatation, effacement, position, and consistency, plus fetal station","Cervical dilatation, effacement, and consistency, plus contraction frequency and duration","Fetal station, lie, presentation, and attitude, plus cervical dilatation","Cervical dilatation and effacement, plus maternal vital signs and the fetal heart rate baseline"],
-            answer: 0,
+            options: ["Cervical dilatation, effacement, and consistency, plus contraction frequency and duration","Fetal station, lie, presentation, and attitude, plus cervical dilatation","Cervical dilatation and effacement, plus maternal vital signs and the fetal heart rate baseline","Cervical dilatation, effacement, position, and consistency, plus fetal station"],
+            answer: 3,
             rationale: "The Bishop score has five components — four cervical (dilatation, effacement, position, consistency) and one fetal (station). The higher the score the more likely a vaginal birth; 8 or higher is favorable, about the same odds as someone already in spontaneous labor.",
             topic: "Artificial Management of Labor",
             source: "exam-weeks1-4"
           },
           {
-            stem: "A newborn was delivered with vacuum assistance. Which finding does the nurse expect on assessment?",
-            options: ["Transient facial nerve paralysis","A fractured clavicle","Bulging fontanelles","Reddened swelling on the scalp"],
-            answer: 3,
-            rationale: "A vacuum cup is placed on the fetal occiput, so the reddened, swollen area of the scalp marks where it was applied. That bruising raises the bilirubin, so jaundice is a risk to monitor. Facial nerve palsy is a forceps injury; the baby must already be low before a vacuum is used.",
-            topic: "Artificial Management of Labor",
-            source: "exam-weeks1-4"
-          },
-          {
             stem: "After an epidural, a client's systolic blood pressure falls to 92 mm Hg and a late deceleration appears. Which action should the nurse take FIRST?",
-            options: ["Slow the IV infusion rate","Turn the client to a side-lying position","Notify the anesthesia provider","Prepare for an emergency cesarean birth"],
-            answer: 1,
+            options: ["Turn the client to a side-lying position","Slow the IV infusion rate","Notify the anesthesia provider","Prepare for an emergency cesarean birth"],
+            answer: 0,
             rationale: "Post-anesthesia hypotension with a late deceleration is treated first by turning her to a side-lying position to relieve vena cava compression, followed by an IV fluid bolus, ephedrine, and oxygen. Slowing the IV would worsen the hypotension — the bolus, not less fluid, is what restores her pressure. Notifying the provider and preparing for cesarean are premature before trying repositioning and fluid.",
             topic: "Artificial Management of Labor",
             source: "quiz-bank"
@@ -2382,26 +2258,18 @@ window.QUIZ_BANK = {
             source: "quiz-bank"
           },
           {
-            stem: "A client at 6 cm requests IV pain medication. Her contractions are every 3 minutes, her vital signs are stable, and the fetal tracing shows a baseline of 145 bpm with absent variability and recurrent late decelerations. What is the nurse's best action?",
-            options: ["Give the medication, since her labor pattern is well established","Withhold the medication and report the tracing to the provider","Give half the ordered dose to limit fetal exposure","Give the medication and alert the nursery to possible neonatal depression"],
-            answer: 1,
-            rationale: "Before systemic analgesia is given, the baby should have a baseline of 110-160, a reactive non-stress test, and moderate variability - a non-reassuring strip is a contraindication. Absent variability with recurrent late decelerations is a Category III tracing, which has to be reported and acted on rather than medicated around. Halving or timing the dose does not make an abnormal tracing safe.",
-            topic: "Artificial Management of Labor",
-            source: "quiz-bank"
-          },
-          {
-            stem: "A client's labor has stalled and the external toco is not picking up her contractions adequately. The provider performs an amniotomy. Which purpose does this serve for this client?",
-            options: ["It confirms the fetal position","It allows an internal monitor to be placed","It establishes her Bishop score","It prevents compression of the umbilical cord"],
-            answer: 1,
-            rationale: "An amniotomy is used to induce labor, to augment labor, and to allow internal monitoring - a fetal scalp electrode or intrauterine pressure catheter can only be placed once the membranes are ruptured, which is what this client needs. It does not confirm position or establish a Bishop score, and losing the fluid cushion RAISES the risk of cord compression, which is why the fetal heart rate is checked as soon as the membranes rupture.",
-            topic: "Artificial Management of Labor",
-            source: "quiz-bank"
-          },
-          {
             stem: "Misoprostol (Cytotec) is ordered for a client. In which situation is this medication appropriate?",
-            options: ["To ripen the cervix while an oxytocin infusion is running","To control bleeding after the placenta has delivered","To stop preterm contractions as a tocolytic","To reverse magnesium sulfate toxicity"],
-            answer: 1,
+            options: ["To ripen the cervix while an oxytocin infusion is running","To stop preterm contractions as a tocolytic","To reverse magnesium sulfate toxicity","To control bleeding after the placenta has delivered"],
+            answer: 3,
             rationale: "Misoprostol is a prostaglandin given vaginally to ripen the cervix and stimulate contractions, and it is also given AFTER delivery to control bleeding - never with a baby still in utero for that purpose. It must not run at the same time as oxytocin; wait at least 4 hours after the last misoprostol dose. It is not a tocolytic, and calcium gluconate is the magnesium antidote.",
+            topic: "Artificial Management of Labor",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A client who had a cesarean birth asks whether she could deliver her next baby vaginally. Which piece of information from her record most directly determines the answer?",
+            options: ["The indication that led to the cesarean","The type of uterine incision documented in the operative report","The direction of the skin incision across her abdomen","How many centimeters she was dilated when the decision was made"],
+            answer: 1,
+            rationale: "The skin incision and the uterine incision do not have to match, so what is visible on her abdomen tells you nothing — the operative report is what counts. A low transverse uterine incision is the safest and may allow a trial of labor later; a classical (vertical) uterine incision carries a rupture risk, so every future birth must be a cesarean.",
             topic: "Artificial Management of Labor",
             source: "quiz-bank"
           }
@@ -2515,14 +2383,6 @@ window.QUIZ_BANK = {
       sets: {
         mustKnow: [
           {
-            stem: "A client's labor has slowed to fewer than 2 contractions in 10 minutes with little cervical change. Which assessment finding best explains this pattern?",
-            options: ["The fetus is in a transverse lie","The client is 34 years old","The client is at 39 weeks' gestation","The amniotic fluid index is 12 cm"],
-            answer: 0,
-            rationale: "A dysfunctional (hypotonic) labor pattern is linked to an abnormal fetal presentation — a transverse lie keeps the presenting part from pressing on the cervix. Maternal age itself is not associated, and the gestational age and AFI listed are both normal.",
-            topic: "Intrapartum Complications",
-            source: "exam-weeks1-4"
-          },
-          {
             stem: "A client at 32 weeks arrives with bright-red, painless vaginal bleeding. Which action is contraindicated?",
             options: ["Applying an external fetal monitor","Performing a sterile vaginal exam","Obtaining a transabdominal ultrasound","Establishing large-bore IV access"],
             answer: 1,
@@ -2531,20 +2391,12 @@ window.QUIZ_BANK = {
             source: "exam-weeks1-4"
           },
           {
-            stem: "A client in preterm labor is started on nifedipine as a tocolytic. Before giving a dose, the nurse should hold the medication and notify the provider if:",
-            options: ["The maternal heart rate is 118 bpm","The client reports mild flushing","The systolic blood pressure is less than 90 mm Hg","The client has 2+ deep tendon reflexes"],
-            answer: 2,
-            rationale: "Nifedipine relaxes uterine smooth muscle but also lowers blood pressure. Because this client is not hypertensive, hold the dose if the systolic pressure drops below 90. The 120-bpm hold parameter belongs to terbutaline, and 2+ reflexes are normal.",
+            stem: "A client in preterm labor at 30 weeks is receiving tocolytic therapy. Which nursing actions are appropriate? Select all that apply.",
+            options: ["Administer nifedipine and magnesium sulfate together to strengthen the tocolytic effect","Hold nifedipine if the systolic blood pressure is below 90 mm Hg","Stop the magnesium sulfate infusion if deep tendon reflexes decrease from 2+ to 1+","Reassure the client that feeling jittery and flushed after terbutaline is an expected side effect","Notify the provider if deep tendon reflexes become absent"],
+            answers: [1,3,4],
+            rationale: "Nifedipine lowers the blood pressure, so it is held for a systolic under 90. The racing, jittery feeling after terbutaline is an expected side effect and worth warning her about so it does not frighten her. Magnesium relaxes smooth muscle, so reflexes dropping from 2+ to 1+ is expected — but absent reflexes are the first sign of toxicity and must be reported. The agents are not stacked together for a stronger effect.",
             topic: "Intrapartum Complications",
-            source: "exam-weeks1-4"
-          },
-          {
-            stem: "A client is discharged home after a cerclage for cervical insufficiency. Which statement shows she understood the discharge teaching?",
-            options: ["\"I'll be on strict bed rest until delivery.\"","\"I'll need a cesarean because of the stitch.\"","\"I'll take antibiotics for the rest of my pregnancy.\"","\"I'll call my provider if I have uterine cramping or low back pain.\""],
-            answer: 3,
-            rationale: "After a cerclage she should report cramping, low back pain, pelvic pressure, discharge changes, or bleeding. Strict bed rest, a mandatory cesarean, and lifelong antibiotics are all incorrect.",
-            topic: "Intrapartum Complications",
-            source: "exam-weeks1-4"
+            source: "quiz-bank"
           },
           {
             stem: "A client's membranes ruptured 20 hours ago. Which assessment is the nurse's priority?",
@@ -2556,73 +2408,33 @@ window.QUIZ_BANK = {
           },
           {
             stem: "A client is admitted with vaginal bleeding, and the team is trying to distinguish placenta previa from placental abruption. Which assessment finding best differentiates the two?",
-            options: ["The volume of bleeding on the pad","The presence and character of abdominal pain","The fetal heart rate baseline","The hemoglobin and hematocrit"],
-            answer: 1,
+            options: ["The volume of bleeding on the pad","The fetal heart rate baseline","The presence and character of abdominal pain","The hemoglobin and hematocrit"],
+            answer: 2,
             rationale: "Abdominal pain is the key differentiator: an abruption is painful with a firm, tender, board-like uterus, whereas a previa is classically painless bleeding with a soft uterus. Bleeding volume is misleading, because an abruption can conceal blood behind the placenta.",
             topic: "Intrapartum Complications",
             source: "exam-weeks1-4"
           },
           {
-            stem: "Thirty-five minutes after birth the placenta still has not delivered. In the operating room the provider reports that it has invaded the uterine muscle but has not perforated through it. Which term describes this finding?",
-            options: ["Placenta accreta","Placenta percreta","Placenta increta","Placenta previa"],
-            answer: 2,
-            rationale: "Accreta attaches to the myometrium, increta invades into it, and percreta perforates through it — the deeper the invasion, the greater the hemorrhage risk. Previa is an implantation problem over the cervical os, not an adherence problem. A placenta undelivered at 30 minutes is retained, carrying hemorrhage and infection risk.",
-            topic: "Intrapartum Complications",
-            source: "exam-weeks1-4"
-          },
-          {
-            stem: "A client is admitted for delivery of a fetus that died in utero. Which nursing action best supports her and her family?",
-            options: ["Ask her what she would like — such as holding the baby, mementos, or where to recover","Move her immediately to a unit far from the maternity floor","Reassure her that she can have another baby","Limit her time with the infant to protect her from grief"],
-            answer: 0,
-            rationale: "Individualized, patient-led care is best: ask what she wants (holding the baby, pictures, a memory box, where to recover). Do not assume or minimize the loss. In Kentucky, KODA is notified of any death.",
-            topic: "Intrapartum Complications",
-            source: "exam-weeks1-4"
-          },
-          {
             stem: "After the fetal head delivers, the provider reports a shoulder dystocia. Which action does the nurse anticipate first?",
-            options: ["Apply fundal pressure","Assist the client to flex her hips and bring both knees toward her chest","Prepare for an immediate cesarean birth","Prepare for a forceps-assisted delivery"],
-            answer: 1,
+            options: ["Apply fundal pressure","Prepare for an immediate cesarean birth","Assist the client to flex her hips and bring both knees toward her chest","Prepare for a forceps-assisted delivery"],
+            answer: 2,
             rationale: "Flexing the hips and bringing the knees toward the chest is the McRoberts maneuver, which (with suprapubic pressure) frees the trapped shoulder. Fundal pressure is contraindicated — it only jams the shoulder harder against the pubic bone.",
             topic: "Intrapartum Complications",
             source: "exam-weeks1-4"
           },
           {
             stem: "A client with preterm premature rupture of membranes at 30 weeks receives the first dose of betamethasone. Which statement best reflects the nurse's understanding of this order?",
-            options: ["The medication will stop her contractions","The medication is repeated every 6 hours until she delivers","Delivery should be avoided for at least 48 hours if possible","The medication is only indicated after 34 weeks"],
-            answer: 2,
+            options: ["The medication will stop her contractions","The medication is repeated every 6 hours until she delivers","The medication is only indicated after 34 weeks","Delivery should be avoided for at least 48 hours if possible"],
+            answer: 3,
             rationale: "Betamethasone triggers surfactant release to accelerate fetal lung maturity. It is given under about 34 weeks, and the goal is to avoid delivery within 48 hours of the first dose so it has time to work.",
             topic: "Intrapartum Complications",
             source: "exam-weeks1-4"
           },
           {
-            stem: "An ultrasound reports an amniotic fluid index (AFI) of 3 cm. The nurse monitors the fetus most closely for:",
-            options: ["Macrosomia","Preterm labor from uterine overdistention","Malpresentation from excess fluid","Cord compression and pulmonary hypoplasia"],
-            answer: 3,
-            rationale: "A normal AFI is 5-25 cm; an AFI of 3 is oligohydramnios. Too little fluid risks cord compression and pulmonary hypoplasia (the fetus needs to breathe in fluid for the lungs to develop), along with renal and skeletal problems. Overdistention and malpresentation are polyhydramnios problems.",
-            topic: "Intrapartum Complications",
-            source: "exam-weeks1-4"
-          },
-          {
             stem: "During a vaginal exam the nurse feels a pulsating umbilical cord ahead of the presenting part. What is the nurse's FIRST action?",
-            options: ["Lift the presenting part off the cord with the gloved hand","Place the client in Trendelenburg position","Apply oxygen by face mask","Notify the provider and prepare for a cesarean"],
-            answer: 0,
-            rationale: "With a prolapsed cord the priority is to immediately relieve the compression by lifting the presenting part off the cord with the gloved hand. Trendelenburg, oxygen, notifying the provider, and preparing for cesarean all follow — and the hand stays in place until delivery.",
-            topic: "Intrapartum Complications",
-            source: "exam-weeks1-4"
-          },
-          {
-            stem: "Forty minutes after birth the placenta has not delivered, gentle cord traction has been unsuccessful, and bleeding is increasing. What does the nurse anticipate next?",
-            options: ["Continued fundal massage for another 30 minutes","Manual removal of the placenta by the provider","Ambulating the client to encourage separation","Administering an additional uterotonic to expel the placenta"],
+            options: ["Place the client in Trendelenburg position","Lift the presenting part off the cord with the gloved hand","Apply oxygen by face mask","Notify the provider and prepare for a cesarean"],
             answer: 1,
-            rationale: "The placenta should deliver within 30 minutes; beyond that, a retained placenta raises the risk of hemorrhage and infection and may require manual removal (and possibly a transfusion). Abnormal adherence — accreta, increta, percreta — should also be considered.",
-            topic: "Intrapartum Complications",
-            source: "exam-weeks1-4"
-          },
-          {
-            stem: "A laboring client suddenly develops chest pain, dyspnea, hypotension, and frothy sputum shortly after her membranes rupture. Which findings support a diagnosis of amniotic fluid embolism? Select all that apply.",
-            options: ["Chest pain","Hypertension","Dyspnea","Frothy sputum","Hypotension"],
-            answers: [0, 2, 3, 4],
-            rationale: "Amniotic fluid embolism strikes the respiratory and cardiovascular systems: chest pain, dyspnea, frothy sputum, and HYPOtension. Care is to support the cardiovascular and respiratory systems, and to displace the uterus if CPR is needed.",
+            rationale: "With a prolapsed cord the priority is to immediately relieve the compression by lifting the presenting part off the cord with the gloved hand. Trendelenburg, oxygen, notifying the provider, and preparing for cesarean all follow — and the hand stays in place until delivery.",
             topic: "Intrapartum Complications",
             source: "exam-weeks1-4"
           }
@@ -2808,49 +2620,25 @@ window.QUIZ_BANK = {
       sets: {
         mustKnow: [
           {
-            stem: "The mother of a 2-day-old proudly reports that her baby is \"such a good sleeper\" and went 6 hours overnight without waking to eat. Which response is best?",
-            options: ["\"That is a reassuring sign that he is well fed; let him set his own schedule\"","\"Offer him a bottle of water overnight so he does not become dehydrated\"","\"Wake him at least every 3 to 4 hours — going longer shortchanges his intake and your supply\"","\"Sleeping 6 hours at this age means he should be evaluated for jaundice\""],
-            answer: 2,
-            rationale: "A newborn should never go longer than 4 hours between feedings, however sleepy. Waiting shortchanges his nutrition and stops signaling the breast to keep producing milk. Sleeping through the night is not a reassuring sign at this age.",
-            topic: "Postpartum Care & Complications",
-            source: "quiz-bank"
-          },
-          {
-            stem: "A breastfeeding client is diagnosed with mastitis in the right breast and started on antibiotics. She asks whether she has to stop nursing. Which response is correct?",
-            options: ["\"Stop nursing on that side until the redness resolves, then resume\"","\"Stop nursing on both sides while you are on antibiotics and pump and dump\"","\"Wean completely, because continuing will reinfect the breast\"","\"Keep that breast emptied — nurse or pump — and finish the entire course of antibiotics\""],
-            answer: 3,
-            rationale: "Mastitis is treated with antibiotics and analgesics while continuing to empty the breast. She may nurse or, if the breast is too tender, pump that side — the point is to keep the milk moving and the supply up. The antibiotic in her system is safe for the baby, and the full course must be finished.",
-            topic: "Postpartum Care & Complications",
-            source: "quiz-bank"
-          },
-          {
-            stem: "A nurse is preparing to assess a client's fundus 8 hours after a vaginal birth. Which action should the nurse take first?",
-            options: ["Elevate the head of the bed to 45 degrees for her comfort","Position her side-lying with the upper leg lifted","Have her lie completely flat and empty her bladder","Ask her to take a deep breath and bear down"],
-            answer: 2,
-            rationale: "The fundal level is charted against the umbilicus, so she must be lying completely flat with an empty bladder — sitting up distorts the level, and a full bladder pushes the uterus up and to the side. Then support above the symphysis with one hand and palpate with the heel of the other. Side-lying is the position for assessing the perineum.",
-            topic: "Postpartum Care & Complications",
-            source: "quiz-bank"
-          },
-          {
-            stem: "Which finding in a client's lochia on postpartum day 4 should the nurse report to the provider?",
-            options: ["An offensive odor","A pink color","A small amount of brownish discharge mixed in","A gush of blood when she first stands up"],
-            answer: 0,
-            rationale: "Lochia should never smell foul — an offensive odor is a warning sign of infection. Pink serosa is expected around day 4, a brownish tinge simply means older rather than fresh blood, and a gush on standing is pooled lochia draining.",
+            stem: "A nurse is about to assess a client's fundus 8 hours after a vaginal birth. Which actions are correct? Select all that apply.",
+            options: ["Have her empty her bladder first","Chart the height in centimeters measured up from the symphysis pubis","Position her lying completely flat","Support the lower uterine segment just above the symphysis with one hand","Massage the fundus vigorously as a routine part of every assessment","Expect it to be firm and midline"],
+            answers: [0,2,3,5],
+            rationale: "A full bladder pushes the uterus up and out of midline, and she has to be flat for the height to mean anything. One hand supports the lower segment just above the symphysis while the other palpates, and the expected finding is firm and midline. Massage is done only when the fundus is boggy or she is bleeding — never routinely. The level is charted against the umbilicus (U/U, U−1, U+1), not measured up from the symphysis.",
             topic: "Postpartum Care & Complications",
             source: "quiz-bank"
           },
           {
             stem: "A client is 4 hours post vaginal delivery. The nurse changed her peripad 45 minutes ago and now finds it fully saturated. Which conclusion is correct?",
-            options: ["This amount is expected during the first 24 hours after birth","This is simply pooled lochia draining after she repositioned","This amount of bleeding is excessive and requires immediate assessment","This is only concerning if a clot larger than a golf ball is also present"],
-            answer: 2,
+            options: ["This amount of bleeding is excessive and requires immediate assessment","This amount is expected during the first 24 hours after birth","This is simply pooled lochia draining after she repositioned","This is only concerning if a clot larger than a golf ball is also present"],
+            answer: 0,
             rationale: "Saturating a peripad in less than 1 hour is too much bleeding — no weighing is required to know that. Pooled lochia does drain with repositioning, but that produces a gush, not a fully soaked pad inside an hour, and the absence of large clots does not make the volume acceptable.",
             topic: "Postpartum Care & Complications",
             source: "quiz-bank"
           },
           {
             stem: "A nurse weighs a blood-soaked chux pad at 385 grams. An identical dry chux weighs 45 grams. How much blood loss should the nurse document from this item?",
-            options: ["340 mL","385 mL","430 mL","170 mL"],
-            answer: 0,
+            options: ["385 mL","430 mL","170 mL","340 mL"],
+            answer: 3,
             rationale: "One gram of blood is counted as one milliliter. Subtract the dry weight from the used weight: 385 − 45 = 340 g, which converts to 340 mL. This is quantitative blood loss, and it catches a hemorrhage sooner than eyeballing (estimated blood loss), which tends to under-estimate.",
             topic: "Postpartum Care & Complications",
             source: "quiz-bank"
@@ -2865,41 +2653,25 @@ window.QUIZ_BANK = {
           },
           {
             stem: "A client returns to the emergency department 12 days after a vaginal birth with heavy bright red bleeding. Which cause should the nurse anticipate?",
-            options: ["Uterine atony","Retained placental fragments","A cervical laceration","Postpartum preeclampsia"],
-            answer: 1,
+            options: ["Uterine atony","A cervical laceration","Retained placental fragments","Postpartum preeclampsia"],
+            answer: 2,
             rationale: "Uterine atony is the most significant risk factor for an EARLY postpartum hemorrhage, in the hours right after birth. Retained placental fragments are what point to a LATE hemorrhage days to weeks out. A laceration would have bled at the time of delivery.",
             topic: "Postpartum Care & Complications",
             source: "quiz-bank"
           },
           {
             stem: "A client one hour after a vaginal delivery calls out that she is bleeding a lot. Which action should the nurse take first?",
-            options: ["Obtain a full set of vital signs","Notify the provider","Increase her IV fluid rate","Palpate her fundus"],
-            answer: 3,
+            options: ["Obtain a full set of vital signs","Notify the provider","Palpate her fundus","Increase her IV fluid rate"],
+            answer: 2,
             rationale: "Go to the most likely source of the problem. Vital signs would only describe what you can already see — a freely bleeding client is of course likely to be hypotensive and tachycardic. Palpating the fundus tells you why she is bleeding: boggy means atony, so massage immediately; firm and still bleeding means a laceration, so call the provider.",
             topic: "Postpartum Care & Complications",
             source: "quiz-bank"
           },
           {
             stem: "A client with a history of chronic hypertension has a boggy uterus and continued bleeding that has not responded to oxytocin. Which medication should the nurse anticipate next?",
-            options: ["Methylergonovine (Methergine)","Labetalol","Carboprost (Hemabate)","Magnesium sulfate"],
-            answer: 2,
+            options: ["Methylergonovine (Methergine)","Labetalol","Magnesium sulfate","Carboprost (Hemabate)"],
+            answer: 3,
             rationale: "Methergine can cause rebound hypertension, so it is avoided — or is a last resort — in a client with hypertension, even though her pressure is low from bleeding right now. Carboprost is the IM next line; warn her about sudden explosive diarrhea and have chucks ready. Labetalol does nothing for tone, and magnesium sulfate would relax the uterus further.",
-            topic: "Postpartum Care & Complications",
-            source: "quiz-bank"
-          },
-          {
-            stem: "A nurse plans to inspect a client's perineal repair. Which position best exposes the area?",
-            options: ["Semi-Fowler's with the knees flexed and separated","Side-lying with the upper leg lifted and the head of the bed flat","Knee-chest","Lithotomy with the head of the bed elevated"],
-            answer: 1,
-            rationale: "Side-lying with the upper leg raised gives the best view, particularly with the head of the bed lowered. Elevating the head works against you, because she settles down onto her bottom and hides the area. Knee-chest is not used postpartum, and mother-baby beds have no stirrups for lithotomy.",
-            topic: "Postpartum Care & Complications",
-            source: "quiz-bank"
-          },
-          {
-            stem: "A client who sustained a fourth-degree laceration is being prepared for discharge. Which orders should the nurse expect?",
-            options: ["A prophylactic antibiotic and a stool softener","A stool softener and a stimulant laxative","An enema before discharge and a high-fiber diet","No specific orders, since a fourth-degree repair heals like any other"],
-            answer: 0,
-            rationale: "A third- or fourth-degree laceration extends toward the rectum, so infection risk is high and prophylactic antibiotics are typical. These clients dread having a bowel movement, so stool softeners, fiber-rich foods, and plenty of water are pushed hard. Laxatives and enemas are avoided after a vaginal birth — a sudden forceful movement is exactly what a fresh repair does not need.",
             topic: "Postpartum Care & Complications",
             source: "quiz-bank"
           },
@@ -2913,49 +2685,17 @@ window.QUIZ_BANK = {
           },
           {
             stem: "A client with severe preeclampsia delivered 12 hours ago. Her urine output has increased from 25 mL/hr to 90 mL/hr. How should the nurse interpret this change?",
-            options: ["She is developing magnesium sulfate toxicity","She is becoming dehydrated from the diuresis","Her renal perfusion is improving","Her preeclampsia is worsening"],
-            answer: 2,
+            options: ["She is developing magnesium sulfate toxicity","Her renal perfusion is improving","She is becoming dehydrated from the diuresis","Her preeclampsia is worsening"],
+            answer: 1,
             rationale: "Preeclamptic kidneys are very sensitive to poor perfusion and make little urine when perfusion is poor. Rising output means perfusion is improving, which is a positive sign. Falling output would be the worrying direction.",
             topic: "Postpartum Care & Complications",
             source: "quiz-bank"
           },
           {
-            stem: "A client who had a vaginal birth 36 hours ago is anxious because she has not had a bowel movement. Which response is best?",
-            options: ["\"Let's get an order for an enema so you can go before discharge\"","\"That's expected — most women go around day 2 or 3. Let's start a stool softener\"","\"You will need a stimulant laxative before you can be discharged\"","\"Not having gone by now suggests an obstruction; I will notify the provider\""],
-            answer: 1,
-            rationale: "The first bowel movement averages day 2 to 3, and the bowels are sluggish from progesterone, decreased muscle tone, the birth itself, and anesthesia. Docusate sodium and other stool softeners are the right choice. Laxatives and enemas are avoided after a vaginal birth, and a bowel movement is not required for discharge — passing flatus is.",
-            topic: "Postpartum Care & Complications",
-            source: "quiz-bank"
-          },
-          {
-            stem: "On the second postpartum day a client who had been content to let the nurses bathe and change her newborn now wants to do it herself but repeatedly asks whether she is doing it right. Which phase does this represent?",
-            options: ["Taking in","Taking hold","Letting go","The anticipatory stage of maternal role attainment"],
-            answer: 1,
-            rationale: "Taking hold begins around day 2 to 3: she resumes control and takes on mothering tasks, is more confident and autonomous, but needs reassurance that she is doing it correctly. Taking in is the first 1 to 2 days, when she is more passive and dependent and focused on her own food and rest and on processing the birth.",
-            topic: "Postpartum Care & Complications",
-            source: "quiz-bank"
-          },
-          {
             stem: "A client 4 days postpartum begins crying while telling the nurse how well her baby is nursing, then laughs and says she has no idea why she is upset. Which response is best?",
-            options: ["\"Many mothers feel this way in the first couple of weeks — let's talk about it, and about what your partner should watch for\"","\"This is an early sign of postpartum depression; I will arrange a psychiatric referral\"","\"Try to focus on the positives so these feelings do not take hold\"","\"You may want to stop breastfeeding, since the hormones are causing this\""],
-            answer: 0,
-            rationale: "Postpartum blues affect 50 to 80% of mothers, usually appear days 3 to 5, resolve within about 10 to 14 days, and are more common in first-time mothers. The hallmark is mood swings and tearfulness without an apparent cause. The nursing response is anticipatory guidance and validation, plus teaching her and her support person what would signal this has become something more.",
-            topic: "Postpartum Care & Complications",
-            source: "quiz-bank"
-          },
-          {
-            stem: "Which client is at highest risk for postpartum depression?",
-            options: ["A 32-year-old on her third pregnancy who is exclusively breastfeeding","A 28-year-old with well-controlled type 1 diabetes","A 17-year-old first-time mother treated for major depression 2 years ago","A 35-year-old whose labor ended in an unplanned cesarean"],
+            options: ["\"This is an early sign of postpartum depression; I will arrange a psychiatric referral\"","\"Try to focus on the positives so these feelings do not take hold\"","\"Many mothers feel this way in the first couple of weeks — let's talk about it, and about what your partner should watch for\"","\"You may want to stop breastfeeding, since the hormones are causing this\""],
             answer: 2,
-            rationale: "The strongest risk factors are a history of depression, a first pregnancy, and young maternal age — under 18, not over. Breastfeeding and a chronic illness such as diabetes may weigh on mood, but neither is a specific risk factor for postpartum depression.",
-            topic: "Postpartum Care & Complications",
-            source: "quiz-bank"
-          },
-          {
-            stem: "A client 3 weeks postpartum has not slept in days, is agitated and confused, and tells the nurse she keeps having thoughts about the oven that she knows make no sense. Which action is the priority?",
-            options: ["Reassure her that intrusive thoughts are a normal part of the baby blues","Suggest a family member take the baby so she can nap, and reassess tomorrow","Teach relaxation techniques and schedule follow-up in one week","Ensure she is not left alone with the infant and arrange an urgent mental health evaluation"],
-            answer: 3,
-            rationale: "Insomnia, agitation, confusion, and illogical or delusional thinking in the first 1 to 3 months describe postpartum psychosis, which carries a risk of both suicide and infanticide. Safety and an urgent referral come first. With treatment about 95% improve within 2 to 3 months — but only if it is recognized.",
+            rationale: "Postpartum blues affect 50 to 80% of mothers, usually appear days 3 to 5, resolve within about 10 to 14 days, and are more common in first-time mothers. The hallmark is mood swings and tearfulness without an apparent cause. The nursing response is anticipatory guidance and validation, plus teaching her and her support person what would signal this has become something more.",
             topic: "Postpartum Care & Complications",
             source: "quiz-bank"
           },
@@ -2964,22 +2704,6 @@ window.QUIZ_BANK = {
             options: ["Arrange for the newborn to stay in the nursery until another adult can be present","Allow rooming-in and check on her every 2 hours","Allow rooming-in as long as the side rails are up and the bassinet is beside the bed","Discontinue the magnesium so she can safely care for her newborn"],
             answer: 0,
             rationale: "Magnesium slows her arousal and response, so she must never be the only adult in the room with the baby — if the newborn choked or needed care she might not be able to respond. Another responsible adult stays, or the baby goes to the nursery until the magnesium is finished. The infusion is usually continued at least 24 hours after delivery and is not stopped for convenience.",
-            topic: "Postpartum Care & Complications",
-            source: "quiz-bank"
-          },
-          {
-            stem: "A client is 47 hours post vaginal birth and asks to go home. Which findings indicate she is ready for discharge? Select all that apply.",
-            options: ["She has voided without difficulty","She is passing flatus","Her fundus is firm, midline, and descending","Her episiotomy edges are well approximated","She has had a bowel movement","Her oral temperature is 100.8°F"],
-            answers: [0, 1, 2, 3],
-            rationale: "She must void, and she must be passing flatus to show the bowels have woken up. The uterus should be firm, midline, and involuting, and the repair well approximated — not healed yet, just lined up so it can heal. A bowel movement is NOT required: the first one averages day 2 to 3 and the typical vaginal stay is about 48 hours, so many women go home before having one. A temperature of 100.8°F past the first 24 hours is a fever and needs a source found first.",
-            topic: "Postpartum Care & Complications",
-            source: "quiz-bank"
-          },
-          {
-            stem: "A client's prenatal record shows she is rubella non-immune. When should the nurse expect the MMR vaccine to be given?",
-            options: ["At her 6-week postpartum visit, once lochia has stopped","At the first prenatal visit of her next pregnancy","It is contraindicated because she is breastfeeding","Before discharge, now that she has delivered"],
-            answer: 3,
-            rationale: "MMR is a live-virus vaccine, so it cannot be given during pregnancy. Postpartum, when we are confident she is not pregnant, is exactly the right time — so it is given before she goes home. Breastfeeding is not a contraindication.",
             topic: "Postpartum Care & Complications",
             source: "quiz-bank"
           },
@@ -3044,7 +2768,7 @@ window.QUIZ_BANK = {
           {
             stem: "A client had a cesarean birth yesterday and is not yet ambulating well. Which measures should the nurse include to reduce her risk of thrombophlebitis? Select all that apply.",
             options: ["Apply sequential compression devices to her lower legs","Get her up and walking as early as she is able","Teach her to avoid crossing her legs","Keep her knees elevated on pillows for comfort","Encourage prolonged sitting in the chair to build endurance"],
-            answers: [0, 1, 2],
+            answers: [0,1,2],
             rationale: "Sequential compression devices are used when a client cannot ambulate, and early ambulation is the single best measure — it also reduces constipation and respiratory dysfunction and improves overall well-being. She should avoid crossing her legs and avoid prolonged sitting or standing. Elevating the knees on pillows and prolonged sitting both promote venous stasis.",
             topic: "Postpartum Care & Complications",
             source: "quiz-bank"
@@ -3187,8 +2911,138 @@ window.QUIZ_BANK = {
       label: "Newborn Assessment & Care I",
       week: 6,
       sets: {
-        mustKnow: [],
-        extraPractice: [],
+        mustKnow: [
+          {
+            stem: "At 1 minute of life a newborn has a pink trunk with dusky hands and feet, a heart rate of 96, a weak grimace to suctioning, some flexion of the arms and legs, and slow irregular respirations. Which Apgar score should the nurse document?",
+            options: ["4","5","6","7"],
+            answer: 1,
+            rationale: "Appearance 1 (body pink, extremities blue) + Pulse 1 (below 100) + Grimace 1 + Activity 1 (some flexion) + Respirations 1 (slow, irregular) = 5. The heart rate is the piece that separates this from a 6 — a rate of 100 or above earns the full 2 points.",
+            topic: "Newborn Assessment & Care I",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A nurse is assessing several newborns in the nursery. Which findings should be reported for further evaluation rather than documented as expected? Select all that apply.",
+            options: ["A 2-hour-old with dusky hands and feet and a pink trunk","A 26-hour-old with bluish discoloration of the lips","A newborn who pauses breathing for 15 seconds, then resumes","A newborn who pauses breathing for 25 seconds","A newborn with an elongated, cone-shaped head after a 2-hour second stage","A newborn with intercostal retractions and audible grunting"],
+            answers: [1,3,5],
+            rationale: "Blue lips are central cyanosis — the trunk and lips should always be pink — and a pause over 20 seconds is apnea rather than periodic breathing. Retractions with grunting mean the baby is working to breathe. Dusky hands and feet with a pink trunk is acrocyanosis, a pause up to 20 seconds is periodic breathing, and a cone-shaped head after a long second stage is molding.",
+            topic: "Newborn Assessment & Care I",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A 4-hour-old term newborn has a respiratory rate of 68 while quietly awake. The chest rises symmetrically, there are no retractions or flaring, the lips and trunk are pink, and oxygen saturation is 98%. Which interpretation should guide the nurse's next action?",
+            options: ["The rate alone is not diagnostic of distress; continue to monitor and recount at rest","The rate is normal for any age and requires no further attention","The rate confirms respiratory distress syndrome; notify the provider now","The rate is expected only during crying; the baby must be stimulated and recounted"],
+            answer: 0,
+            rationale: "One abnormal sign in isolation is not distress. A rate above 60 in an otherwise well-appearing baby with good color and saturation may be transient tachypnea, which resolves. It is the combination — tachypnea plus retractions plus grunting plus flaring — that signals real distress. The rate is not normal, so it is not simply ignored either.",
+            topic: "Newborn Assessment & Care I",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A nurse palpates a firm area of swelling over the right parietal region of a 1-day-old. The swelling stops abruptly at the sagittal suture. The birth involved a vacuum extraction. Which complication should the nurse anticipate monitoring for?",
+            options: ["Dehydration from poor feeding","Increased intracranial pressure","Jaundice from breakdown of the collected blood","Delayed closure of the fontanelles"],
+            answer: 2,
+            rationale: "Stopping at the suture line identifies this as a cephalohematoma — blood collected beneath the periosteum, which is why it cannot cross. As that blood breaks down it releases bilirubin, so jaundice is the expected complication, along with anemia and, with a large bleed, hypotension. Caput succedaneum is serum above the periosteum and does cross sutures.",
+            topic: "Newborn Assessment & Care I",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A mother who pushed for over two hours is upset that her newborn's head is misshapen. Which response by the nurse is most appropriate?",
+            options: ["\"It happens because the skull bones are still soft; it will round out as he grows over the next year.\"","\"Every baby's head looks a little different, so try not to compare him to other newborns.\"","\"We will keep a hat on him, and gentle massage several times a day will help reshape it.\"","\"The bones overlapped so his head could fit through your pelvis, and it usually rounds out within 24 hours.\""],
+            answer: 3,
+            rationale: "Molding is the overriding of the cranial bones so the head can pass through the pelvis, and it typically resolves within about 24 hours. The mother deserves the actual explanation and the timeframe. Massage does nothing, the change is not a matter of growth over a year, and a general reassurance dismisses her concern without answering it.",
+            topic: "Newborn Assessment & Care I",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A nurse assessing a 3-day-old finds the anterior fontanelle depressed below the surrounding skull. Which additional data is most important for the nurse to obtain?",
+            options: ["The head circumference compared with the chest circumference","The number of wet diapers and feedings in the past 24 hours","The pattern of suture approximation across the skull","The infant's Apgar scores at 1 and 5 minutes"],
+            answer: 1,
+            rationale: "Fontanelles should be soft and flat. A sunken fontanelle points to dehydration, so intake and output are what matter next — feedings taken and wet diapers produced. A bulging fontanelle at rest is the finding that suggests increased intracranial pressure. Head circumference, sutures, and Apgars do not explain a depressed fontanelle.",
+            topic: "Newborn Assessment & Care I",
+            source: "quiz-bank"
+          }
+        ],
+        extraPractice: [
+          {
+            stem: "A nurse places a newborn's bassinet several feet away from an exterior window on a cold night. Which mechanism of heat loss is this action intended to prevent?",
+            options: ["Conduction","Radiation","Evaporation","Convection"],
+            answer: 1,
+            rationale: "Radiation is heat transferred to a cooler surface that is not touching the baby — the cold window pane. Conduction requires direct contact, such as a cold stethoscope or scale. Evaporation is heat lost as moisture vaporizes off a wet baby. Convection is loss to cooler moving air, such as a draft or a fan.",
+            topic: "Newborn Assessment & Care I",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A newborn's axillary temperature is 96.8°F. The nurse understands that if the baby is not rewarmed, the resulting metabolic response will most directly place the infant at risk for which problem?",
+            options: ["Hypertension from catecholamine release","Polycythemia from increased erythropoietin","Hypoglycemia from consumption of glucose stores","Metabolic alkalosis from increased respiratory rate"],
+            answer: 2,
+            rationale: "Newborns cannot shiver, so they generate heat by metabolizing brown fat — a process that consumes glucose and oxygen. Sustained cold stress therefore drives the glucose down and adds work of breathing. Blood pressure falls rather than rises, and the acid-base shift is toward metabolic acidosis.",
+            topic: "Newborn Assessment & Care I",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A nurse is orienting a new graduate who is preparing to take a 12-hour-old newborn's temperature. Which action by the new graduate requires the nurse to intervene?",
+            options: ["Laying the probe parallel with the body under the axilla and lowering the arm over it","Deferring the temperature until the infant has settled from crying","Comparing the reading against a normal range of 97.7 to 99.5°F","Reaching for a rectal probe to also confirm that the anus is patent"],
+            answer: 3,
+            rationale: "Rectal temperatures are avoided in newborns because the probe can perforate an imperforate anus. Patency is confirmed instead by the baby passing stool. The other three actions are correct: the probe lies parallel to the body under the axilla, readings are taken at rest, and 97.7 to 99.5°F is the expected range.",
+            topic: "Newborn Assessment & Care I",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A newborn is delivered to a mother whose gestational diabetes was poorly controlled. Which pair of assessments should the nurse prioritize, and in which order?",
+            options: ["Respiratory status first, then blood glucose","Bilirubin first, then head circumference","Blood glucose first, then respiratory status","Temperature first, then bilirubin"],
+            answer: 0,
+            rationale: "Sustained maternal hyperglycemia drives high fetal insulin levels, and that insulin reduces surfactant production — so the airway and breathing come first. The same high insulin persists after the cord is cut while the glucose supply stops, so hypoglycemia is the very next concern. Airway, breathing, circulation orders the two.",
+            topic: "Newborn Assessment & Care I",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A term newborn delivered by scheduled cesarean has a respiratory rate of 76 at 8 hours of age, with mild flaring and a chest film showing hyper-expanded lungs. Which nursing action is indicated?",
+            options: ["Offer the first oral feeding to settle the infant's breathing","Withhold oral feedings and support oxygenation with a hood or cannula","Position the infant prone and cluster care to reduce stimulation","Prepare for immediate surfactant administration by endotracheal tube"],
+            answer: 1,
+            rationale: "This is transient tachypnea of the newborn, more common after cesarean birth because the chest is never squeezed. Do not feed an infant orally with a rate over 60 — the aspiration risk is real; support with an oxy-hood or cannula and use IV fluids or tube feeding. Surfactant is for respiratory distress syndrome, and prone positioning is not the answer.",
+            topic: "Newborn Assessment & Care I",
+            source: "quiz-bank"
+          },
+          {
+            stem: "Which change occurring in the first hours after birth is responsible for redirecting blood leaving the right ventricle toward the lungs?",
+            options: ["Closure of the foramen ovale","Closure of the ductus venosus","Closure of the ductus arteriosus","Constriction of the umbilical arteries"],
+            answer: 2,
+            rationale: "In fetal life the ductus arteriosus shunted blood from the pulmonary artery into the aorta, bypassing lungs that were full of fluid. Once it closes, right ventricular output travels to the lungs for oxygenation. The foramen ovale is the opening between the atria, and the ductus venosus closure forces perfusion of the liver.",
+            topic: "Newborn Assessment & Care I",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A mother is distraught because only one testis is palpable in her newborn son's scrotum and asks whether he will be able to have children. Which response is accurate?",
+            options: ["\"Fertility depends on surgery being done before he leaves the hospital.\"","\"One descended testis is enough, so the other one will not matter.\"","\"The testis is producing sperm now, so the warmer temperature may already have caused damage.\"","\"Sperm are not produced until puberty, so as long as it descends before then fertility should not be affected.\""],
+            answer: 3,
+            rationale: "Spermatogenesis does not begin until puberty, so an undescended testis in a newborn does not damage sperm that do not yet exist. Many descend on their own; if they have not by about a year, surgical correction may be considered. Nothing is done in the hospital, and the reassurance must be accurate rather than dismissive.",
+            topic: "Newborn Assessment & Care I",
+            source: "quiz-bank"
+          },
+          {
+            stem: "Parents of a newborn with the urinary meatus on the ventral surface of the penis have signed a consent for circumcision. Which action should the nurse take?",
+            options: ["Hold the circumcision and arrange evaluation by a pediatric urologist","Confirm the vitamin K was given, then proceed with the circumcision","Proceed, but use the Plastibell rather than a Gomco clamp","Delay the circumcision until the infant is 6 weeks old, then proceed"],
+            answer: 0,
+            rationale: "With hypospadias the foreskin is frequently needed for the surgical repair, so it must not be removed. A pediatric urologist evaluates first; the meatus is repositioned to the tip of the glans, and a circumcision can be done at that same procedure if the parents still want one. The device used is beside the point.",
+            topic: "Newborn Assessment & Care I",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A newborn delivered after a shoulder dystocia is not moving the left arm as freely as the right. Which assessment technique should the nurse use to evaluate for the most likely birth injury?",
+            options: ["Abduct the hip while pressing downward and feel for a clunk","Lift the chin to expose the collarbone and press gently along it","Stroke the outer sole of the foot and observe the toes","Turn the head to one side and watch the opposite arm flex"],
+            answer: 1,
+            rationale: "A fractured clavicle is a common shoulder-dystocia injury. Because a newborn's neck is so short, the chin has to be lifted to reach the collarbone; pressing gently, you should feel no give or click. Treatment is loose immobilization of the arm and gentle handling, and it heals quickly. The other techniques test the hips, Babinski, and tonic neck.",
+            topic: "Newborn Assessment & Care I",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A nurse completes a head-to-toe assessment on a term newborn. Which findings should be reported to the provider? Select all that apply.",
+            options: ["A single transverse crease across the left palm","Small white papules scattered over the nose","A deep sacral dimple with a tuft of hair at its base","Ears whose upper edge sits well below the outer canthus line","Blood-tinged discharge in a female infant's diaper on day 2","Thigh and gluteal creases that are not symmetrical"],
+            answers: [0,2,3,5],
+            rationale: "A single palmar crease and low-set ears are associated with syndromes such as trisomy 21; a sacral dimple with a hair tuft may signal an underlying neural tube defect and needs imaging; and asymmetric thigh or gluteal creases suggest hip dysplasia, evaluated by ultrasound. Milia on the nose are harmless keratin-filled glands, and pseudomenstruation is normal withdrawal of maternal hormones.",
+            topic: "Newborn Assessment & Care I",
+            source: "quiz-bank"
+          }
+        ],
         eaq: [
           {
             stem: "Which sign in the newborn infant would reflect an Apgar score of 1 in the category of respiration?",
@@ -3310,8 +3164,138 @@ window.QUIZ_BANK = {
       label: "Newborn Assessment & Care II",
       week: 6,
       sets: {
-        mustKnow: [],
-        extraPractice: [],
+        mustKnow: [
+          {
+            stem: "A 45-minute-old infant of a diabetic mother is due for a glucose check. The baby is alert with a strong suck and the mother wishes to breastfeed. Which action should the nurse take?",
+            options: ["Draw the heel-stick glucose now, then feed regardless of the result","Assist the mother to feed the infant, then obtain the heel-stick glucose","Withhold feeding until the glucose result confirms the infant needs it","Give an oral glucose supplement first, then feed and recheck"],
+            answer: 1,
+            rationale: "Feed first, then check. Once the cord is cut no more glucose reaches the baby and the reserves only fall — and feeding is the intervention for a low sugar anyway, so there is nothing to gain by delaying it. A supplement is only added if the level stays low after feeding.",
+            topic: "Newborn Assessment & Care II",
+            source: "quiz-bank"
+          },
+          {
+            stem: "Which newborn should the nurse identify as needing a glucose screen soonest?",
+            options: ["A 39-week infant weighing 3,300 g whose mother had a normal glucose tolerance test","A 40-week infant with a cephalohematoma who is feeding well","A 38-week infant at the 6th percentile for weight who is trembling at the hands and feet","A 41-week infant with acrocyanosis who is sleeping between feedings"],
+            answer: 2,
+            rationale: "Small-for-gestational-age infants have poor glycogen reserves, and jitteriness — a fine trembling of the hands or feet — is a classic sign of hypoglycemia, as are tremors, seizures, and a cold baby. The appropriately grown infant is not at risk, a cephalohematoma raises bilirubin rather than lowering glucose, and acrocyanosis with normal sleep is expected.",
+            topic: "Newborn Assessment & Care II",
+            source: "quiz-bank"
+          },
+          {
+            stem: "Two newborns develop visible yellowing of the skin: one at 18 hours of life and one at 52 hours. Which conclusion should the nurse draw?",
+            options: ["Both are physiologic, since jaundice within the first week is expected","The 18-hour infant is pathologic and the 52-hour infant is physiologic","The 52-hour infant is pathologic and the 18-hour infant is physiologic","Neither can be classified until serum bilirubin levels are compared"],
+            answer: 1,
+            rationale: "The dividing line is 24 hours of life. Jaundice appearing before 24 hours is pathologic and a red flag, often needing phototherapy and sometimes a transfusion. Jaundice appearing after 24 hours is physiologic — the common kind — and managed largely by increasing feedings so bilirubin is excreted in the stool.",
+            topic: "Newborn Assessment & Care II",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A mother calls about her 3-day-old, who has grown increasingly difficult to wake, has taken only two short feedings since yesterday, and looks \"tanned.\" Which concern should guide the nurse's response?",
+            options: ["A rising bilirubin level, because untreated it can cause kernicterus","A developing cephalohematoma from the birth","Normal newborn weight loss of 5 to 10 percent","The second period of reactivity, when infants sleep more"],
+            answer: 0,
+            rationale: "A drowsy, hard-to-rouse baby who is feeding poorly and looks yellowed is the picture of a climbing bilirubin — and poor feeding makes it worse, since stooling is how bilirubin leaves the body. Very high levels cross into the brain and cause kernicterus, permanent brain damage, which is why levels are checked and phototherapy is started.",
+            topic: "Newborn Assessment & Care II",
+            source: "quiz-bank"
+          },
+          {
+            stem: "Which statements by a parent about the medications their newborn receives after birth indicate correct understanding? Select all that apply.",
+            options: ["\"The vitamin K shot is given so he doesn't bleed, because his gut can't make it yet.\"","\"The vitamin K is a vaccine, so we could get it at his first office visit instead.\"","\"The eye ointment is to keep him from getting an eye infection that could blind him.\"","\"The eye ointment will also protect him from group B strep.\"","\"Hepatitis B is the vaccine he gets before we go home.\"","\"If we decline the vitamin K, he can still be circumcised before discharge.\""],
+            answers: [0,2,4],
+            rationale: "Vitamin K is a one-time IM dose given because the newborn gut is not yet colonized with the bacteria needed to synthesize it — and it is a medication, not a vaccine. Erythromycin ointment prevents conjunctivitis from gonorrhea or chlamydia and the blindness that can follow; it does nothing for group B strep. Hepatitis B is the vaccine given before discharge. An elective circumcision is not done on an infant who did not receive vitamin K.",
+            topic: "Newborn Assessment & Care II",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A nurse is reviewing with new parents when to call the pediatrician after discharge. Which statement indicates correct understanding?",
+            options: ["\"If he skips one feeding but takes the next one well, I should bring him in.\"","\"As long as he has about three wet diapers a day, I don't need to worry.\"","\"I should call if his temperature goes above 100.4 or drops below 97.7.\"","\"If he pauses his breathing for about 15 seconds, I need to call right away.\""],
+            answer: 2,
+            rationale: "Both ends of the temperature range matter — a newborn who is staying cold is as concerning as one with a fever. Expect 6 to 8 wet diapers a day, not three. It is refusal of two feedings in a row that warrants a call, not one missed feeding. And a pause up to 20 seconds is normal periodic breathing; it is a pause over 20 seconds that is apnea.",
+            topic: "Newborn Assessment & Care II",
+            source: "quiz-bank"
+          }
+        ],
+        extraPractice: [
+          {
+            stem: "A nurse turns a supine newborn's head to the right and observes the right arm and leg extend while the left arm and leg flex. Which documentation is correct?",
+            options: ["An expected tonic neck reflex","An asymmetric Moro reflex requiring evaluation","An absent Babinski reflex","An exaggerated startle response suggesting withdrawal"],
+            answer: 0,
+            rationale: "This is the tonic neck, or fencer, reflex: the extremities on the side the head faces straighten while the opposite side flexes. It is expected in a newborn and fades around 4 months. The Moro is elicited by a loud noise or sudden lowering, and the Babinski is elicited at the sole of the foot.",
+            topic: "Newborn Assessment & Care II",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A newborn is now 38 hours old and has not yet voided. Which action should the nurse take?",
+            options: ["Continue to monitor, since some infants do not void for the first 3 days","Notify the provider, since a newborn should have voided by 40 hours","Obtain an order for a bladder scan and a straight catheterization","Weigh each diaper to detect a void too small to see"],
+            answer: 1,
+            rationale: "About 93% of newborns void within 24 hours and essentially all within two days, so going beyond 40 hours without voiding needs to be reported. Continuing to wait past that point is not appropriate. Catheterization is not the first step, and mother-baby units do not routinely weigh diapers — that is a NICU practice.",
+            topic: "Newborn Assessment & Care II",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A mother asks why the nurse keeps asking whether her jaundiced 2-day-old has had a dirty diaper. Which explanation is correct?",
+            options: ["Stooling confirms the anus is patent, which rules out jaundice","Formula residue in the stool shows how much the baby absorbed","Meconium is dark because it carries bilirubin, so stooling clears it from the body","Green stools would indicate the phototherapy is working"],
+            answer: 2,
+            rationale: "Meconium's dark color comes from the bilirubin being excreted in it, so a baby who stools well is clearing bilirubin — which is exactly why feedings are increased in a jaundiced infant. The first meconium is expected by day 2 to 3. Stooling does confirm anal patency, but that has nothing to do with the bilirubin level.",
+            topic: "Newborn Assessment & Care II",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A newborn is 20 hours old and the mother is asking to be discharged. The nurse explains the newborn screening blood test cannot be drawn yet. What is the reason?",
+            options: ["The heel must be warmed for a full 24 hours before the sample","Bilirubin levels interfere with the assay before 24 hours of life","The sample must be drawn after the first meconium stool","The infant must have fed for at least 24 hours for the result to be valid"],
+            answer: 3,
+            rationale: "The screen detects phenylketonuria and other metabolic disorders, and phenylalanine only accumulates once the infant has been taking in breast milk or formula — so at least 24 hours of feeding is required. Kentucky's panel screens for more than 59 conditions. Warming the heel takes minutes, and neither bilirubin nor stooling is the limiting factor.",
+            topic: "Newborn Assessment & Care II",
+            source: "quiz-bank"
+          },
+          {
+            stem: "After 30 seconds of effective positive-pressure ventilation, a newborn's heart rate is 52 beats per minute. Which action is indicated?",
+            options: ["Stop ventilating and reassess after 30 seconds of drying and stimulation","Continue positive-pressure ventilation alone and recheck in 60 seconds","Begin chest compressions along with positive-pressure ventilation","Apply a pulse oximeter and continue to observe"],
+            answer: 2,
+            rationale: "A heart rate below 60 is inadequate to perfuse the body, so compressions are added to the ventilation. Between 60 and 100 the response is positive-pressure ventilation with a pulse oximeter, and consideration of intubation if the rate does not come up. Stimulation alone is the starting point, not the response to a rate this low.",
+            topic: "Newborn Assessment & Care II",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A newborn returns to the mother's room after a circumcision. Which instruction should the nurse give the parents for the diaper changes that follow?",
+            options: ["Wipe the site clean with an alcohol pad at every change","Leave the site open to air and avoid applying anything to it","Apply a generous amount of petroleum jelly at each change","Keep the site covered with a dry gauze wrap for 48 hours"],
+            answer: 2,
+            rationale: "The glans is raw after the procedure and will stick to the diaper without a barrier, so petroleum jelly goes on generously at every change. Parents also watch for excessive bleeding or drainage. Alcohol would be painful and is not used, and leaving the site bare is exactly what causes the skin to adhere.",
+            topic: "Newborn Assessment & Care II",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A newborn's screening pulse oximetry reads 97% on the right hand and 91% on the foot. How should the nurse interpret this result?",
+            options: ["Fail, because the difference between the two sites is too great","Pass, because both readings are above 90%","Pass, because the right hand reading exceeds 95%","Fail, because the foot reading must exceed the hand reading"],
+            answer: 0,
+            rationale: "The critical congenital heart disease screen requires greater than 95% and less than a 3% difference between the right hand and the foot. A 6-point gap fails even though neither value is below 90, and the infant needs cardiac evaluation. The screen exists to catch babies who look well in the hospital and decompensate at home.",
+            topic: "Newborn Assessment & Care II",
+            source: "quiz-bank"
+          },
+          {
+            stem: "Which statement by a parent about umbilical cord care requires further teaching?",
+            options: ["\"I'll fold the front of the diaper down so it stays below the cord.\"","\"I'll give him sponge baths until the stump falls off.\"","\"I'll call the doctor if the skin around it turns red or starts oozing.\"","\"I'll rub the base with my finger a few times a day to loosen it faster.\""],
+            answer: 3,
+            rationale: "The cord is kept clean, dry, and untouched — handling it, especially with unwashed hands, introduces infection. It falls off on its own in about 7 to 10 days. Folding the diaper below the cord, sponge bathing until it separates, and reporting redness, warmth, or oozing are all correct.",
+            topic: "Newborn Assessment & Care II",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A newborn is placed under phototherapy. Which nursing action is appropriate?",
+            options: ["Dress the infant in a thin cotton shirt to prevent cold stress","Leave the diaper on, expose the rest of the skin, and apply eye shields","Hold all feedings while the infant is under the lights to limit interruptions","Keep the eyes uncovered so the light reaches the sclera"],
+            answer: 1,
+            rationale: "The skin has to absorb the light, so the diaper stays on and everything else is exposed — clothing defeats the therapy. Eye shields are essential because infants will stare straight at the light. Feedings actually continue and matter more than usual, since intake drives the stooling that carries bilirubin out, and hydration is monitored.",
+            topic: "Newborn Assessment & Care II",
+            source: "quiz-bank"
+          },
+          {
+            stem: "A newborn with neonatal abstinence syndrome is irritable, tremulous, and difficult to console. Which interventions should the nurse include in the plan of care? Select all that apply.",
+            options: ["Keep the lights low and the environment quiet","Cluster care to allow long uninterrupted rest periods","Check on and reposition the infant every 5 to 10 minutes","Swaddle snugly enough that the legs cannot move","Swaddle securely while still allowing the legs to move and kick","Encourage the mother on buprenorphine maintenance to breastfeed"],
+            answers: [0,1,4,5],
+            rationale: "These infants are already over-stimulated, so care is built around reducing input: dim lights, quiet, and clustered care with long rests. Swaddling is safe only when the legs can still move. Breastfeeding is encouraged for a mother on methadone or buprenorphine — a small amount passes into the milk and eases withdrawal. Frequent handling adds the very stimulation being avoided.",
+            topic: "Newborn Assessment & Care II",
+            source: "quiz-bank"
+          }
+        ],
         eaq: [
           {
             stem: "Which major group of substances in human milk are of special importance to the newborn and cannot be reproduced in a bottle formula?",

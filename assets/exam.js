@@ -38,7 +38,8 @@
     "Antepartum Care II", "Maternal Nutrition", "Antepartum Complications",
     "Hypertensive Disorders", "Intrapartum Care I", "Intrapartum Care II",
     "Artificial Management of Labor", "Intrapartum Complications",
-    "Postpartum Care & Complications"
+    "Postpartum Care & Complications",
+    "Newborn Assessment & Care I", "Newborn Assessment & Care II"
   ];
 
   /* ---- Topic breakdown (only renders if questions carry a `topic` field) ----
